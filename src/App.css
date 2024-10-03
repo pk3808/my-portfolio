@@ -1,0 +1,33 @@
+/* App.css */
+
+/* Common styles */
+.app {
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: #1a1a1a; /* Dark background */
+  color: white; /* Light text */
+}
+
+/* Button styles */
+.theme-toggle-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.theme-toggle-button:hover {
+  background-color: #0056b3;
+}
