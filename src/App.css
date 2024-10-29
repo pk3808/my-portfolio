@@ -1,33 +1,201 @@
-/* App.css */
-
 /* Common styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
 .app {
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and text color */
 }
 
 .light {
-  background-color: white;
   color: black;
+  background: linear-gradient(to bottom, #F7F9F2, #FEECE2);
 }
 
 .dark {
-  background-color: #1a1a1a; /* Dark background */
+  background-color: #1A3636; /* Dark background */
   color: white; /* Light text */
 }
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('../public/fonts/LED Dot-Matrix.ttf') format('truetype'); /* Adjust format if using other file types */
+  font-weight: normal;
+  font-style: normal;
+}
 
-/* Button styles */
+/* Toggle switch styles */
 .theme-toggle-button {
   position: fixed;
-  top: 20px;
+  top: 10px;
   right: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
+  width: 60px; /* Width of the toggle switch */
+  height: 30px; /* Height of the toggle switch */
+  border-radius: 15px; /* Rounded corners */
+  display: flex; /* Flexbox for positioning */
+  align-items: center; /* Center items vertically */
+  padding: 2px; /* Optional: Add padding to create space around the toggle */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+  border: none; /* Remove default border */
+  outline: none; /* Remove outline on focus */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Shadow for a 3D effect */
+  z-index: 100; /* Ensure the toggle appears above other elements */
+  box-shadow: inset 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
-.theme-toggle-button:hover {
-  background-color: #0056b3;
+/* Toggle indicator styles */
+.toggle-indicator {
+  width: 26px; /* Width of the toggle circle */
+  height: 26px; /* Height of the toggle circle */
+  border-radius: 50%; /* Make it circular */
+  background-color: white; /* Circle color */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Shadow for a 3D effect */
+  display: flex; /* Flexbox for positioning icon */
+  align-items: center; /* Center icon vertically */
+  justify-content: center; /* Center icon horizontally */
+  transition: transform 0.3s; /* Smooth transition for position */
 }
+
+/* Dark mode styles */
+.dark .theme-toggle-button {
+  background-color: #a6cdc0; /* Background color for dark mode switch */
+  box-shadow: inset 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  color: #f0f0f0; /* Text color for dark mode switch */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+
+}
+
+.light .theme-toggle-button {
+  background-color: #f0f0f0 !important; /* Force the background color */
+}
+
+.dark .toggle-indicator {
+  transform: translateX(0px); /* Adjust this value to fit within the button */
+}
+
+/* Optional styles for hover effect */
+.theme-toggle-button:hover {
+  background-color: #aaa; /* Slightly darker on hover */
+}
+
+/* Icon styles */
+.toggle-indicator svg {
+  height: 1em; /* Set icon size */
+  width: 1em; /* Set icon size */
+  color: inherit; /* Make icon inherit color */
+}
+
+/* Spinning effect */
+.spin {
+  animation: spin 1.2s linear; /* Apply spin animation */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg); /* Start from 0 degrees */
+  }
+  to {
+    transform: rotate(360deg); /* End at 360 degrees */
+  }
+}
+/* App.css */
+
+.social-icons-desktop {
+  position: fixed;
+  z-index: 50;
+  display: flex;
+  gap: 76px; /* Space between icons */
+  color: inherit; /* Inherit color for dark/light mode */
+  /* border-bottom: #00d45f solid 1px; */
+  padding-left: 30px;
+  padding-right: 55px;
+  /* border-right: #00bcd4 solid 1px; */
+  border-bottom-right-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 4px 6px -1px rgba(235, 91, 91, 0.1), 0 2px 4px -1px rgba(3, 34, 16, 0.963);
+}
+
+.social-icons-desktop a {
+  font-size: 24px; /* Icon size */
+  transition: color 0.3s ease; /* Smooth color transition */
+
+}
+
+.social-icons-desktop a:hover {
+  color: #00bcd4; /* Hover color */
+}
+
+.social-icons-mobile {
+  position: fixed;
+  top: 10px; /* Adjust the positioning */
+  left: 10px; /* Adjust the positioning */
+  z-index: 50;
+  
+}
+
+.social-toggle-btn {
+  background-color: #044c18; /* Main button color */
+  color: white; /* Icon color */
+  border: none; /* Remove border */
+  border-radius: 50%; /* Make it round */
+  width: 40px; /* Width of the button */
+  height: 40px; /* Height of the button */
+  display: flex; /* Center the icon */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  position: fixed; /* Fix position */
+  left: 20px; /* Position from left */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow for floating effect */
+  transition: transform 0.2s; /* Smooth hover effect */
+  z-index: 100; /* Ensure it appears above other elements */
+  top:10px
+}
+
+.social-toggle-btn:hover {
+  transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+
+.social-toggle-btn:hover {
+  color: #00bcd4; /* Change color on hover */
+}
+
+.social-dropdown {
+  position: absolute;
+  top: 55px; /* Adjust dropdown position */
+  left: 0;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between icons */
+}
+
+.social-dropdown a {
+  font-size: 24px; /* Icon size */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.social-dropdown a:hover {
+  color: #00bcd4; /* Hover color */
+}
+
+/* Dark Mode Styles */
+.dark .social-dropdown {
+  background-color: rgb(3, 41, 3); /* Dark mode background */
+  color: white; /* Dark mode text color */
+}
+
+.dark .social-icons-desktop a,
+.dark .social-toggle-btn {
+  color: white; /* Dark mode icon color */
+}
+

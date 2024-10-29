@@ -4,7 +4,6 @@ import NavBar from "../components/NavBar";
 const Home = () => {
   return (
     <div className="container mx-auto py-16 min-h-screen">
-      <NavBar />
       <h1 className="text-4xl font-bold text-center">
         Welcome to My Portfolio
       </h1>
