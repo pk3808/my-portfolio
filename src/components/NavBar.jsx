@@ -76,7 +76,7 @@ const NavBar = ({ darkMode }) => {
           </button>
          
           <button 
-            onClick={() => handleNavigation('/')} 
+            onClick={() => handleNavigation('/home')} 
             className={`hover:text-cyan-400 text-lg flex items-center space-x-2 ${active === '/' ? 'font-bold text-cyan-400' : ''}`}
           >
             <FontAwesomeIcon icon={faHome} /> {/* Skills icon */}

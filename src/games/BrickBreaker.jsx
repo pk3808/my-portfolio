@@ -1,209 +1,248 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import Home from "../pages/Home";
+import Blogs from "../pages/Blogs";
+import Projects from "../pages/Projects";
+import Skills from "../pages/Skills";
+import Contact from "../pages/Contact";
 
 const BrickBreaker = () => {
-  const navigate = useNavigate();
-  const [bricks, setBricks] = useState(createBricks());
-  const [ball, setBall] = useState({ x: 50, y: 60, dx: 0.75, dy: 0.75 });
-  const [isGameOver, setIsGameOver] = useState(false);
-  const [isGameStarted, setIsGameStarted] = useState(false);
-  const paddleRef = useRef();
-  const [paddlePosition, setPaddlePosition] = useState(50);
+  const canvasRef = useRef(null);
+  const [paddle, setPaddle] = useState({
+    x: 150,
+    y: 450,
+    width: 100,
+    height: 10,
+  });
+  const [ball, setBall] = useState({ x: 200, y: 300, dx: 1, dy: 1, radius: 5 });
+  const [bricks, setBricks] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
+  const [modalComponent, setModalComponent] = useState(null);
+  const [modalTitle, setModalTitle] = useState(""); // Add state for modal title
 
-  function createBricks() {
-    const specialBricks = [
-      { id: 2, navigateTo: "/contact" },
-      { id: 5, navigateTo: "/blogs" },
-      { id: 8, navigateTo: "/projects" },
-      { id: 10, navigateTo: "/skills" },
-      { id: 15, navigateTo: "/" },
-    ].map((brick) => ({
-      ...brick,
-      isSpecial: true,
-      hit: false,
-      position: {
-        top: Math.floor(brick.id / 7) * 12,
-        left: (brick.id % 6) * 20,
-      },
-    }));
-
-    const normalBricks = Array.from({ length: 15 }, (_, i) => ({
-      id: i + 6,
-      isSpecial: false,
-      hit: false,
-      position: {
-        top: Math.floor(i / 5) * 12,
-        left: (i % 5) * 20,
-      },
-    }));
-
-    return [...normalBricks, ...specialBricks];
-  }
-
-  const startGame = () => {
-    setIsGameStarted(true);
-    setIsGameOver(false);
-    setBricks(createBricks()); // Reset bricks when starting a new game
-  };
-
+  // Initialize bricks
   useEffect(() => {
-    if (isGameOver || !isGameStarted) return;
+    const brickRows = 3;
+    const brickCols = 6;
+    const brickWidth = 45.5;
+    const brickHeight = 20;
+    const padding = 10;
+    const offsetTop = 50;
+    const offsetLeft = 35;
 
-    const interval = setInterval(() => {
-      setBall((prevBall) => {
-        let { x, y, dx, dy } = prevBall;
-
-        // Update ball position first
-        x += dx;
-        y += dy;
-
-        // Check for game over condition
-        if (y >= 100) {
-          setIsGameOver(true);
-          return prevBall; // Stop ball movement
-        }
-
-        // Wall collision
-        if (x <= 0 || x >= 100) dx = -dx;
-        if (y <= 0) dy = -dy;
-
-        // Paddle collision
-        const paddle = paddleRef.current.getBoundingClientRect();
-        if (
-          y >= 85 &&
-          x >= (paddle.left / window.innerWidth) * 100 &&
-          x <= (paddle.right / window.innerWidth) * 100
-        ) {
-          dy = -dy; // Reverse direction when hitting the paddle
-          y = 85; // Set ball position to be exactly at the paddle
-        }
-
-        // Brick collision
-        let newBricks = [...bricks];
-        let brickHit = false;
-
-        // Check for collisions with each brick
-        newBricks = newBricks.map((brick) => {
-          if (
-            !brick.hit &&
-            y + 4 >= brick.position.top && // Adjusted for ball size
-            y <= brick.position.top + 10 &&
-            x + 4 >= brick.position.left &&
-            x <= brick.position.left + 16
-          ) {
-            dy = -dy; // Reverse direction upon hitting the brick
-            // Set ball position to be just above the brick to prevent overlapping
-            y = brick.position.top - 4; // Adjust the position to be right above the brick
-            brick.hit = true; // Mark the brick as hit
-            brickHit = true; // Set flag to indicate a brick was hit
-
-            // Special brick navigation
-            if (brick.isSpecial) {
-              navigate(brick.navigateTo);
-            }
-          }
-          return brick;
+    const initialBricks = [];
+    for (let row = 0; row < brickRows; row++) {
+      for (let col = 0; col < brickCols; col++) {
+        const isSpecial =
+          (row === brickRows - 2 && (col === 1 || col === 3 || col === 5)) ||
+          (row === brickRows - 3 && (col === 0 || col === 4));
+        initialBricks.push({
+          x: col * (brickWidth + padding) + offsetLeft,
+          y: row * (brickHeight + padding) + offsetTop,
+          width: brickWidth,
+          height: brickHeight,
+          hit: false,
+          isSpecial,
+          title: getComponentByBrick(col + row * brickCols).title, // Get title
         });
+      }
+    }
+    setBricks(initialBricks);
+  }, []);
 
-        // Update bricks state only if a brick was hit
-        if (brickHit) {
-          setBricks(newBricks);
-        }
-
-        // Return the updated ball position
-        return { x, y, dx, dy };
-      });
-    }, 30); // Adjust this timing as needed
-
-    return () => clearInterval(interval);
-  }, [bricks, navigate, isGameOver, isGameStarted]);
-
-  const handlePaddleMove = (direction) => {
-    setPaddlePosition((prev) => {
-      const newPosition = direction === "left" ? prev - 5 : prev + 5;
-      return Math.max(0, Math.min(newPosition, 100));
-    });
-  };
-
-  const restartGame = () => {
-    setBall({ x: 50, y: 60, dx: 0.75, dy: 0.75 }); // Reset ball speed
-    setBricks(createBricks());
-    setIsGameOver(false);
-    setIsGameStarted(false);
-  };
-
-  // Keyboard controls
-  const handleKeyDown = (event) => {
-    if (event.key === "ArrowLeft") {
-      handlePaddleMove("left");
-    } else if (event.key === "ArrowRight") {
-      handlePaddleMove("right");
+  // Function to assign component and title by brick
+  const getComponentByBrick = (index) => {
+    switch (index) {
+      case 7:
+        return { component: <Home />, title: "Home" };
+      case 0:
+        return { component: <Blogs />, title: "Blogs" };
+      case 11:
+        return { component: <Projects />, title: "Projects" };
+      case 4:
+        return { component: <Skills />, title: "Skills" };
+      case 9:
+        return { component: <Contact />, title: "Contact" };
+      default:
+        return { component: null, title: "" };
     }
   };
 
+  // Paddle movement for keyboard controls
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+    const handleKeyDown = (e) => {
+      setPaddle((prev) => {
+        if (e.key === "ArrowLeft") {
+          return { ...prev, x: Math.max(prev.x - 20, 0) };
+        } else if (e.key === "ArrowRight") {
+          return { ...prev, x: Math.min(prev.x + 20, 400 - prev.width) };
+        }
+        return prev;
+      });
     };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Mobile touch control for paddle movement
+  const handleTouchMove = (e) => {
+    const touchX = e.touches[0].clientX;
+    const canvasRect = canvasRef.current.getBoundingClientRect();
+    const relativeTouchX = touchX - canvasRect.left;
+
+    setPaddle((prev) => ({
+      ...prev,
+      x: Math.min(
+        Math.max(relativeTouchX - prev.width / 2, 0),
+        canvasRect.width - prev.width
+      ),
+    }));
+  };
+
+  // Game loop for ball movement and collision detection
+  useEffect(() => {
+    if (gameOver || modalComponent) return; // Stop ball movement if game over or modal is open
+
+    const interval = setInterval(() => {
+      setBall((prev) => {
+        let { x, y, dx, dy, radius } = prev;
+
+        // Check collision with walls
+        if (x + dx < radius || x + dx > 400 - radius) dx = -dx;
+        if (y + dy < radius) dy = -dy;
+
+        // Check collision with paddle
+        if (
+          y + dy > paddle.y - radius &&
+          x > paddle.x &&
+          x < paddle.x + paddle.width
+        ) {
+          dy = -dy;
+        }
+
+        // Check collision with bricks and open modal on special brick hit
+        const updatedBricks = bricks.map((brick, index) => {
+          if (
+            !brick.hit &&
+            x > brick.x &&
+            x < brick.x + brick.width &&
+            y > brick.y &&
+            y < brick.y + brick.height
+          ) {
+            dy = -dy;
+
+            // Special brick hit logic
+            if (brick.isSpecial) {
+              console.log("Special brick hit at index:", index); // Debugging log
+              const { component, title } = getComponentByBrick(index);
+              setModalComponent(component);
+              setModalTitle(title);
+            }
+
+            return { ...brick, hit: true };
+          }
+          return brick;
+        });
+        setBricks(updatedBricks);
+
+        // Check if ball falls below paddle
+        if (y + dy > 500) {
+          setGameOver(true);
+          return prev;
+        }
+
+        return { ...prev, x: x + dx, y: y + dy, dx, dy };
+      });
+    }, 16);
+
+    return () => clearInterval(interval);
+  }, [ball, bricks, gameOver, paddle, modalComponent]);
+
+  // Draw everything on canvas
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, 400, 500);
+
+    // Draw paddle
+    ctx.fillStyle = "#0095DD";
+    ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+
+    // Draw ball
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+
+    // Draw bricks and their titles
+    bricks.forEach((brick) => {
+      if (!brick.hit) {
+        ctx.fillStyle = brick.isSpecial ? "#FFD700" : "#FF6347"; // Special bricks in gold color
+        ctx.fillRect(brick.x, brick.y, brick.width, brick.height, brick.radius);
+        if (brick.isSpecial) {
+          ctx.fillStyle = "#000"; // Set color for text
+          ctx.font = "11px Arial"; // Set font for text
+          ctx.textAlign = "center"; // Center the text
+          ctx.fillText(brick.title, brick.x + brick.width / 2, brick.y + brick.height / 2 + 4 ,brick.radius ); // Draw the title
+        }
+      }
+    });
+
+    if (gameOver) {
+      ctx.font = "20px Arial";
+      ctx.fillStyle = "red";
+      ctx.fillText("Game Over", 200, 250);
+    }
+  }, [paddle, ball, bricks, gameOver]);
+
+  const handleRestart = () => {
+    setBall({ x: 200, y: 300, dx: 1, dy: 1, radius: 5 });
+    setGameOver(false);
+    setBricks((prev) => prev.map((brick) => ({ ...brick, hit: false })));
+    setModalComponent(null);
+    setModalTitle("");
+  };
+
   return (
-    <div className="flex flex-col items-center min-h-[100vh]">
-      {!isGameStarted ? (
-        <div className="text-center mb-4 justify-center justify-items-center justify-self-center mt-[90%] md:mt-[20%]">
-          <p>Instructions: Use the left/right keys to move the paddle or swipe left/right on mobile!</p>
-          <button onClick={startGame} className="mt-4 bg-gray-500 text-white p-2 rounded">OK</button>
-        </div>
-      ) : isGameOver ? (
-        <div className="text-center mb-4 justify-center justify-items-center justify-self-center mt-[90%] md:mt-[20%] ">
-          <p className="text-red-500 align-middle">Game Over!</p>
-          <button onClick={restartGame} className="mt-4 bg-green-500 text-white p-2 rounded">Restart</button>
-        </div>
-      ) : (
-        <>
-          <div className="text-center mb-4" />
-          <div className="grid grid-cols-10 gap-0 mt-2 relative" style={{ height: "40vh", width: "100%" }}>
-            {bricks.map((brick) => (
-              <div
-                key={brick.id}
-                style={{
-                  position: "absolute",
-                  top: `${brick.position.top}%`,
-                  left: `${brick.position.left}%`,
-                }}
-                className={`w-16 h-8 ${brick.hit ? "opacity-0" : (brick.isSpecial ? "bg-yellow-400" : "bg-blue-500")} rounded-lg`}
-              >
-                {brick.isSpecial ? (
-                  <span className="text-white font-bold text-[10px] text-center">{brick.navigateTo.slice(1).toUpperCase()}</span>
-                ) : null}
-              </div>
-            ))}
+    <div
+      className="flex flex-col items-center p-5 bg-[#1a1a2e] min-h-screen text-gray-200"
+      onTouchMove={handleTouchMove}
+    >
+      <canvas
+        ref={canvasRef}
+        width="400"
+        height="500"
+        className="border-2 border-blue-400 rounded-lg bg-[#16213e] w-full max-w-md"
+      />
+      {gameOver && (
+        <button
+          onClick={handleRestart}
+          className="mt-5 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+        >
+          Restart Game
+        </button>
+      )}
+
+      {/* Modal for special brick components */}
+      {modalComponent && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-y-auto w-full">
+          <div className="bg-white p-6 rounded-lg w-full max-w-[100vw] bg-[#16213e] relative mt-12">
+            <h2 className="text-xl font-bold text-center mb-4">{modalTitle}</h2>
+            <button
+              onClick={() => setModalComponent(null)}
+              className="absolute top-2 right-2 text-gray-500"
+            >
+              ✖
+            </button>
+            {modalComponent}
+            <button
+              onClick={() => setModalComponent(null)}
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+            >
+              Continue Game
+            </button>
           </div>
-
-          {/* Paddle */}
-          <div
-            ref={paddleRef}
-            className="w-32 h-4 bg-gray-700 mt-4 rounded-full"
-            style={{ position: "absolute", bottom: "10%", left: `${paddlePosition}%` }}
-          />
-
-          {/* Ball */}
-          <div
-            className="w-4 h-4 bg-red-500 rounded-full"
-            style={{
-              position: "absolute",
-              left: `${ball.x}%`,
-              top: `${ball.y}%`,
-            }}
-          />
-
-          {/* Keyboard controls */}
-          <div className="fixed bottom-0 left-0 right-0 flex justify-between p-4 sm:hidden"> {/* Hide on larger screens */}
-            <button onClick={() => handlePaddleMove("left")} className="bg-gray-600 text-white p-2 rounded">Left</button>
-            <button onClick={() => handlePaddleMove("right")} className="bg-gray-600 text-white p-2 rounded">Right</button>
-          </div>
-        </>
+        </div>
       )}
     </div>
   );

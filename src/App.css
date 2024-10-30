@@ -198,4 +198,76 @@ body, html {
 .dark .social-toggle-btn {
   color: white; /* Dark mode icon color */
 }
+/* Loader.css */
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.loader {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #4f46e5; /* Customize to your app's theme */
+  border-radius: 50%;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-15px);
+    opacity: 0.5;
+  }
+}
+/* SplashScreen.css */
+.splash-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #1a1a2e; /* Customize for dark/light theme */
+  color: white;
+}
+
+.mode-selection {
+  display: flex;
+  gap: 20px;
+}
+
+.mode-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: #4f46e5;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mode-button:hover {
+  background-color: #3b3ab9;
+}
 

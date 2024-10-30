@@ -6,11 +6,13 @@ import Projects from '../pages/Projects';
 import Skills from '../pages/Skills';
 import Contact from '../pages/Contact';
 import BrickBreaker from '../games/BrickBreaker';
+import SplashScreen from '../pages/SplashScreen';
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<SplashScreen />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/blogs" element={<Blogs />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/skills" element={<Skills />} />

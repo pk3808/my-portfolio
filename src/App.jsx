@@ -15,10 +15,11 @@ const App = () => {
 
   const location = useLocation();
   const isGameScreen = location.pathname === "/game";
+  const isSplashScreen = location.pathname === "/";
 
   return (
     <div className={darkMode ? "app dark" : "app light"}>
-      {!isGameScreen && (
+      {!isGameScreen && !isSplashScreen && (
         <>
           <SocialMediaIcons darkMode={darkMode} />
           <ToggleButton darkMode={darkMode} toggleTheme={toggleTheme} />
