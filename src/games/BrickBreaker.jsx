@@ -13,7 +13,7 @@ const BrickBreaker = () => {
     width: 100,
     height: 10,
   });
-  const [ball, setBall] = useState({ x: 200, y: 300, dx: 1, dy: 1, radius: 5 });
+  const [ball, setBall] = useState({ x: 200, y: 300, dx: 1.5, dy: 1.5, radius: 5 });
   const [bricks, setBricks] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [modalComponent, setModalComponent] = useState(null);
@@ -101,15 +101,15 @@ const BrickBreaker = () => {
   // Game loop for ball movement and collision detection
   useEffect(() => {
     if (gameOver || modalComponent) return; // Stop ball movement if game over or modal is open
-
+  
     const interval = setInterval(() => {
       setBall((prev) => {
         let { x, y, dx, dy, radius } = prev;
-
+  
         // Check collision with walls
         if (x + dx < radius || x + dx > 400 - radius) dx = -dx;
         if (y + dy < radius) dy = -dy;
-
+  
         // Check collision with paddle
         if (
           y + dy > paddle.y - radius &&
@@ -117,8 +117,10 @@ const BrickBreaker = () => {
           x < paddle.x + paddle.width
         ) {
           dy = -dy;
+          dx *= 1.05; // Optional: Slightly increase speed on paddle hit
+          dy *= 1.05; // Optional: Slightly increase speed on paddle hit
         }
-
+  
         // Check collision with bricks and open modal on special brick hit
         const updatedBricks = bricks.map((brick, index) => {
           if (
@@ -129,31 +131,32 @@ const BrickBreaker = () => {
             y < brick.y + brick.height
           ) {
             dy = -dy;
-
+            dx *= 1.05; // Optional: Slightly increase speed on brick hit
+            dy *= 1.05; // Optional: Slightly increase speed on brick hit
+  
             // Special brick hit logic
             if (brick.isSpecial) {
-              console.log("Special brick hit at index:", index); // Debugging log
               const { component, title } = getComponentByBrick(index);
               setModalComponent(component);
               setModalTitle(title);
             }
-
+  
             return { ...brick, hit: true };
           }
           return brick;
         });
         setBricks(updatedBricks);
-
+  
         // Check if ball falls below paddle
         if (y + dy > 500) {
           setGameOver(true);
           return prev;
         }
-
+  
         return { ...prev, x: x + dx, y: y + dy, dx, dy };
       });
     }, 16);
-
+  
     return () => clearInterval(interval);
   }, [ball, bricks, gameOver, paddle, modalComponent]);
 
@@ -211,7 +214,7 @@ const BrickBreaker = () => {
       <canvas
         ref={canvasRef}
         width="400"
-        height="500"
+        height="480"
         className="border-2 border-blue-400 rounded-lg bg-[#16213e] w-full max-w-md"
       />
       {gameOver && (
@@ -226,21 +229,22 @@ const BrickBreaker = () => {
       {/* Modal for special brick components */}
       {modalComponent && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-y-auto w-full">
-          <div className="bg-white p-6 rounded-lg w-full max-w-[100vw] bg-[#16213e] relative mt-12">
+          <div className="bg-[#1a1a2e] p-6 rounded-lg w-full max-w-[100vw] bg-[#16213e] relative ">
             <h2 className="text-xl font-bold text-center mb-4">{modalTitle}</h2>
-            <button
+            {/* <button
               onClick={() => setModalComponent(null)}
               className="absolute top-2 right-2 text-gray-500"
             >
               ✖
-            </button>
-            {modalComponent}
-            <button
+            </button> */}
+                <button
               onClick={() => setModalComponent(null)}
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
             >
               Continue Game
             </button>
+            {modalComponent}
+        
           </div>
         </div>
       )}

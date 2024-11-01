@@ -247,7 +247,7 @@ body, html {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #1a1a2e; /* Customize for dark/light theme */
+  background-color: #03010e; /* Customize for dark/light theme */
   color: white;
 }
 
@@ -269,5 +269,57 @@ body, html {
 
 .mode-button:hover {
   background-color: #3b3ab9;
+}
+
+/* Fade-in effect */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1.2s ease-out;
+}
+
+/* Swing and bounce effect */
+@keyframes swing-bounce {
+  0% {
+    transform: rotateX(0deg);
+  }
+  25% {
+    transform: rotateX(15deg);
+  }
+  50% {
+    transform: rotateX(0deg);
+  }
+  75% {
+    transform: rotateX(-15deg);
+  }
+  100% {
+    transform: rotateX(0deg) translateY(-4px);
+  }
+}
+
+.animate-swing-bounce {
+  animation: swing-bounce 3s ease-in-out infinite;
+}
+
+/* Button Hover Effect */
+.mode-button {
+  background-color: #5f5de6;
+  color: white;
+  border-radius: 6px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mode-button:hover {
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
