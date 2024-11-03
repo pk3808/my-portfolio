@@ -4,6 +4,10 @@ import Blogs from "../pages/Blogs";
 import Projects from "../pages/Projects";
 import Skills from "../pages/Skills";
 import Contact from "../pages/Contact";
+import Loader from "../components/Loader";
+import left from "../assets/left.png";
+import rotate from "../assets/rotate.png";
+
 
 const BrickBreaker = () => {
   const canvasRef = useRef(null);
@@ -18,10 +22,11 @@ const BrickBreaker = () => {
   const [gameOver, setGameOver] = useState(false);
   const [modalComponent, setModalComponent] = useState(null);
   const [modalTitle, setModalTitle] = useState(""); // Add state for modal title
-
+  const [showOptions, setShowOptions] = useState(false);
+  
   // Initialize bricks
   useEffect(() => {
-    const brickRows = 3;
+    const brickRows = 4;
     const brickCols = 6;
     const brickWidth = 45.5;
     const brickHeight = 20;
@@ -52,15 +57,15 @@ const BrickBreaker = () => {
   // Function to assign component and title by brick
   const getComponentByBrick = (index) => {
     switch (index) {
-      case 7:
+      case 13:
         return { component: <Home />, title: "Home" };
-      case 0:
+      case 17:
         return { component: <Blogs />, title: "Blogs" };
-      case 11:
+      case 6:
         return { component: <Projects />, title: "Projects" };
-      case 4:
+      case 15:
         return { component: <Skills />, title: "Skills" };
-      case 9:
+      case 10:
         return { component: <Contact />, title: "Contact" };
       default:
         return { component: null, title: "" };
@@ -136,6 +141,7 @@ const BrickBreaker = () => {
   
             // Special brick hit logic
             if (brick.isSpecial) {
+              console.log(`Special brick hit at index: ${index}`);
               const { component, title } = getComponentByBrick(index);
               setModalComponent(component);
               setModalTitle(title);
@@ -167,7 +173,7 @@ const BrickBreaker = () => {
     ctx.clearRect(0, 0, 400, 500);
 
     // Draw paddle
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "#5f5de6";
     ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
 
     // Draw ball
@@ -205,24 +211,28 @@ const BrickBreaker = () => {
     setModalComponent(null);
     setModalTitle("");
   };
-
+  useEffect(() => {
+    const timer = setTimeout(() => setShowOptions(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
   return (
+    <>
     <div
-      className="flex flex-col items-center p-5 bg-[#1a1a2e] min-h-screen text-gray-200"
+      className="flex flex-col items-center p-5 bg-[#1a1a2e] min-h-screen text-gray-200 justify-center "
       onTouchMove={handleTouchMove}
     >
       <canvas
         ref={canvasRef}
         width="400"
         height="480"
-        className="border-2 border-blue-400 rounded-lg bg-[#16213e] w-full max-w-md"
+        className="border-2 border-[#5f5de6] rounded-lg bg-[#16213e] w-full max-w-md "
       />
       {gameOver && (
         <button
           onClick={handleRestart}
-          className="mt-5 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          className="mt-5 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-[#5f5de6] bg-[#5f5de6] "
         >
-          Restart Game
+          <img src={rotate} alt="Restart" className="w-6 h-6" />
         </button>
       )}
 
@@ -239,9 +249,9 @@ const BrickBreaker = () => {
             </button> */}
                 <button
               onClick={() => setModalComponent(null)}
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className=" bg-[#1a1a2e] color-[white] mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-[#5f5de6] "
             >
-              Continue Game
+              <img src={left} alt="Close" className="w-6 h-6 " />
             </button>
             {modalComponent}
         
@@ -249,6 +259,7 @@ const BrickBreaker = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

@@ -7,6 +7,7 @@ import Skills from '../pages/Skills';
 import Contact from '../pages/Contact';
 import BrickBreaker from '../games/BrickBreaker';
 import SplashScreen from '../pages/SplashScreen';
+import Game from '../games/Game';
 
 const AppRoutes = () => {
   return (
@@ -17,7 +18,8 @@ const AppRoutes = () => {
       <Route path="/projects" element={<Projects />} />
       <Route path="/skills" element={<Skills />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/game" element={<BrickBreaker />} />
+      {/* <Route path="/game" element={<BrickBreaker />} /> */}
+      <Route path="/game" element={<Game />} />
     </Routes>
   );
 };
