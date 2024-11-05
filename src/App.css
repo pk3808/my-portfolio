@@ -356,3 +356,8 @@ body, html {
 .fradius {
   border-radius: 82% 18% 54% 46% / 19% 15% 85% 81% ;
 }
+canvas {
+  height: 700px !important;
+  width: 100vw !important;
+
+}
