@@ -27,7 +27,7 @@ const App = () => {
           <NavBar darkMode={darkMode} /> {/* Directly pass darkMode */}
         </>
       )}
-      <AppRoutes />
+      <AppRoutes darkMode={darkMode} />
     </div>
   );
 };

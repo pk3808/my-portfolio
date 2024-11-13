@@ -9,11 +9,11 @@ import BrickBreaker from '../games/BrickBreaker';
 import SplashScreen from '../pages/SplashScreen';
 import Game from '../games/Game';
 
-const AppRoutes = () => {
+const AppRoutes = ({ darkMode }) => {
   return (
     <Routes>
       <Route path="/" element={<SplashScreen />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/home" element={<Home  darkMode={darkMode}/>} />
       <Route path="/blogs" element={<Blogs />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/skills" element={<Skills />} />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolderOpen, faBlog, faHome, faWrench, faEnvelope, faCode, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,10 +9,17 @@ const NavBar = ({ darkMode }) => {
   const [visible, setVisible] = useState(true); // Track visibility of the NavBar
   const [scrolling, setScrolling] = useState(false); // Track if scrolling is happening
   let lastScrollY = window.scrollY; // Store last scroll position
+  const location = useLocation();
+  const isHome = location.pathname === "/home"
+  console.log(isHome,'iii');
+  
 
   const handleNavigation = (path) => {
     setActive(path);
     navigate(path);
+    if (isHome) {
+      setActive("/home")
+    }
   };
 
   const handleScroll = () => {
@@ -44,13 +51,15 @@ const NavBar = ({ darkMode }) => {
       clearTimeout(window.scrollTimeout);
     };
   }, []);
-
+useEffect(() => {
+  setActive(location.pathname);
+})
   return (
-    <div className={`fixed bottom-0 left-0 right-0 ${visible ? 'opacity-100' : 'opacity-0'}`}>
+    <div className={`fixed bottom-0 left-0 right-0 z-50 ${visible ? 'opacity-100' : 'opacity-0'}`}>
       {/* NavBar for screens md and above */}
       <nav 
         className={`fixed bottom-5 left-10 right-10 z-50 py-4 shadow-lg rounded-[25px] 
-          ${darkMode ? 'bg-[#023020] text-white' : 'bg-[#FFDDCC] text-gray-800'} hidden md:block`}
+          ${darkMode ? 'bg-[#01411C] text-white' : 'bg-[#FFDDCC] text-gray-800'} hidden md:block`}
       >
         <div className="container mx-auto flex justify-evenly">
           {/* Projects Button */}
@@ -83,7 +92,7 @@ const NavBar = ({ darkMode }) => {
           <button 
             onClick={() => handleNavigation('/home')} 
             className={`text-lg flex items-center space-x-2 ${
-              active === '/home'
+              active === '/home' && isHome
                 ? darkMode ? 'font-bold text-[#7cfc00]' : 'font-bold text-[#FA5F55]'
                 : darkMode ? 'hover:text-[#7cfc00] text-white' : 'hover:text-[#f67680] text-[#235347]'
             }`}
@@ -122,8 +131,8 @@ const NavBar = ({ darkMode }) => {
 
       {/* NavBar for screens below md (icons only) */}
       <nav 
-        className={`fixed bottom-2 left-5 right-5 z-50 py-[10px] rounded-[10px] 
-          ${darkMode ? 'bg-[#023020] drop-shadow-2xl text-white' : 'bg-[#FFDDCC] text-gray-800'} md:hidden`}
+        className={`fixed bottom-2 left-5 right-5 z-50 py-[15px] rounded-[10px] 
+          ${darkMode ? 'bg-[#014421] drop-shadow-2xl text-white' : 'bg-[#FFDDCC] text-gray-800'} md:hidden`}
       >
         <div className="container mx-auto flex justify-evenly">
           <button 
