@@ -129,7 +129,7 @@ body, html {
 }
 
 .social-icons-desktop a:hover {
-  color: #00bcd4; /* Hover color */
+  color: #0ebfff; /* Hover color */
 }
 
 
@@ -186,8 +186,8 @@ body, html {
 }
 
 .social-dropdown a:hover {
-  color: #00bcd4; /* Hover color */
-}
+  color: #00bcd4; 
+} 
 
 /* Dark Mode Styles */
 .dark .social-dropdown {
@@ -195,7 +195,9 @@ body, html {
   color: white; /* Dark mode text color */
 }
 
-.dark .social-icons-desktop a,
+.dark .social-icons-desktop a:hover {
+  color: rgb(17, 224, 247); /* Dark mode icon color */
+}
 .dark .social-toggle-btn {
   color: white; /* Dark mode icon color */
 }
@@ -206,7 +208,9 @@ body, html {
   justify-content: center;
   min-height: 100vh;
 }
-
+.fradius{
+  border-radius: 58% 42% 100% 0% / 32% 100% 0% 68% ;
+}
 .loader {
   display: flex;
   gap: 8px;

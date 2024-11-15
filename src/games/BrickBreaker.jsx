@@ -233,7 +233,7 @@ const BrickBreaker = () => {
   return (
     <>
       <div
-        className="flex flex-col items-center p-5 bg-[#1a1a2e] min-h-screen text-gray-200 justify-center "
+        className="flex flex-col items-center p-5 bg-[#1a1a2e] min-h-screen text-gray-200 justify-center w-[100vw] "
         onTouchMove={handleTouchMove}
       >
         <div

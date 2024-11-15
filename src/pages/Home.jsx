@@ -31,21 +31,27 @@ const Home = ({ darkMode }) => {
           </motion.p>
 
           <div className="flex md:flex-row flex-col items-center justify-around">
-            <motion.div
-              className="flex justify-center mt-20 md:mt-8 items-center"
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
+            <div
+              className={`fradius ${
+                darkMode ? "bg-[#043927]" : "bg-[#FBCEB1]"
+              } mt-20 md:mt-10 `}
             >
-              <img
-                src={"../../public/images/Avataar.png"}
-                alt="Profile"
-                className="md:w-[350px] md:h-[350px] w-[350px] h-[350px] rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out"
-              />
-              {/* Scrolling icon animation */}
-            </motion.div>
+              <motion.div
+                className="flex justify-center  items-center"
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
+              >
+                <img
+                  src={"../../public/images/Avataar.png"}
+                  alt="Profile"
+                  className=" md:w-[100%] md:h-[] w-[350px] h-[350px] rounded-full  hover:shadow-xl transition-shadow duration-300 ease-in-out "
+                />
+                {/* Scrolling icon animation */}
+              </motion.div>
+            </div>
             <motion.div
-              className="md:hidden mt-4 flex justify-center border border-gray-400  rounded-full p-2 pt-4"
+              className="md:hidden mt-[8vh] flex justify-center border border-gray-400  rounded-full p-2 pt-4"
               initial={{ y: 0 }}
               animate={{ y: [0, 10, 0] }}
               transition={{
@@ -70,7 +76,7 @@ const Home = ({ darkMode }) => {
               </svg>
             </motion.div>
             <motion.div
-              className="flex justify-center mt-16 md:mt-8 items-center w-[105%] md:w-[40%]"
+              className="flex justify-center mt-[10vh] md:mt-4 items-center w-[105%] md:w-[40%]"
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
@@ -120,19 +126,21 @@ const Home = ({ darkMode }) => {
                       darkMode
                         ? "bg-[#18453B] text-white"
                         : "bg-[#F89880] text-black"
-                    } p-4 rounded-md mt-2 w-full`}
+                    } p-4 rounded-md mt-2 w-full overflow-x-auto`}
                   >
                     <code
-                      className={`${darkMode ? "text-white" : "text-black"}`}
+                      className={`block whitespace-pre-wrap break-words text-sm ${
+                        darkMode ? "text-white" : "text-black"
+                      }`}
                     >
                       &lt;<span className="text-blue-400">button</span>
                       <span className="text-yellow-400 px-2">class</span>= "
-                      <span className="text-green-400">download-btn</span>"
-                      &gt;Download&lt;/
-                      <span className="text-blue-400">button</span>
-                      &gt;
+                      <span className="text-green-400">download-btn</span>
+                      "&gt;Download&lt;/
+                      <span className="text-blue-400">button</span>&gt;
                     </code>
                   </pre>
+
                   <button
                     onClick={() =>
                       window.open(
@@ -141,9 +149,9 @@ const Home = ({ darkMode }) => {
                     }
                     className={`mt-4 ${
                       darkMode
-                        ? "bg-[#ADFF2F] text-white"
+                        ? "bg-[#ADFF2F] text-black"
                         : "bg-[#F88379] text-gray-800"
-                    } text-black px-4 py-2 rounded hover:bg-cyan-500 transition`}
+                    } text-black px-4 py-2 rounded hover:bg-cyan-400 transition`}
                   >
                     DOWNLOAD
                   </button>
@@ -151,6 +159,60 @@ const Home = ({ darkMode }) => {
               </div>
             </motion.div>
           </div>
+          <motion.div
+            className="mt-16 flex flex-col items-center text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            <h2
+              className={`text-3xl md:text-4xl font-bold ${
+                darkMode ? "text-white" : "text-gray-800"
+              }`}
+            >
+              About Me
+            </h2>
+            <motion.div
+              className="mt-8 w-[300px] md:w-[400px] relative"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
+              whileHover={{ scale: 1.1 }}
+            >
+              <img
+                src="/gif/aboutme.gif"
+                alt="3D Animation"
+                className="rounded-lg  hover:shadow-2xl transition-shadow duration-500"
+              />
+            </motion.div>
+
+            <p
+              className={`mt-4 text-lg md:text-xl ${
+                darkMode ? "text-gray-400" : "text-gray-600"
+              }`}
+            >
+              Passionate about creating seamless user experiences, I’m a
+              software developer with a knack for solving complex problems using
+              modern technologies.
+            </p>
+            <motion.div
+              className="mt-6 text-base md:text-lg max-w-3xl px-4"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
+            >
+              <p
+                className={`${
+                  darkMode ? "text-gray-400" : "text-gray-600"
+                } leading-relaxed`}
+              >
+                With years of hands-on experience in frameworks like React.js
+                and Express.js, I bring ideas to life by crafting dynamic web
+                applications. I strive to bridge the gap between aesthetics and
+                functionality, ensuring every project is a work of excellence.
+              </p>
+            </motion.div>
+          </motion.div>
         </Parallax>
       </div>
     </ParallaxProvider>
