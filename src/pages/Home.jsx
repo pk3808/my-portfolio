@@ -11,7 +11,7 @@ const Home = ({ darkMode }) => {
   return (
     <ParallaxProvider>
       <div className="container mx-auto py-16 min-h-screen px-4 md:px-8 lg:px-16 home-background ">
-        <Parallax speed={-10}>
+        <Parallax speed={-12}>
           <motion.h1
             className="text-3xl md:text-4xl lg:text-4xl font-bold text-center md:mt-8 mt-20 font-['MyCustomFont']"
             initial={{ y: -50, opacity: 0 }}
@@ -155,49 +155,51 @@ const Home = ({ darkMode }) => {
           </div>
         </Parallax>
       </div>
-      <div className="flex flex-row h-screen items-center justify-center ">
+      <div className="flex md:flex-row flex-col  h-screen items-center justify-center ">
 
         {/* Main Content Section */}
         <motion.div
-          className="flex flex-row  flex-grow  items-center"
+          className="flex md:flex-row flex-col flex-grow  items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
           <motion.div
-            className="w-[300px] md:w-[400px] relative mb-8"
+            className="w-[300px] md:w-[400px] relative mb-8 image-container"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
             whileHover={{ scale: 1.1 }}
           >
             <img
-              src="/gif/aboutme.gif"
+              src="/images/computer.png"
               alt="3D Animation"
-              className="rounded-lg hover:shadow-2xl w-[100%] transition-shadow duration-500"
+              className="rounded-lg  w-[100%] image-3d"
             />
           </motion.div>
 
-          <motion.div
-            className="text-xl md:text-lg max-w-3xl px-4 text-center"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
+          <div
+            className="text-xl md:text-lg max-w-3xl px-4 text-justify  animated-border ml-[auto] mr-[auto] "
           >
             <p
-              className={`leading-relaxed ${darkMode ? "text-white" : "text-black"}`}
+              className={`leading-relaxed p-4 ${darkMode ? "text-white" : "text-black"}`}
             >
               With years of hands-on experience in frameworks like React.js
               and Express.js, I bring ideas to life by crafting dynamic web
               applications. I strive to bridge the gap between aesthetics and
               functionality, ensuring every project is a work of excellence.
+              With years of hands-on experience in frameworks like React.js
+              and Express.js, I bring ideas to life by crafting dynamic web
+              applications. I strive to bridge the gap between aesthetics and
+              functionality, ensuring every project is a work of excellence.
             </p>
-          </motion.div>
+          </div>
+
         </motion.div>
         {/* Vertical About Me Section */}
-        <div className={`flex flex-col items-center justify-center h-[30vh] w-[2vw]   ${darkMode ? "text-white bg-lime-600" : "text-gray-800 bg-orange-400"}`}>
+        <div className={` flex-col items-center justify-center    hidden md:block  ${darkMode ? "text-white bg-lime-600" : "text-gray-800 bg-orange-400"}`}>
           <h2
-            className={`text-sm font-bold text-center ${darkMode ? "text-white" : "text-gray-800"}`}
+            className={`text-sm font-bold text-center px-1 py-2 ${darkMode ? "text-white" : "text-gray-800"}`}
             style={{
               writingMode: "vertical-rl",
               textOrientation: "upright",
