@@ -39,7 +39,7 @@ const SocialMediaIcons = ({ darkMode }) => {
     <>
       {/* Social Icons for Desktop */}
       {isMobile ? null : (
-        <div className={`social-icons-desktop  ${darkMode ? 'bg-[#023020] text-white' : 'bg-[#F3D7CA] text-gray-800'}`}>
+        <div className={`social-icons-desktop  ${darkMode ? 'bg-[#355E3B] text-white' : 'bg-[#F3D7CA] text-gray-800'}`}>
           <a
             href="https://facebook.com"
             target="_blank"

@@ -1,0 +1,220 @@
+/* Main carousel container */
+.carousel {
+    height: 120vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+
+/* List of carousel items */
+.carousel .list {
+    position: relative; /* Allow absolute positioning for items */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel .list .item {
+    inset: 0; /* Fill the parent container */
+    opacity: 0; /* Hidden by default */
+    transform: scale(0.9); /* Slightly shrink inactive items */
+    z-index: 0; /* Keep inactive items below the active one */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transitions */
+    top:0;
+}
+
+/* Active item styling */
+.carousel .list .item.active {
+    z-index: 1; /* Bring to the front */
+    opacity: 1; /* Fully visible */
+    transform: scale(1); /* Full size */
+}
+
+/* Image styling within carousel items */
+.carousel .list .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Content inside carousel items */
+.carousel .list .item .content {
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    text-shadow: 0 5px 10px #0004;
+}
+
+/* Author and title styling */
+.carousel .list .item .author {
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+
+.carousel .list .item .title{
+    font-size: 2em;
+    line-height: 1.3em;
+}
+.carousel .list .item .topic {
+    font-size: 4em;
+    font-weight: bold;
+    line-height: 1.3em;
+}
+
+.carousel .list .item .topic {
+    color: #f1683a;
+}
+
+/* Buttons inside carousel content */
+.carousel .list .item .buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.carousel .list .item .buttons button {
+    border: none;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: Poppins;
+    font-weight: 500;
+}
+
+.carousel .list .item .buttons button:nth-child(2) {
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+
+/* Thumbnail section */
+.thumbnail {
+    position: absolute;
+    bottom: 27%;
+    left: 75%;
+    display: flex;
+    gap: 20px;
+    z-index: 100;
+}
+
+.thumbnail .item {
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.thumbnail .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Content within thumbnails */
+.thumbnail .item .content {
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+
+.thumbnail .item .content .title {
+    font-weight: 500;
+}
+
+/* Navigation arrows */
+.arrows {
+    position: absolute;
+    top: 65%;
+    right: 68%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 100;
+}
+
+.arrows button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eee4;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.arrows button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Animation for active item's content */
+.carousel .list .item.active .content .author,
+.carousel .list .item.active .content .title,
+.carousel .list .item.active .content .topic,
+.carousel .list .item.active .content .des,
+.carousel .list .item.active .content .buttons {
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent 0.5s 1s linear forwards;
+}
+
+@keyframes showContent {
+    to {
+        transform: translateY(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+/* Running time animation */
+.carousel .time {
+    position: absolute;
+    z-index: 1000;
+    width: 0%;
+    height: 3px;
+    background-color: #f1683a;
+    left: 0;
+    top: 0;
+}
+
+.carousel.next .time,
+.carousel.prev .time {
+    animation: runningTime 3s linear forwards;
+}
+
+@keyframes runningTime {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+
+/* Responsive styling */
+@media screen and (max-width: 678px) {
+    .carousel .list .item .content {
+        padding-right: 0;
+    }
+
+    .carousel .list .item .content .title {
+        font-size: 24px;
+    }
+    .arrows {
+        right: 60%;
+    }
+    .thumbnail {
+        left: 40%;
+        gap: 0px;
+    }
+}
