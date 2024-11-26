@@ -66,9 +66,9 @@ const PlatformLinks = ({ platforms }) => (
   </div>
 );
 
-const Projects = ( {darkMode}) => {
+const Projects = ({ darkMode }) => {
   console.log("Rendering Home with darkMode:", darkMode);
-  
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slides, setSlides] = useState(entries);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -117,14 +117,14 @@ const Projects = ( {darkMode}) => {
   return (
     <div className="container mx-auto  min-h-screen">
       <div className="carousel">
-        <div className="list mt-[-10vh] md:mt-[0vh]">
+        <div className="list mt-[-5vh] md:mt-[0vh]">
           {slides.map((slide, index) => (
             <div
               key={slide.id}
               className={`item ${index === 0 ? "active" : ""}`}
             >
               <div className="content">
-              <div className={`author ${darkMode ? "text-white" : "text-black mb-12"}`}>Projects</div>
+                <div className={`author ${darkMode ? "text-white" : "text-black mb-12"}`}>Projects</div>
                 <div className="topic">{slide.label}</div>
                 <div className={`title ${darkMode ? "text-white" : "text-black"}`}>{slide.title}</div>
                 <div className={`desc ${darkMode ? "text-white" : "text-black"}`}>{slide.desc}</div>
@@ -133,18 +133,28 @@ const Projects = ( {darkMode}) => {
             </div>
           ))}
         </div>
-        <div className="thumbnail  ">
-          {slides.map((slide) => (
-            <div key={slide.id} className="item  justify-center items-center">
+        <div className="thumbnail">
+          {slides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className={`item ${index === currentSlide ? "active" : ""} justify-center items-center`}
+            >
               <div className="content">
-                <img src={slide.image} alt={slide.label} className="w-full h-full object-contain" />
-                <div className={`title ${darkMode ? "text-white" : "text-black" } text-center`}>{slide.label}</div>
+                <img
+                  src={slide.image}
+                  alt={slide.label}
+                  className="w-full h-full object-contain py-3"
+                />
+                <div className={`title ${darkMode ? "text-white" : "text-black"} text-center`}>
+                  {slide.label}
+                </div>
               </div>
             </div>
           ))}
         </div>
+
         <div className={`arrows ${darkMode ? "text-white" : "text-black"}`}>
-          <button className={` ${darkMode ? "bg-[#043927]" : "text-black"}`} id="prev"  onClick={handlePrev} disabled={isAnimating}>
+          <button className={` ${darkMode ? "bg-[#043927]" : "text-black"}`} id="prev" onClick={handlePrev} disabled={isAnimating}>
             ⇐
           </button>
           <button id="next" onClick={handleNext} disabled={isAnimating}>

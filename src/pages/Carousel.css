@@ -95,7 +95,7 @@
 .thumbnail {
     position: absolute;
     bottom: 27%;
-    left: 75%;
+    left: 67%;
     display: flex;
     gap: 20px;
     z-index: 100;
@@ -118,23 +118,25 @@
 
 .thumbnail .item img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: contain; /* Ensures the image fills the container proportionally */
     display: block;
     transition: transform 0.3s ease; /* Optional: Smooth hover effect */
 }
-.thumbnail .item.active {
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); /* Adds a shadow to the active thumbnail */
-    border: 2px solid #f1683a; /* Optional: Highlight the active thumbnail with a border */
-    transform: scale(1.1); /* Optional: Slightly enlarge the active thumbnail */
-    z-index: 1; /* Ensure the active item appears above others */
+.thumbnail .item.active img {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); /* Adds a shadow only to the image */
+    border: 2px solid #f1683a; /* Optional: Highlight the active image with a border */
+    transform: scale(1.05); /* Slightly enlarge the image */
+    z-index: 1; /* Ensure the active image appears above others */
 }
+
 .thumbnail .item img:hover {
     transform: scale(1.05); /* Optional: Slight zoom-in effect on hover */
 }
 
 .thumbnail .item .content .title {
     font-weight: 500;
+    margin-top: 10px;
 }
 
 /* Navigation arrows */
