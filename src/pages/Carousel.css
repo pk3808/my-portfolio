@@ -40,10 +40,10 @@
 /* Content inside carousel items */
 .carousel .list .item .content {
     position: absolute;
-    top: 20%;
+    top: 15%;
     width: 1140px;
     max-width: 80%;
-    left: 50%;
+    left: 45%;
     transform: translateX(-50%);
     box-sizing: border-box;
     text-shadow: 0 5px 10px #0004;
@@ -52,7 +52,7 @@
 /* Author and title styling */
 .carousel .list .item .author {
     font-weight: bold;
-    letter-spacing: 10px;
+    letter-spacing: 16px;
 }
 
 .carousel .list .item .title{
@@ -101,27 +101,36 @@
     z-index: 100;
 }
 
+
+
+/* Content within thumbnails */
 .thumbnail .item {
     width: 150px;
-    height: 220px;
+    height: 260px;
     flex-shrink: 0;
     position: relative;
+    overflow: hidden; /* Ensures the image doesn't overflow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s ease;
 }
 
 .thumbnail .item img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
+    height: 200px;
+    object-fit: contain; /* Ensures the image fills the container proportionally */
+    display: block;
+    transition: transform 0.3s ease; /* Optional: Smooth hover effect */
 }
-
-/* Content within thumbnails */
-.thumbnail .item .content {
-    color: #fff;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    right: 10px;
+.thumbnail .item.active {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); /* Adds a shadow to the active thumbnail */
+    border: 2px solid #f1683a; /* Optional: Highlight the active thumbnail with a border */
+    transform: scale(1.1); /* Optional: Slightly enlarge the active thumbnail */
+    z-index: 1; /* Ensure the active item appears above others */
+}
+.thumbnail .item img:hover {
+    transform: scale(1.05); /* Optional: Slight zoom-in effect on hover */
 }
 
 .thumbnail .item .content .title {
@@ -132,7 +141,7 @@
 .arrows {
     position: absolute;
     top: 65%;
-    right: 68%;
+    right: 73%;
     display: flex;
     gap: 10px;
     align-items: center;
@@ -143,9 +152,9 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #eee4;
+    background-color: rgba(11, 211, 242, 0.866);
     border: none;
-    color: #fff;
+    color: #eccdcd;
     font-family: monospace;
     font-weight: bold;
     transition: 0.5s;
@@ -218,3 +227,18 @@
         gap: 0px;
     }
 }
+.platform-links {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .platform-link {
+    display: inline-block;
+  }
+  
+  .platform-icon {
+    width: 24px;
+    height: 24px;
+  }
+  

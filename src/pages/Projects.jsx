@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Carousel.css";
-import { desc, time, title } from "framer-motion/client";
+import { text } from "framer-motion/client";
 
 const entries = [
   {
@@ -9,6 +9,9 @@ const entries = [
     image: "/images/animep.png",
     desc: "A vibrant platform designed for anime enthusiasts, offering in-depth wikis, character breakdowns, episode guides, and trending updates from the anime world.",
     title: "Coolest anime wiki out there",
+    platforms: [
+      { type: "web", url: "https://animeoasis.example.com", icon: "/images/web.png" },
+    ],
   },
   {
     id: 2,
@@ -16,6 +19,9 @@ const entries = [
     image: "/images/mpip.png",
     desc: "An innovative solution for conducting comprehensive home inspections, ensuring every corner is covered for safety, efficiency, and peace of mind.",
     title: "One way solution for your home inspection",
+    platforms: [
+      { type: "web", url: "https://multipointinspect.example.com", icon: "/images/web.png" },
+    ],
   },
   {
     id: 3,
@@ -23,6 +29,10 @@ const entries = [
     image: "/images/zawwarp.png",
     desc: "A fun and interactive Islamic quiz platform where users can test their knowledge about Islam, earn points, and win exciting rewards.",
     title: "Test your knowledge about Islam and win prizes",
+    platforms: [
+      { type: "playstore", url: "https://play.google.com/store/apps/details?id=zawwar", icon: "/images/playstore.png" },
+      { type: "appstore", url: "https://apps.apple.com/app/zawwar/id123456789", icon: "/images/appstore.png" },
+    ],
   },
   {
     id: 4,
@@ -30,6 +40,9 @@ const entries = [
     image: "/images/starlaunchp.png",
     desc: "Your ultimate companion for space travel planning, providing insights into destinations, safety tips, and the latest innovations in space exploration.",
     title: "Your friendly space travel companion",
+    platforms: [
+      { type: "appstore", url: "https://apps.apple.com/app/star-launch/id987654321", icon: "/images/appstore.png" },
+    ],
   },
   {
     id: 5,
@@ -37,9 +50,21 @@ const entries = [
     image: "/images/vantrailp.png",
     desc: "A centralized platform for van enthusiasts, offering tools to manage, explore, and customize van collections all in one place.",
     title: "All your vans in one place",
+    platforms: [
+      { type: "appstore", url: "https://apps.apple.com/app/vantrail/id456789123", icon: "/images/appstore.png" },
+    ],
   },
 ];
 
+const PlatformLinks = ({ platforms }) => (
+  <div className="platform-links  w-[100px] h-[40px]">
+    {platforms.map((platform, index) => (
+      <a key={index} href={platform.url} target="_blank" rel="noopener noreferrer" className="platform-link">
+        <img src={platform.icon} alt={`${platform.type} icon`} className="platform-icon" />
+      </a>
+    ))}
+  </div>
+);
 
 const Projects = ( {darkMode}) => {
   console.log("Rendering Home with darkMode:", darkMode);
@@ -99,30 +124,27 @@ const Projects = ( {darkMode}) => {
               className={`item ${index === 0 ? "active" : ""}`}
             >
               <div className="content">
-              <div className={`author ${darkMode ? "text-white" : "text-black"}`}>Projects</div>
+              <div className={`author ${darkMode ? "text-white" : "text-black mb-12"}`}>Projects</div>
                 <div className="topic">{slide.label}</div>
                 <div className={`title ${darkMode ? "text-white" : "text-black"}`}>{slide.title}</div>
                 <div className={`desc ${darkMode ? "text-white" : "text-black"}`}>{slide.desc}</div>
-                {/* <div className="buttons">
-                  <button className={``}>SEE MORE</button>
-                  <button>SUBSCRIBE</button>
-                </div> */}
+                <PlatformLinks platforms={slide.platforms} />
               </div>
             </div>
           ))}
         </div>
-        <div className="thumbnail ">
+        <div className="thumbnail  ">
           {slides.map((slide) => (
-            <div key={slide.id} className="item">
+            <div key={slide.id} className="item  justify-center items-center">
               <div className="content">
-                <img src={slide.image} alt={slide.label} />
-                <div className={`title ${darkMode ? "text-white" : "text-black"}`}>{slide.label}</div>
+                <img src={slide.image} alt={slide.label} className="w-full h-full object-contain" />
+                <div className={`title ${darkMode ? "text-white" : "text-black" } text-center`}>{slide.label}</div>
               </div>
             </div>
           ))}
         </div>
         <div className={`arrows ${darkMode ? "text-white" : "text-black"}`}>
-          <button id="prev"  onClick={handlePrev} disabled={isAnimating}>
+          <button className={` ${darkMode ? "bg-[#043927]" : "text-black"}`} id="prev"  onClick={handlePrev} disabled={isAnimating}>
             ⇐
           </button>
           <button id="next" onClick={handleNext} disabled={isAnimating}>
