@@ -124,7 +124,7 @@ const Projects = ({ darkMode }) => {
               className={`item ${index === 0 ? "active" : ""}`}
             >
               <div className="content">
-                <div className={`author ${darkMode ? "text-white" : "text-black mb-12"}`}>Projects</div>
+                <div className={`author ${darkMode ? "text-white" : "text-black "}`}>Projects</div>
                 <div className="topic">{slide.label}</div>
                 <div className={`title ${darkMode ? "text-white" : "text-black"}`}>{slide.title}</div>
                 <div className={`desc ${darkMode ? "text-white" : "text-black"}`}>{slide.desc}</div>
@@ -145,7 +145,7 @@ const Projects = ({ darkMode }) => {
                   alt={slide.label}
                   className="w-full h-full object-contain py-3"
                 />
-                <div className={`title ${darkMode ? "text-white" : "text-black"} text-center`}>
+                <div className={`title ${darkMode ? "text-white" : "text-black"} text-center `}>
                   {slide.label}
                 </div>
               </div>

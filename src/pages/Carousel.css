@@ -105,8 +105,8 @@
 
 /* Content within thumbnails */
 .thumbnail .item {
-    width: 150px;
-    height: 260px;
+    width: 200px;
+    height: 400px;
     flex-shrink: 0;
     position: relative;
     overflow: hidden; /* Ensures the image doesn't overflow */
@@ -116,18 +116,23 @@
     transition: box-shadow 0.3s ease;
 }
 
+
 .thumbnail .item img {
-    width: 100%;
+    width: 90%;
     height: 180px;
     object-fit: contain; /* Ensures the image fills the container proportionally */
     display: block;
     transition: transform 0.3s ease; /* Optional: Smooth hover effect */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); /* Adds a shadow only to the image */
+    border: 2px solid #097352; /* Optional: Highlight the active image with a border */
 }
 .thumbnail .item.active img {
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); /* Adds a shadow only to the image */
     border: 2px solid #f1683a; /* Optional: Highlight the active image with a border */
     transform: scale(1.05); /* Slightly enlarge the image */
     z-index: 1; /* Ensure the active image appears above others */
+    height: 280px;
+    width: 100%;
 }
 
 .thumbnail .item img:hover {
@@ -228,6 +233,15 @@
         left: 40%;
         gap: 0px;
     }
+    thumbnail .item.active img {
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); /* Adds a shadow only to the image */
+        border: 2px solid #f1683a; /* Optional: Highlight the active image with a border */
+        transform: scale(1.05); /* Slightly enlarge the image */
+        z-index: 1; /* Ensure the active image appears above others */
+        height: 180px;
+        width: 100%;
+    }
+    
 }
 .platform-links {
     margin-top: 10px;
