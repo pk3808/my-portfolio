@@ -165,21 +165,21 @@ const Home = ({ darkMode }) => {
           transition={{ duration: 1 }}
         >
           <motion.div
-            className="w-[300px] md:w-[400px] relative mb-8 image-container"
+            className="w-[300px] md:w-[400px] h-[300px] md:h-[300px] relative mb-8 image-container"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
             whileHover={{ scale: 1.1 }}
           >
             <img
-              src="/images/computer.png"
+              src="/images/aboutme.png"
               alt="3D Animation"
-              className="rounded-lg  w-[100%] image-3d"
+              className="rounded-lg  w-[100%] h-[100%] object-contain"
             />
           </motion.div>
 
           <div
-            className="text-xl md:text-lg max-w-3xl px-4 text-justify  animated-border ml-[auto] mr-[auto] "
+            className="text-xl md:text-lg max-w-5xl mr-3 px-4 text-justify  animated-border ml-[auto] mr-[auto] "
           >
             <p
               className={`leading-relaxed p-4 ${darkMode ? "text-white" : "text-black"}`}
