@@ -181,7 +181,7 @@
     transform: translateY(50px);
     filter: blur(20px);
     opacity: 0;
-    animation: showContent 0.5s 1s linear forwards;
+    animation: showContent 0.5s 0.06s linear forwards;
 }
 
 @keyframes showContent {

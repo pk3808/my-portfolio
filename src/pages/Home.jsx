@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import SocialMediaIcons from "../components/SocialMediaIcons";
 import { useNavigate } from "react-router-dom";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
-
+import AboutMeSection from "../components/AboutMeSection";
 const Home = ({ darkMode }) => {
   const navigate = useNavigate();
   console.log("Rendering Home with darkMode:", darkMode);
@@ -39,7 +39,7 @@ const Home = ({ darkMode }) => {
                 className="flex justify-center  items-center"
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
+                transition={{ delay: 1, duration: 0.3, ease: "easeOut" }}
               >
                 <img
                   src={"../../public/images/Avataar.png"}
@@ -159,13 +159,13 @@ const Home = ({ darkMode }) => {
 
         {/* Main Content Section */}
         <motion.div
-          className="flex md:flex-row flex-col flex-grow  items-center"
+          className="flex md:flex-row flex-col flex-grow  items-center "
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
           <motion.div
-            className="w-[300px] md:w-[400px] h-[300px] md:h-[300px] relative mb-8 image-container"
+            className="w-[300px] md:w-[500px] h-[300px] md:h-[300px] mt-[40vh] md:mt-0 relative mb-8 image-container"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
@@ -174,13 +174,25 @@ const Home = ({ darkMode }) => {
             <img
               src="/images/aboutme.png"
               alt="3D Animation"
-              className="rounded-lg  w-[100%] h-[100%] object-contain"
+              className="rounded-lg  w-[100%] h-[100%] md:ml-[2vw] mr-[auto] object-contain"
             />
           </motion.div>
 
           <div
-            className="text-xl md:text-lg max-w-5xl mr-3 px-4 text-justify  animated-border ml-[auto] mr-[auto] "
+            className="text-xl md:text-lg maxw-[90%] mr-[5%] ml-[5%] px-4 text-justify  animated-border ml-[auto] mr-[auto] "
           >
+            <p
+              className={`leading-relaxed p-4 ${darkMode ? "text-white" : "text-black"}`}
+            >
+              With years of hands-on experience in frameworks like React.js
+              and Express.js, I bring ideas to life by crafting dynamic web
+              applications. I strive to bridge the gap between aesthetics and
+              functionality, ensuring every project is a work of excellence.
+              With years of hands-on experience in frameworks like React.js
+              and Express.js, I bring ideas to life by crafting dynamic web
+              applications. I strive to bridge the gap between aesthetics and
+              functionality, ensuring every project is a work of excellence.
+            </p>
             <p
               className={`leading-relaxed p-4 ${darkMode ? "text-white" : "text-black"}`}
             >
@@ -211,7 +223,7 @@ const Home = ({ darkMode }) => {
         </div>
 
       </div>
-
+{/* <AboutMeSection darkMode={darkMode} /> */}
 
     </ParallaxProvider>
   );

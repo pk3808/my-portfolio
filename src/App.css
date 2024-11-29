@@ -792,3 +792,7 @@ canvas {
         font-size: 30px;
     }
 }
+.image-container {
+  position: relative;
+  overflow: hidden;
+}

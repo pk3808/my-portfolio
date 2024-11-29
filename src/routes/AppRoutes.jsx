@@ -5,7 +5,6 @@ import Blogs from '../pages/Blogs';
 import Projects from '../pages/Projects';
 import Skills from '../pages/Skills';
 import Contact from '../pages/Contact';
-import BrickBreaker from '../games/BrickBreaker';
 import SplashScreen from '../pages/SplashScreen';
 import Game from '../games/Game';
 
