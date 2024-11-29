@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import SocialMediaIcons from "../components/SocialMediaIcons";
 import { useNavigate } from "react-router-dom";
@@ -7,9 +7,77 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 const Home = ({ darkMode }) => {
   const navigate = useNavigate();
   console.log("Rendering Home with darkMode:", darkMode);
+  const [scrollingUp, setScrollingUp] = useState(false);
+  const [showFlyingImage, setShowFlyingImage] = useState(false);
+  const [imageSrc, setImageSrc] = useState("/images/flyingd.png"); // Default image
+  let scrollTimeout = null;
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setScrollingUp(false);
+        setImageSrc("/images/flyingd.png"); // Normal image when scrolling down
+      } else {
+        // Scrolling up
+        setScrollingUp(true);
+        setImageSrc("/images/flyingu.png"); // Different image or rotate the existing one
+      }
+
+      setShowFlyingImage(true); // Show the flying image
+
+      lastScrollY = currentScrollY;
+
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+
+      // Hide the flying image after scrolling stops
+      scrollTimeout = setTimeout(() => {
+        setShowFlyingImage(false);
+      }, 200); // Adjust the delay if needed
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout); // Clean up timeout on unmount
+      }
+    };
+  }, []);
   return (
     <ParallaxProvider>
+       {showFlyingImage && (
+        <motion.div
+          className="fixed top-[20vh] right-0 transform-gpu md:w-[70px] md:h-[75px] w-[50px] h-[200px] z-50"
+          initial={{ x: 0 }}
+          animate={{
+            x: scrollingUp ? [0, 5, -5, 0] : [0, -5, 5, 0],
+            y: window.scrollY > 100 ? [0, 0] : [window.scrollY, window.scrollY], // Adjust vertical movement
+          }}
+          transition={{ duration: 1, ease: "easeInOut", repeat: Infinity }}
+          style={{
+            transformOrigin: "center",
+            position: "fixed", // Fix position relative to viewport
+            top: "20vh", // You can adjust this for where you want the image to appear
+            right: "0",
+            transform: scrollingUp ? "rotateY(180deg)" : "rotateY(0deg)", // Rotate when scrolling up
+          }}
+        >
+          <img
+            src={imageSrc}
+            alt="Flying Image"
+            className="w-[50px] h-[75px] object-contain rounded-lg z-50 absolute"
+          />
+        </motion.div>
+      )}
+
       <div className="container mx-auto py-16 min-h-screen px-4 md:px-8 lg:px-16 home-background ">
         <Parallax speed={-12}>
           <motion.h1
@@ -165,7 +233,7 @@ const Home = ({ darkMode }) => {
           transition={{ duration: 1 }}
         >
           <motion.div
-            className="w-[300px] md:w-[400px] h-[300px] md:h-[300px] relative mb-8 image-container"
+            className="w-[300px] md:w-[500px] h-[300px] md:h-[300px] md:ml-[2vw] relative mb-8 image-container mt-[20vh] md:mt-0"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
@@ -179,7 +247,7 @@ const Home = ({ darkMode }) => {
           </motion.div>
 
           <div
-            className="text-xl md:text-lg max-w-5xl mr-3 px-4 text-justify  animated-border ml-[auto] mr-[auto] "
+            className="text-xl md:text-lg    px-4 text-justify  animated-border ml-[4vw] mr-[4vw] "
           >
             <p
               className={`leading-relaxed p-4 ${darkMode ? "text-white" : "text-black"}`}
@@ -192,6 +260,15 @@ const Home = ({ darkMode }) => {
               and Express.js, I bring ideas to life by crafting dynamic web
               applications. I strive to bridge the gap between aesthetics and
               functionality, ensuring every project is a work of excellence.
+            </p>
+            <p
+              className={`leading-relaxed p-4 ${darkMode ? "text-white" : "text-black"}`}
+            >
+              With years of hands-on experience in frameworks like React.js
+              and Express.js, I bring ideas to life by crafting dynamic web
+              applications. I strive to bridge the gap between aesthetics and
+              functionality, ensuring every project is a work of excellence.
+
             </p>
           </div>
 
