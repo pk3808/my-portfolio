@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Home = () => {
+const Skills = ({ darkMode, show,hide }) => {
   const [showLogos, setShowLogos] = useState(false);
+  console.log("Rendering Home with show:", show);
+
+  useEffect(() => {
+    if (show) {
+      setShowLogos(true);
+    }
+  }, [show]); // Only run this effect when `show` changes
 
   const techLogos = [
     { name: "JavaScript", src: "/images/js.png" },
@@ -17,7 +24,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
+    <div className="min-h-screen flex flex-row items-center justify-center">
       {/* Animated Sphere with Click Here */}
       {!showLogos && (
         <div
@@ -29,11 +36,11 @@ const Home = () => {
       )}
 
       {/* Boy Floating */}
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center w-[100vw] ">
         <img
           src="/images/yoga.png"
           alt="3D Animation"
-          className="rounded-lg h-[320px] w-[320px] floating-effect"
+          className="rounded-lg h-[320px] w-[320px] floating-effect "
         />
 
         {/* Rotating Circle with Logos */}
@@ -57,8 +64,29 @@ const Home = () => {
           </div>
         )}
       </div>
+      {hide && (
+         <div
+         className={`flex-col items-center justify-center hidden md:block  w-7 h-[135px] self-center ${
+           darkMode ? "text-white bg-lime-600" : "text-gray-800 bg-orange-400"
+         }`}
+       >
+         <h2
+           className={`text-sm font-bold text-center px-1 py-2 ${
+             darkMode ? "text-white" : "text-gray-800"
+           }`}
+           style={{
+             writingMode: "vertical-rl",
+             textOrientation: "upright",
+             transform: "rotate(360deg)",
+           }}
+         >
+           Skills
+         </h2>
+       </div>
+      )}
+     
     </div>
   );
 };
 
-export default Home;
+export default Skills;

@@ -16,7 +16,7 @@ const AppRoutes = ({ darkMode }) => {
       <Route path="/blogs" element={<Blogs />} />
       <Route path="/projects" element={<Projects darkMode={darkMode} />}  />
       <Route path="/skills" element={<Skills />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/contact" element={<Contact  darkMode={darkMode} />} />
       {/* <Route path="/game" element={<BrickBreaker />} /> */}
       <Route path="/game" element={<Game />} />
     </Routes>

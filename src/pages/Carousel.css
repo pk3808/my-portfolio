@@ -94,10 +94,9 @@
 /* Thumbnail section */
 .thumbnail {
     position: absolute;
-    bottom: 27%;
+    bottom: 22%;
     left: 67%;
     display: flex;
-    gap: 20px;
     z-index: 100;
 }
 
@@ -118,13 +117,14 @@
 
 
 .thumbnail .item img {
-    width: 90%;
+    width: 170px;
     height: 180px;
     object-fit: contain; /* Ensures the image fills the container proportionally */
     display: block;
     transition: transform 0.3s ease; /* Optional: Smooth hover effect */
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); /* Adds a shadow only to the image */
     border: 2px solid #097352; /* Optional: Highlight the active image with a border */
+    border-radius: 10px;
 }
 .thumbnail .item.active img {
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); /* Adds a shadow only to the image */
@@ -132,7 +132,8 @@
     transform: scale(1.05); /* Slightly enlarge the image */
     z-index: 1; /* Ensure the active image appears above others */
     height: 280px;
-    width: 100%;
+    width: 180px;
+    border-radius: 10px;
 }
 
 .thumbnail .item img:hover {
@@ -148,7 +149,7 @@
 .arrows {
     position: absolute;
     top: 65%;
-    right: 73%;
+    right: 86%;
     display: flex;
     gap: 10px;
     align-items: center;
@@ -181,7 +182,7 @@
     transform: translateY(50px);
     filter: blur(20px);
     opacity: 0;
-    animation: showContent 0.5s 0.06s linear forwards;
+    animation: showContent 0.5s 1s linear forwards;
 }
 
 @keyframes showContent {

@@ -117,7 +117,7 @@ const Projects = ({ darkMode }) => {
   return (
     <div className="container mx-auto  min-h-screen">
       <div className="carousel">
-        <div className="list mt-[-5vh] md:mt-[0vh]">
+        <div className="list mt-[-5vh] md:mt-[14vh] md:w-[30%]">
           {slides.map((slide, index) => (
             <div
               key={slide.id}
@@ -137,7 +137,7 @@ const Projects = ({ darkMode }) => {
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              className={`item ${index === currentSlide ? "active" : ""} justify-center items-center`}
+              className={`item ${index === currentSlide ? "active" : ""} `}
             >
               <div className="content">
                 <img
