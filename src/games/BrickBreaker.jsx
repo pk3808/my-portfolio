@@ -4,9 +4,10 @@ import Blogs from "../pages/Blogs";
 import Projects from "../pages/Projects";
 import Skills from "../pages/Skills";
 import Contact from "../pages/Contact";
-import Loader from "../components/Loader";
+import AboutMe from "../pages/AboutMe";
 import left from "../assets/left.png";
 import rotate from "../assets/rotate.png";
+import TimeLine from "../components/TimeLIne";
 import { useNavigate } from "react-router-dom";
 
 const BrickBreaker = () => {
@@ -65,7 +66,7 @@ const BrickBreaker = () => {
   const getComponentByBrick = (index) => {
     switch (index) {
       case 13:
-        return { component: <Home />, title: "Home" };
+        return { component: <TimeLine />, title: "TimeLine" };
       case 17:
         return { component: <Blogs />, title: "Blogs" };
       case 6:
@@ -74,6 +75,8 @@ const BrickBreaker = () => {
         return { component: <Skills />, title: "Skills" };
       case 10:
         return { component: <Contact />, title: "Contact" };
+      case 14:
+        return { component: <AboutMe />, title: "AboutMe" };
       default:
         return { component: null, title: "" };
     }
@@ -145,7 +148,7 @@ const BrickBreaker = () => {
             dy = -dy;
             dx *= 1.05; // Optional: Slightly increase speed on brick hit
             dy *= 1.05; // Optional: Slightly increase speed on brick hit
-
+            console.log(`Brick hit: ${index + 1}`);
             // Special brick hit logic
             if (brick.isSpecial) {
               console.log(`Special brick hit at index: ${index}`);
@@ -238,7 +241,7 @@ const BrickBreaker = () => {
       >
         <div
           className="absolute left-10 top-10 text-lg hidden md:block"
-          
+
         >
           <button className="text-yellow-400 text-xl" onClick={handleNavigate}>⪡</button> Check out default Mode
         </div>
@@ -265,24 +268,33 @@ const BrickBreaker = () => {
 
         {/* Modal for special brick components */}
         {modalComponent && (
-          <div className="fixed inset-0 flex items-center justify-center bg-red bg-opacity-50 z-50 overflow-y-auto w-full">
-            <div className="bg-[#172c2c] p-6 rounded-lg w-full max-w-[100vw] bg-[#16213e] relative ">
-              <h2 className="text-xl font-bold text-center mb-4">
-                {modalTitle}
-              </h2>
-              {/* <button
-              onClick={() => setModalComponent(null)}
-              className="absolute top-2 right-2 text-gray-500"
-            >
-              ✖
-            </button> */}
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-y-auto w-full">
+            <div className="bg-[#172c2c] p-6 rounded-lg w-full max-w-[90vw] relative">
+              <h2 className="text-xl font-bold text-center mb-4">{modalTitle}</h2>
+
+              {/* Close Button - Positioned at the top right corner */}
               <button
                 onClick={() => setModalComponent(null)}
-                className=" bg-[#1a1a2e] color-[white] mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-[#5f5de6] "
+                className="absolute top-2 right-2 text-gray-500 bg-transparent hover:text-white"
               >
-                <img src={left} alt="Close" className="w-6 h-6 " />
+                ✖
               </button>
-              {modalComponent}
+
+              {/* Modal Content Area */}
+              <div className="modal-content max-h-[80vh] overflow-auto">
+                {modalComponent}
+              </div>
+
+              {/* Back Button - At the bottom of the modal */}
+              {/* <div className="mt-4 flex justify-center">
+                <button
+                  onClick={() => setModalComponent(null)}
+                  className="bg-[#1a1a2e] text-white px-6 py-2 rounded-lg hover:bg-[#5f5de6]"
+                >
+                  <img src={left} alt="Back" className="w-6 h-6 inline-block" />
+                  Back
+                </button>
+              </div> */}
             </div>
           </div>
         )}
