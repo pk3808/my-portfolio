@@ -12,7 +12,7 @@ const Contact = ({ darkMode,hide }) => {
     };
   
     try {
-      const response = await fetch("http://localhost:3000/send-message", {
+      const response = await fetch("https://messageserver-production.up.railway.app/send-message", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
