@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import GameSplash from "../components/gameSplash";
 import BrickBreakerGame from "../games/BrickBreaker";
-const Game = () => {
+const Game = ({ darkMode }) => {
   const [showSplash, setShowSplash] = useState(true);
 
   const handleSplashDismiss = () => {
@@ -14,7 +14,7 @@ const Game = () => {
       {showSplash ? (
         <GameSplash onDismiss={handleSplashDismiss} />
       ) : (
-        <BrickBreakerGame />
+        <BrickBreakerGame darkMode={darkMode} />
       )}
     </div>
   );

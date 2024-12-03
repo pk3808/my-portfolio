@@ -10,7 +10,9 @@ import rotate from "../assets/rotate.png";
 import TimeLine from "../components/TimeLIne";
 import { useNavigate } from "react-router-dom";
 
-const BrickBreaker = () => {
+const BrickBreaker = ({ darkMode }) => {
+  console.log("Rendering BrickBreaker with darkMode:", darkMode);
+  
   const navigate = useNavigate();
   const canvasRef = useRef(null);
   const [paddle, setPaddle] = useState({
@@ -66,17 +68,17 @@ const BrickBreaker = () => {
   const getComponentByBrick = (index) => {
     switch (index) {
       case 13:
-        return { component: <TimeLine />, title: "TimeLine" };
+        return { component: <TimeLine darkMode={darkMode} />, title: "TimeLine" };
       case 17:
-        return { component: <Blogs />, title: "Blogs" };
+        return { component: <AboutMe darkMode={darkMode} />, title: "AboutMe" };
       case 6:
-        return { component: <Projects />, title: "Projects" };
+        return { component: <Projects darkMode={darkMode} />, title: "Projects" };
       case 15:
-        return { component: <Skills />, title: "Skills" };
+        return { component: <Skills darkMode={darkMode} />, title: "Skills" };
       case 10:
-        return { component: <Contact />, title: "Contact" };
+        return { component: <Contact darkMode={darkMode} />, title: "Contact" };
       case 14:
-        return { component: <AboutMe />, title: "AboutMe" };
+        return { component: <AboutMe darkMode={darkMode} />, title: "AboutMe" };
       default:
         return { component: null, title: "" };
     }

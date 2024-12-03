@@ -1,5 +1,5 @@
 import React from "react";
-
+import { motion } from "framer-motion";
 const AboutMe = ({ darkMode }) => {
   return (
     <div className="flex md:flex-row flex-col  md:h-screen items-center justify-center">

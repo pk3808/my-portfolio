@@ -18,7 +18,7 @@ const AppRoutes = ({ darkMode }) => {
       <Route path="/skills" element={<Skills />} />
       <Route path="/contact" element={<Contact  darkMode={darkMode} />} />
       {/* <Route path="/game" element={<BrickBreaker />} /> */}
-      <Route path="/game" element={<Game />} />
+      <Route path="/game" element={<Game darkMode={darkMode}/>} />
     </Routes>
   );
 };
