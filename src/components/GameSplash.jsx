@@ -1,11 +1,34 @@
 // src/components/GameSplash.js
-import React from "react";
 import { motion } from "framer-motion";
+import React, { useRef, useEffect, useState } from "react";
 
 const GameSplash = ({ onDismiss }) => {
+  const startSound = useRef(null); // Reference to the start sound
+
+  const handleStartClick = () => {
+    if (startSound.current) {
+      startSound.current.play(); // Play the sound
+    }
+
+    // Dismiss the splash screen after 3 seconds
+    setTimeout(() => {
+      onDismiss();
+    }, 2000);
+  };
+
+  useEffect(() => {
+    // Cleanup: Pause the sound if the component unmounts
+    return () => {
+      if (startSound.current) {
+        startSound.current.pause();
+        startSound.current.currentTime = 0; // Reset to the start
+      }
+    };
+  }, []);
+
   return (
     <motion.div
-      className="fixed inset-0 flex items-center justify-center bg-[#1a1a2e] text-white z-50 "
+      className="fixed inset-0 flex items-center justify-center bg-[#1a1a2e] text-white z-50"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -19,10 +42,11 @@ const GameSplash = ({ onDismiss }) => {
         </p>
         <button
           className="mode-button mt-2 px-6 py-2 font-['MyCustomFont'] transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
-          onClick={onDismiss}
+          onClick={handleStartClick}
         >
           Start Game
         </button>
+        <audio ref={startSound} src="/sound/start.mp3" preload="auto"></audio>
       </div>
     </motion.div>
   );

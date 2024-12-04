@@ -12,7 +12,10 @@ import { useNavigate } from "react-router-dom";
 
 const BrickBreaker = ({ darkMode }) => {
   console.log("Rendering BrickBreaker with darkMode:", darkMode);
-  
+  const paddleHitSound = useRef(null);
+  const brickHitSound = useRef(null);
+  const specialBrickHitSound = useRef(null);
+  const gameOverSound = useRef(null);
   const navigate = useNavigate();
   const canvasRef = useRef(null);
   const [paddle, setPaddle] = useState({
@@ -74,7 +77,7 @@ const BrickBreaker = ({ darkMode }) => {
       case 6:
         return { component: <Projects darkMode={darkMode} h={false} />, title: "Projects" };
       case 15:
-        return { component: <Skills darkMode={darkMode}  show={true} hide={true}/>, title: "Skills" };
+        return { component: <Skills darkMode={darkMode} show={true} hide={true} />, title: "Skills" };
       case 10:
         return { component: <Contact darkMode={darkMode} />, title: "Contact" };
       case 14:
@@ -151,8 +154,10 @@ const BrickBreaker = ({ darkMode }) => {
             dx *= 1.05; // Optional: Slightly increase speed on brick hit
             dy *= 1.05; // Optional: Slightly increase speed on brick hit
             console.log(`Brick hit: ${index + 1}`);
+            brickHitSound.current.play();
             // Special brick hit logic
             if (brick.isSpecial) {
+              specialBrickHitSound.current.play();
               console.log(`Special brick hit at index: ${index}`);
               const { component, title } = getComponentByBrick(index);
               setModalComponent(component);
@@ -168,6 +173,7 @@ const BrickBreaker = ({ darkMode }) => {
         // Check if ball falls below paddle
         if (y + dy > 500) {
           setGameOver(true);
+          gameOverSound.current.play();
           return prev;
         }
 
@@ -287,19 +293,13 @@ const BrickBreaker = ({ darkMode }) => {
                 {modalComponent}
               </div>
 
-              {/* Back Button - At the bottom of the modal */}
-              {/* <div className="mt-4 flex justify-center">
-                <button
-                  onClick={() => setModalComponent(null)}
-                  className="bg-[#1a1a2e] text-white px-6 py-2 rounded-lg hover:bg-[#5f5de6]"
-                >
-                  <img src={left} alt="Back" className="w-6 h-6 inline-block" />
-                  Back
-                </button>
-              </div> */}
             </div>
           </div>
         )}
+        <audio ref={paddleHitSound} src="sound/hit.mp3" preload="auto"></audio>
+        <audio ref={brickHitSound} src="sound/brickhit.mp3" preload="auto"></audio>
+        <audio ref={specialBrickHitSound} src="sound/special.mp3" preload="auto"></audio>
+        <audio ref={gameOverSound} src="sound/over.mp3" preload="auto"></audio>
       </div>
     </>
   );
