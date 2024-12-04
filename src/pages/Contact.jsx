@@ -36,7 +36,7 @@ const Contact = ({ darkMode,hide }) => {
     <div className="h-[100vh] flex items-center justify-center py-10 bg-transparent ">
       <div
         className={
-          `relative flex ${darkMode ? "bg-transparent" : "bg-transparent"} mx-[2vw] flex-wrap items-center justify-center shadow-2xl rounded-lg overflow-hidden bg-white max-w-5xl w-full md:mx-auto  h-[70vh]`
+          `relative flex ${darkMode ? "bg-[green]" : "bg-[white]"} mx-[2vw] flex-wrap items-center justify-center shadow-2xl rounded-lg overflow-hidden bg-white max-w-5xl w-full md:mx-auto  h-[70vh]`
         }
       >
         {/* Left Side: Contact Form */}
@@ -55,7 +55,7 @@ const Contact = ({ darkMode,hide }) => {
                 type="email"
                 required
                 placeholder="Enter your email"
-                className={`w-full px-3 py-2 text-black rounded-lg ${darkMode ? "bg-[#355E3B]": "bg-[#FAC898]"} shadow-md focus:outline-none focus:ring-2 focus:ring-white`}
+                className={`w-full px-3 py-2 text-black rounded-lg ${darkMode ? "bg-[#355E3B] text-white": "bg-[#FAC898] text-black"} shadow-md focus:outline-none focus:ring-2 focus:ring-white`}
               />
             </div>
             {/* Name */}
@@ -68,7 +68,7 @@ const Contact = ({ darkMode,hide }) => {
                 type="text"
                 required
                 placeholder="Enter your name"
-                className={`w-full px-3 py-2 text-black rounded-lg ${darkMode ? "bg-[#355E3B]": "bg-[#FAC898]"} shadow-md focus:outline-none focus:ring-2 focus:ring-white`}
+                className={`w-full px-3 py-2 text-black rounded-lg ${darkMode ? "bg-[#355E3B] text-white": "bg-[#FAC898] text-black"} shadow-md focus:outline-none focus:ring-2 focus:ring-white`}
 
               />
             </div>
@@ -109,7 +109,7 @@ const Contact = ({ darkMode,hide }) => {
             {/* Submit Button */}
             <button
               type="submit"
-              className={`md:w-[30%] w-full flex items-center justify-center ${darkMode ? "bg-[#DFFF00]": "bg-[#E3735E]"} text-[#264E5B] TEXT font-bold text-md px-4 py-2 rounded-lg shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105`}
+              className={`md:w-[30%] w-full flex items-center justify-center ${darkMode ? "bg-[#DFFF00] hover:bg-[#DFFF11]": "bg-[#E3735E] hover:bg-[#E3735E]"} text-[#264E5B] TEXT font-bold text-md px-4 py-2 rounded-lg shadow-lg  transition-all duration-300 transform hover:scale-105`}
             >
               Send Message
               <img src="/images/send.png" alt="Arrow" className="ml-2 h-8 w-8 tint" />

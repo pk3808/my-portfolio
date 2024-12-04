@@ -225,24 +225,28 @@
     }
 
     .carousel .list .item .content .title {
-        font-size: 24px;
+        font-size: 20px;
+    }
+    .carousel .list .item .content .topic {
+        font-size: 38px;
     }
     .arrows {
-        right: 60%;
+        right: 75%;
     }
     .thumbnail {
         left: 40%;
         gap: 0px;
     }
     thumbnail .item.active img {
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); /* Adds a shadow only to the image */
-        border: 2px solid #f1683a; /* Optional: Highlight the active image with a border */
-        transform: scale(1.05); /* Slightly enlarge the image */
-        z-index: 1; /* Ensure the active image appears above others */
-        height: 180px;
+      
+        height: 160px;
         width: 100%;
     }
-    
+    .thumbnail .item img {
+        width: 180px;
+        height: 150px;
+       
+    }
 }
 .platform-links {
     margin-top: 10px;

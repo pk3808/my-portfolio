@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TimeLine = ({ darkMode }) => {
+const TimeLine = ({ darkMode , bg}) => {
   const [activeTab, setActiveTab] = useState("experience");
 
   const educationData = [
@@ -72,7 +72,11 @@ const TimeLine = ({ darkMode }) => {
   return (
     <div
       className={`flex md:flex-row flex-col h-[100vh] items-center justify-center ${
-        darkMode ? "bg-[#023020] text-white" : "bg-[#F5F5DC] text-black"
+        bg
+        ? "bg-transparent"
+        : darkMode
+        ? "bg-[#023020] text-white"
+        : "bg-[#F5F5DC] text-black"
       }`}
     >
       {/* Left Menu */}

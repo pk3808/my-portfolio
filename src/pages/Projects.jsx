@@ -17,7 +17,7 @@ const entries = [
     id: 2,
     label: "Multipoint Inspect",
     image: "/images/mpip.png",
-    desc: "An innovative solution for conducting comprehensive home inspections, ensuring every corner is covered for safety, efficiency, and peace of mind.",
+    desc: "An innovative solution for conducting comprehensive home inspections, ensuring every corner is covered for safety, efficiency, and peace of mind. let us help you reach your goals. let us help you reach your goals.If bg is true, the background will be set to bg-transparent.if bg is false and darkMode is enabled, the background will use the dark color with white text.If neither bg is true nor darkMode is enabled, the light mode background  with black text is applied. jffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffkguuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
     title: "One way solution for your home inspection",
     platforms: [
       { type: "web", url: "https://multipointinspect.example.com", icon: "/images/web.png" },
@@ -66,7 +66,7 @@ const PlatformLinks = ({ platforms }) => (
   </div>
 );
 
-const Projects = ({ darkMode }) => {
+const Projects = ({ darkMode, h }) => {
   console.log("Rendering Home with darkMode:", darkMode);
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -117,13 +117,13 @@ const Projects = ({ darkMode }) => {
   return (
     <div className="container mx-auto  min-h-screen">
       <div className="carousel">
-        <div className="list mt-[-5vh] md:mt-[14vh] md:w-[30%]">
+        <div className={`list mt-[10vh] md:mt-[14vh] `}>
           {slides.map((slide, index) => (
             <div
               key={slide.id}
               className={`item ${index === 0 ? "active" : ""}`}
             >
-              <div className="content">
+              <div className="content max-w-[60vw]">
                 <div className={`author ${darkMode ? "text-white" : "text-black "}`}>Projects</div>
                 <div className="topic">{slide.label}</div>
                 <div className={`title ${darkMode ? "text-white" : "text-black"}`}>{slide.title}</div>

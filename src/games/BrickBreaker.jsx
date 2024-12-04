@@ -68,13 +68,13 @@ const BrickBreaker = ({ darkMode }) => {
   const getComponentByBrick = (index) => {
     switch (index) {
       case 13:
-        return { component: <TimeLine darkMode={darkMode} />, title: "TimeLine" };
+        return { component: <TimeLine darkMode={darkMode} bg={true} />, title: "TimeLine" };
       case 17:
         return { component: <AboutMe darkMode={darkMode} />, title: "AboutMe" };
       case 6:
-        return { component: <Projects darkMode={darkMode} />, title: "Projects" };
+        return { component: <Projects darkMode={darkMode} h={false} />, title: "Projects" };
       case 15:
-        return { component: <Skills darkMode={darkMode} />, title: "Skills" };
+        return { component: <Skills darkMode={darkMode}  show={true} hide={true}/>, title: "Skills" };
       case 10:
         return { component: <Contact darkMode={darkMode} />, title: "Contact" };
       case 14:
@@ -283,7 +283,7 @@ const BrickBreaker = ({ darkMode }) => {
               </button>
 
               {/* Modal Content Area */}
-              <div className="modal-content max-h-[80vh] overflow-auto">
+              <div className="modal-content max-h-[85vh] overflow-auto">
                 {modalComponent}
               </div>
 

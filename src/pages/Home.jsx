@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
-import TimeLIne from "../components/TimeLIne"
+import TimeLIne from "../components/TimeLIne";
 import Skills from "./Skills";
 import Projects from "./Projects";
 import Contact from "./Contact";
@@ -227,6 +227,26 @@ const Home = ({ darkMode }) => {
                 </div>
               </div>
             </motion.div>
+            {/* <div
+              className={` flex-col items-center justify-center h-5vh absolute right-[-4vw]   hidden md:block  ${
+                darkMode
+                  ? "text-white bg-lime-600"
+                  : "text-gray-800 bg-orange-400"
+              }`}
+            >
+              <h2
+                className={`text-sm font-bold text-center px-1 py-2 ${
+                  darkMode ? "text-white" : "text-gray-800"
+                }`}
+                style={{
+                  writingMode: "vertical-rl",
+                  textOrientation: "upright",
+                  transform: "rotate(360deg)", // Flip text to make it natural
+                }}
+              >
+                WELCOME
+              </h2>
+            </div> */}
           </div>
         </Parallax>
       </div>
@@ -301,8 +321,12 @@ const Home = ({ darkMode }) => {
       </div>
       <TimeLIne darkMode={darkMode} />
       <Skills darkMode={darkMode} show={true} hide={true} />
-      <div className="h-screen"><Projects darkMode={darkMode}  />  </div>
-      <Contact darkMode={darkMode}  hide={true}/>
+      <div className="h-screen">
+        <Projects darkMode={darkMode} />{" "}
+      </div>
+      <div className="pl-[8vw]">
+        <Contact darkMode={darkMode} hide={true} />
+      </div>
     </ParallaxProvider>
   );
 };
