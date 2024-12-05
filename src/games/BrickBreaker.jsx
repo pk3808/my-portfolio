@@ -18,6 +18,7 @@ const BrickBreaker = ({ darkMode }) => {
   const gameOverSound = useRef(null);
   const navigate = useNavigate();
   const canvasRef = useRef(null);
+  
   const [paddle, setPaddle] = useState({
     x: 150,
     y: 450,
@@ -137,8 +138,9 @@ const BrickBreaker = ({ darkMode }) => {
           x < paddle.x + paddle.width
         ) {
           dy = -dy;
-          dx *= 1.05; // Optional: Slightly increase speed on paddle hit
-          dy *= 1.05; // Optional: Slightly increase speed on paddle hit
+          dx *= 1.25; // Optional: Slightly increase speed on paddle hit
+          dy *= 1.25; // Optional: Slightly increase speed on paddle hit
+          paddleHitSound.current.play();
         }
 
         // Check collision with bricks and open modal on special brick hit

@@ -1,6 +1,7 @@
 // src/components/GameSplash.js
 import { motion } from "framer-motion";
 import React, { useRef, useEffect, useState } from "react";
+import Robos from "/images/robos.gif";
 
 const GameSplash = ({ onDismiss }) => {
   const startSound = useRef(null); // Reference to the start sound
