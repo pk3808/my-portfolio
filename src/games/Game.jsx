@@ -1,7 +1,7 @@
 // src/pages/Game.js
 import React, { useState } from "react";
-import GameSplash from "../components/gameSplash";
 import BrickBreakerGame from "../games/BrickBreaker";
+import GameSplash from "../components/GameSplash";
 const Game = ({ darkMode }) => {
   const [showSplash, setShowSplash] = useState(true);
 
