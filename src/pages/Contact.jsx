@@ -36,7 +36,7 @@ const Contact = ({ darkMode,hide }) => {
     <div className="h-[100vh] flex items-center justify-center py-10 bg-transparent ">
       <div
         className={
-          `relative flex ${darkMode ? "bg-[green]" : "bg-[white]"} mx-[2vw] flex-wrap items-center justify-center shadow-2xl rounded-lg overflow-hidden bg-white max-w-5xl w-full md:mx-auto  h-[70vh]`
+          `relative flex ${darkMode ? "bg-[green]" : "bg-[white]"} mx-[2vw] flex-wrap items-center justify-center shadow-4xl rounded-lg overflow-hidden bg-white max-w-5xl w-full md:mx-auto  h-[70vh]`
         }
       >
         {/* Left Side: Contact Form */}

@@ -5,6 +5,7 @@ import {
   faInstagram,
   faGithub,
   faLinkedin,
+  faDiscord
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import "../App.css";
@@ -41,35 +42,35 @@ const SocialMediaIcons = ({ darkMode }) => {
       {isMobile ? null : (
         <div className={`social-icons-desktop  ${darkMode ? 'bg-[#355E3B] text-white' : 'bg-[#F3D7CA] text-gray-800'}`}>
           <a
-            href="https://facebook.com"
+            href="http://discordapp.com/users/867786987146313758"
             target="_blank"
             rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon={faFacebook} className="" />
+          > 
+            <FontAwesomeIcon icon={faDiscord} className="text-[white] bg-[#5865F2] hover:bg-[white] hover:text-[#5865F2]  rounded-md" />
           </a>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/blaze_31_01/?igsh=cjJobmp6N2NkNmt6"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faInstagram} />
+            <FontAwesomeIcon icon={faInstagram} className="text-[#E1306C] hover:bg-[#E1306C] hover:text-white rounded-md" />
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/pk3808"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faGithub} />
+            <FontAwesomeIcon icon={faGithub} className="text-[#fff] hover:bg-[#333] hover:text-white rounded-md" />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/piyush-kumar-724877217/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faLinkedin} />
+            <FontAwesomeIcon icon={faLinkedin} className="bg-[#0077B5] hover:bg-white hover:text-[#0077B5] " />
           </a>
-          <a href="mailto:example@gmail.com">
-            <FontAwesomeIcon icon={faEnvelope} />
+          <a href="mailto:piyush.kr.bpmce@gmail.com">
+            <FontAwesomeIcon icon={faEnvelope} className="hover:text-orange-500 rounded-md" />
           </a>
         </div>
       )}

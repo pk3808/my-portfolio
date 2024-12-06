@@ -69,9 +69,10 @@ const NavBar = ({ darkMode }) => {
         >
 
           <div className="container mx-auto flex justify-evenly ">
-            <div className={`flex items-center rounded-full h-[40] w-[40] ${darkMode ? 'bg-lime-300' : 'bg-orange-400  hover:scale-[1.4]'} `}>
+            <div className={`flex items-center rounded-full  ${darkMode ? 'bg-lime-300' : 'bg-orange-400  hover:scale-[1.4]'} `}>
               <img src={collapse} alt="collapse" className="w-6 h-6 cursor-pointer  hover:animate-spin mx-2 my-2"  onClick={toggleNavbar} />
             </div>
+            <div className="flex row w-[80%] mr-[7%] rounded-[25px] justify-between items-center space-x-4">
             {/* Projects Button */}
             <button
               onClick={() => handleNavigation('/projects')}
@@ -131,6 +132,7 @@ const NavBar = ({ darkMode }) => {
               <FontAwesomeIcon icon={faEnvelope} />
               <span>Contact</span>
             </button>
+            </div>
           </div>
         </nav>
       )}

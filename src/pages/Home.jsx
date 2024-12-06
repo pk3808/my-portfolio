@@ -211,16 +211,16 @@ const Home = ({ darkMode }) => {
                   </pre>
 
                   <button
-                    onClick={() =>
-                      window.open(
-                        "https://drive.google.com/uc?export=download&id=1GGRFEGmqbbmQXquxZauXMQ1YvtOqZ"
-                      )
-                    }
+                    onClick={() => {
+                      window.location.href =
+                        "https://drive.google.com/uc?export=download&id=1seDQuXKwcQ_LA7Wz4aGSoyEpf8AuPFOv";
+                    }}
                     className={`mt-4 ${
                       darkMode
                         ? "bg-[#ADFF2F] text-black"
                         : "bg-[#F88379] text-gray-800"
                     } text-black px-4 py-2 rounded hover:bg-cyan-400 transition`}
+                    aria-label="Download Resume"
                   >
                     DOWNLOAD
                   </button>

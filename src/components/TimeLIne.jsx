@@ -75,7 +75,7 @@ const TimeLine = ({ darkMode , bg}) => {
         bg
         ? "bg-transparent"
         : darkMode
-        ? "bg-[#023020] text-white"
+        ? "bg-[#032903] text-white"
         : "bg-[#F5F5DC] text-black"
       }`}
     >

@@ -19,7 +19,7 @@ body, html {
 }
 
 .dark {
-  background-color: #172c2c; /* Dark background */
+  background-color: #032903; /* Dark background */
   color: white; /* Light text */
 }
 @font-face {
@@ -60,19 +60,20 @@ body, html {
   align-items: center; /* Center icon vertically */
   justify-content: center; /* Center icon horizontally */
   transition: transform 0.3s; /* Smooth transition for position */
+  box-shadow: inset 0 4px 16px -1px rgba(214, 230, 4, 0.87), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
 /* Dark mode styles */
 .dark .theme-toggle-button {
-  background-color: #a6cdc0; /* Background color for dark mode switch */
+  background-color: #045106; /* Background color for dark mode switch */
   box-shadow: inset 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  color: #f0f0f0; /* Text color for dark mode switch */
+  color: #c11212; /* Text color for dark mode switch */
   transition: background-color 0.3s; /* Smooth transition for background color */
 
 }
 
 .light .theme-toggle-button {
-  background-color: #f0f0f0 !important; /* Force the background color */
+  background-color: #eed696 !important; /* Force the background color */
 }
 
 .dark .toggle-indicator {
@@ -81,7 +82,7 @@ body, html {
 
 /* Optional styles for hover effect */
 .theme-toggle-button:hover {
-  background-color: #aaa; /* Slightly darker on hover */
+  background-color: #7add2e; /* Slightly darker on hover */
 }
 
 /* Icon styles */
@@ -165,7 +166,7 @@ body, html {
 
 
 .social-toggle-btn:hover {
-  color: #00bcd4; /* Change color on hover */
+  color: #1cd1b0; /* Change color on hover */
 }
 
 .social-dropdown {
