@@ -46,14 +46,14 @@ const SocialMediaIcons = ({ darkMode }) => {
             target="_blank"
             rel="noopener noreferrer"
           > 
-            <FontAwesomeIcon icon={faDiscord} className="text-[white] bg-[#5865F2] hover:bg-[white] hover:text-[#5865F2]  rounded-md" />
+            <FontAwesomeIcon icon={faDiscord} className=" hover:bg-[white] hover:text-[#5865F2]  rounded-md" />
           </a>
           <a
             href="https://www.instagram.com/blaze_31_01/?igsh=cjJobmp6N2NkNmt6"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faInstagram} className="text-[#E1306C] hover:bg-[#E1306C] hover:text-white rounded-md" />
+            <FontAwesomeIcon icon={faInstagram} className=" hover:bg-[#E1306C] hover:text-white rounded-md" />
           </a>
           <a
             href="https://github.com/pk3808"

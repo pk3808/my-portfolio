@@ -1,40 +1,51 @@
 import React, { useState } from "react";
 
-const TimeLine = ({ darkMode , bg}) => {
+const TimeLine = ({ darkMode, bg }) => {
   const [activeTab, setActiveTab] = useState("experience");
 
   const educationData = [
     {
       degree: "B.Tech in Electrical and Electronics Engineering",
-      institution: "XYZ University",
-      date: "2016 - 2020",
+      institution: "B.P Mandal College of Engineering, Madhepura (Bihar)",
+      date: "2019 - 2023",
+      marks: "8.04 CGPA",
       details:
-        "Focused on circuit design, control systems, and embedded technology.",
+        "Gained a strong understanding of electrical and electronics engineering principles, including circuit design, control systems, and embedded systems. Participated in projects and practical labs to apply theoretical knowledge. Developed problem-solving and teamwork skills through collaborative assignments.",
     },
     {
       degree: "Intermediate Science",
-      institution: "ABC College",
-      date: "2014 - 2016",
-      details: "Specialized in Physics, Chemistry, and Mathematics.",
+      institution: "Krishna Public School, CBSE Board",
+      marks: "62.2%",
+      date: "2019",
+      details:
+        "Studied core subjects such as Physics, Chemistry, and Mathematics, building a solid foundation for engineering studies. Developed an interest in analytical thinking and scientific problem-solving through coursework and practical applications.",
     },
   ];
 
   const experienceData = [
     {
-      role: "Software Engineer",
-      company: "Tech Solutions Inc.",
-      date: "2022 - Present",
+      role: "App Developer",
+      company: "IB Arts Pvt Ltd.",
+      date: "August 2024 - Present",
       details:
-        "Worked on full-stack web development using React, Node.js, and MongoDB. Collaborated with cross-functional teams to deliver high-quality software solutions.", 
-      technologies: ["React", "Node.js", "MongoDB"],
+        "As an App Developer at IB Arts Pvt Ltd., I design, develop, and deploy full-stack web and mobile applications. I specialize in creating interactive UIs with React.js and React Native, seamlessly integrating backend services using Node.js and MongoDB. Working with cross-functional teams, I deliver scalable solutions that meet business needs and enhance user experience. My role involves writing clean, maintainable code, optimizing performance, and implementing new features to stay current with industry trends. I also debug issues, ensure quality, and use tools like Next.js, Tailwind CSS, and Git to streamline development and maintain code consistency.",
+      technologies: [
+        "React JS",
+        "React Native",
+        "MongoDB",
+        "Next Js",
+        "Node JS",
+        "Tailwind CSS",
+      ],
     },
+
     {
-      role: "Frontend Developer Intern",
-      company: "Web Innovators",
-      date: "2021 - 2022",
+      role: "App Developer Intern",
+      company: "IB Arts Pvt Ltd.",
+      date: "Jan 2024 - July 2024",
       details:
         "Built responsive UI components using React and integrated APIs. Collaborated with the design team to create visually appealing and user-friendly interfaces.Worked on full-stack web development using React, Node.js, and MongoDB. Collaborated with cross-functional teams to deliver high-quality software solutions.",
-        technologies: ["React", "HTML", "CSS"],
+      technologies: ["React", "HTML", "CSS", "React Native", "JavaScript"],
     },
   ];
 
@@ -44,21 +55,26 @@ const TimeLine = ({ darkMode , bg}) => {
       <div
         key={index}
         className={`mb-6 p-4 border-l-4 ${
-          darkMode ? "border-green-500" : "border-orange-500"
-        } backdrop-blur-md bg-opacity-50 hover:scale-105 transition-transform duration-300 rounded-md shadow-lg`}
+          darkMode
+            ? "border-green-500 bg-[#004225]"
+            : "border-orange-500 bg-[#FBCEB1] "
+        } backdrop-blur-md bg-opacity-100 hover:scale-105 transition-transform duration-300 rounded-md shadow-lg`}
       >
-        <h3 className="text-lg font-bold">
+        <h3 className="text-lg font-bold mb-2">
           {activeTab === "experience" ? item.role : item.degree} -{" "}
           {item.company || item.institution}
         </h3>
         <p className="text-sm text-gray-500">{item.date}</p>
+        {item.marks && (
+          <p className="text-lg text-gray-500"> Score : {item.marks}</p>
+        )}
         <p>{item.details}</p>
         {item.technologies && (
-          <div className="flex flex-wrap gap-2 mt-2">
+          <div className="flex flex-wrap gap-2 mt-4">
             {item.technologies.map((tech, idx) => (
               <span
                 key={idx}
-                className="px-2 py-1 text-xs font-medium bg-gray-700 text-white rounded"
+                className="px-2 py-1 text-xs font-medium bg-cyan-500 text-white rounded"
               >
                 {tech}
               </span>
@@ -73,14 +89,14 @@ const TimeLine = ({ darkMode , bg}) => {
     <div
       className={`flex md:flex-row flex-col h-[100vh] items-center justify-center ${
         bg
-        ? "bg-transparent"
-        : darkMode
-        ? "bg-[#032903] text-white"
-        : "bg-[#F5F5DC] text-black"
+          ? "bg-transparent"
+          : darkMode
+          ? "bg-[#032903] text-white"
+          : "bg-[#F5F5DC] text-black"
       }`}
     >
       {/* Left Menu */}
-      <div className="flex flex-col items-center justify-center w-[35vw]">
+      <div className="flex flex-col items-center justify-center w-[35vw] hidden md:block md:flex">
         {["experience", "education"].map((tab) => (
           <button
             key={tab}
@@ -99,9 +115,27 @@ const TimeLine = ({ darkMode , bg}) => {
         ))}
       </div>
 
+      <div className="flex md:hidden items-center justify-center w-full mt-[10vh]">
+        {["experience", "education"].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`flex-1 py-2 px-4 mx-1 text-center relative group font-semibold rounded-full transition-all duration-300 ${
+              activeTab === tab
+                ? darkMode
+                  ? "bg-green-500 text-white" // Green for dark mode
+                  : "bg-orange-500 text-white" // Orange for light mode
+                : "bg-gray-200 text-gray-600"
+            }`}
+          >
+            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+          </button>
+        ))}
+      </div>
+
       {/* Right Content */}
       <div
-        className={`md:w-[65vw] w-full ${
+        className={`md:w-[65vw] w-[95vw] mt-[3vh] md:mt-0   ${
           darkMode ? "border-green-500" : "border-orange-500"
         }`}
       >
@@ -124,7 +158,7 @@ const TimeLine = ({ darkMode , bg}) => {
             transform: "rotate(360deg)",
           }}
         >
-          Timeline
+          TIMELINE
         </h2>
       </div>
     </div>

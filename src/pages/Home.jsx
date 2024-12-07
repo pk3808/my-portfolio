@@ -268,34 +268,32 @@ const Home = ({ darkMode }) => {
             <img
               src="/images/aboutme.png"
               alt="3D Animation"
-              className="rounded-lg  w-[100%] h-[100%] md:ml-[2vw] mr-[auto] object-contain"
+              className="rounded-lg  w-[100%] h-[100%]   object-contain"
             />
           </motion.div>
 
-          <div className="text-xl md:text-lg    px-4 text-justify  animated-border ml-[4vw] mr-[4vw] ">
+          <div className="md:text-2XL text-[1rem]    px-4 text-justify  animated-border ml-[4vw] mr-[8vw] ">
             <p
               className={`leading-relaxed p-4 ${
                 darkMode ? "text-white" : "text-black"
               }`}
             >
-              With years of hands-on experience in frameworks like React.js and
-              Express.js, I bring ideas to life by crafting dynamic web
-              applications. I strive to bridge the gap between aesthetics and
-              functionality, ensuring every project is a work of excellence.
-              With years of hands-on experience in frameworks like React.js and
-              Express.js, I bring ideas to life by crafting dynamic web
-              applications. I strive to bridge the gap between aesthetics and
-              functionality, ensuring every project is a work of excellence.
-            </p>
-            <p
-              className={`leading-relaxed p-4 ${
-                darkMode ? "text-white" : "text-black"
-              }`}
-            >
-              With years of hands-on experience in frameworks like React.js and
-              Express.js, I bring ideas to life by crafting dynamic web
-              applications. I strive to bridge the gap between aesthetics and
-              functionality, ensuring every project is a work of excellence.
+              {" "}
+              I'm Piyush Kumar, a passionate app developer at IB Arts in
+              Kolkata. With a solid foundation in **React**, **React Native**,
+              **JavaScript**, **Node.js**, **Express**, **MongoDB**, **Tailwind
+              CSS**, **Git** , and **Next.js**, I specialize in building
+              dynamic, user-centric web applications. I combine **aesthetic
+              design** with **functional excellence** to create seamless digital
+              experiences. My journey started with a Bachelor's degree in
+              Electrical and Electronics Engineering (8.0 CGPA), and since then,
+              I've contributed to multiple successful projects at IB Arts.
+              Proficient in HTML, CSS, Git, and Java, I bring technical
+              expertise and a commitment to continuous learning to every
+              challenge I tackle. I thrive on solving complex problems, refining
+              user experiences, and transforming ideas into reality through
+              code. My goal is to bridge creativity with technology, ensuring
+              that every project is not just functional but exceptional.
             </p>
           </div>
         </motion.div>
@@ -324,9 +322,17 @@ const Home = ({ darkMode }) => {
       <div className="h-screen">
         <Projects darkMode={darkMode} />{" "}
       </div>
-      <div className="pl-[8vw]">
+      <div className="md:pl-[8vw]">
         <Contact darkMode={darkMode} hide={true} />
       </div>
+         {/* Footer */}
+         <footer
+        className={`text-center py-4 ${
+          darkMode ? "bg-[#004225] text-white" : "bg-orange-300 text-black"
+        }`}
+      >
+        <p>&copy; {new Date().getFullYear()} Piyush Kumar. All Rights Reserved.</p>
+      </footer>
     </ParallaxProvider>
   );
 };

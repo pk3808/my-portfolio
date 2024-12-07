@@ -1,57 +1,105 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Carousel.css";
-import { text } from "framer-motion/client";
 
 const entries = [
   {
     id: 1,
     label: "Anime Oasis",
     image: "/images/animep.png",
-    desc: "A vibrant platform designed for anime enthusiasts, offering in-depth wikis, character breakdowns, episode guides, and trending updates from the anime world.",
+    desc: [
+      "A vibrant platform designed for anime enthusiasts.",
+      "In-depth wikis, character breakdowns, and episode guides.",
+      "Stay updated with trending news from the anime world.",
+      "Technology used: React, Tailwind CSS, Chakra ui.",
+    ],
     title: "Coolest anime wiki out there",
     platforms: [
-      { type: "web", url: "https://animeoasis.example.com", icon: "/images/web.png" },
+      {
+        type: "web",
+        url: "https://animeoasis.example.com",
+        icon: "/images/web.png",
+      },
     ],
   },
   {
     id: 2,
     label: "Multipoint Inspect",
     image: "/images/mpip.png",
-    desc: "An innovative solution for conducting comprehensive home inspections, ensuring every corner is covered for safety, efficiency, and peace of mind. let us help you reach your goals. let us help you reach your goals.If bg is true, the background will be set to bg-transparent.if bg is false and darkMode is enabled, the background will use the dark color with white text.If neither bg is true nor darkMode is enabled, the light mode background  with black text is applied. jffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffkguuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
     title: "One way solution for your home inspection",
+    desc: [
+      "Conduct comprehensive home inspections effortlessly.",
+      "Ensure every corner is covered for safety and efficiency.",
+      "Achieve peace of mind with our innovative solution.",
+      "Technology used: React, Tailwind CSS, Chakra ui,mongoDB,ExpressJS",
+    ],
     platforms: [
-      { type: "web", url: "https://multipointinspect.example.com", icon: "/images/web.png" },
+      {
+        type: "web",
+        url: "https://app.multipointinspect.com/dashboard/",
+        icon: "/images/web.png",
+      },
     ],
   },
   {
     id: 3,
     label: "Zawwar",
     image: "/images/zawwarp.png",
-    desc: "A fun and interactive Islamic quiz platform where users can test their knowledge about Islam, earn points, and win exciting rewards.",
     title: "Test your knowledge about Islam and win prizes",
+    desc: [
+      "Interactive Islamic quiz platform.",
+      "Test your knowledge about Islam.",
+      "Earn points and win exciting rewards.",
+      "Technology used: React Native,NodeJS, MongoDB",
+    ],
     platforms: [
-      { type: "playstore", url: "https://play.google.com/store/apps/details?id=zawwar", icon: "/images/playstore.png" },
-      { type: "appstore", url: "https://apps.apple.com/app/zawwar/id123456789", icon: "/images/appstore.png" },
+      {
+        type: "playstore",
+        url: "https://play.google.com/store/apps/details?id=com.zawwar",
+        icon: "/images/playstore.png",
+      },
+      {
+        type: "appstore",
+        url: "https://apps.apple.com/us/app/zawwar/id6677025088",
+        icon: "/images/appstore.png",
+      },
     ],
   },
   {
     id: 4,
     label: "Star Launch",
     image: "/images/starlaunchp.png",
-    desc: "Your ultimate companion for space travel planning, providing insights into destinations, safety tips, and the latest innovations in space exploration.",
     title: "Your friendly space travel companion",
+    desc: [
+      "Plan your space travel with ease and confidence.",
+      "Explore destinations and get safety tips.",
+      "Stay updated with the latest in space exploration.",
+      "Technology used: React Native,ExpressJS, Firebase,",
+    ],
     platforms: [
-      { type: "appstore", url: "https://apps.apple.com/app/star-launch/id987654321", icon: "/images/appstore.png" },
+      {
+        type: "appstore",
+        url: "https://apps.apple.com/us/app/starlaunch/id6736873282",
+        icon: "/images/appstore.png",
+      },
     ],
   },
   {
     id: 5,
     label: "Vantrail",
     image: "/images/vantrailp.png",
-    desc: "A centralized platform for van enthusiasts, offering tools to manage, explore, and customize van collections all in one place.",
     title: "All your vans in one place",
+    desc: [
+      "Manage all your van collections in one place.",
+      "Discover tools to customize and explore van options.",
+      "A hub for van enthusiasts to share and grow.",
+      "Technology used: React Native,NodeJS, MongoDB,ExpressJS",
+    ],
     platforms: [
-      { type: "appstore", url: "https://apps.apple.com/app/vantrail/id456789123", icon: "/images/appstore.png" },
+      {
+        type: "appstore",
+        url: "https://apps.apple.com/us/app/vantrail/id6670694819",
+        icon: "/images/appstore.png",
+      },
     ],
   },
 ];
@@ -59,8 +107,18 @@ const entries = [
 const PlatformLinks = ({ platforms }) => (
   <div className="platform-links  w-[100px] h-[40px]">
     {platforms.map((platform, index) => (
-      <a key={index} href={platform.url} target="_blank" rel="noopener noreferrer" className="platform-link">
-        <img src={platform.icon} alt={`${platform.type} icon`} className="platform-icon" />
+      <a
+        key={index}
+        href={platform.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="platform-link"
+      >
+        <img
+          src={platform.icon}
+          alt={`${platform.type} icon`}
+          className="platform-icon"
+        />
       </a>
     ))}
   </div>
@@ -124,10 +182,29 @@ const Projects = ({ darkMode, h }) => {
               className={`item ${index === 0 ? "active" : ""}`}
             >
               <div className="content max-w-[60vw]">
-                <div className={`author ${darkMode ? "text-white" : "text-black "}`}>Projects</div>
+                <div
+                  className={`author ${
+                    darkMode ? "text-white" : "text-black "
+                  }`}
+                >
+                  Projects
+                </div>
                 <div className="topic">{slide.label}</div>
-                <div className={`title ${darkMode ? "text-white" : "text-black"}`}>{slide.title}</div>
-                <div className={`desc ${darkMode ? "text-white" : "text-black"}`}>{slide.desc}</div>
+                <div
+                  className={`title ${darkMode ? "text-white" : "text-black"}`}
+                >
+                  {slide.title}
+                </div>
+                <div
+                  className={`desc my-4 ${darkMode ? "text-white" : "text-black"}`}
+                >
+                  <ul className="list-disc pl-5">
+                    {slide.desc.map((point, idx) => (
+                      <h1 className="text-lg" key={idx}>{point}</h1>
+                    ))}
+                  </ul>
+                </div>
+                
                 <PlatformLinks platforms={slide.platforms} />
               </div>
             </div>
@@ -145,7 +222,11 @@ const Projects = ({ darkMode, h }) => {
                   alt={slide.label}
                   className="w-full h-full object-contain py-3"
                 />
-                <div className={`title ${darkMode ? "text-white" : "text-black"} text-center `}>
+                <div
+                  className={`title ${
+                    darkMode ? "text-white" : "text-black"
+                  } text-center `}
+                >
                   {slide.label}
                 </div>
               </div>
@@ -154,7 +235,12 @@ const Projects = ({ darkMode, h }) => {
         </div>
 
         <div className={`arrows ${darkMode ? "text-white" : "text-black"}`}>
-          <button className={` ${darkMode ? "bg-[#043927]" : "text-black"}`} id="prev" onClick={handlePrev} disabled={isAnimating}>
+          <button
+            className={` ${darkMode ? "bg-[#043927]" : "text-black"}`}
+            id="prev"
+            onClick={handlePrev}
+            disabled={isAnimating}
+          >
             ⇐
           </button>
           <button id="next" onClick={handleNext} disabled={isAnimating}>

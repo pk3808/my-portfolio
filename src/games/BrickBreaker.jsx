@@ -138,8 +138,8 @@ const BrickBreaker = ({ darkMode }) => {
           x < paddle.x + paddle.width
         ) {
           dy = -dy;
-          dx *= 1.25; // Optional: Slightly increase speed on paddle hit
-          dy *= 1.25; // Optional: Slightly increase speed on paddle hit
+          dx *= 1.15; // Optional: Slightly increase speed on paddle hit
+          dy *= 1.15; // Optional: Slightly increase speed on paddle hit
           paddleHitSound.current.play();
         }
 
@@ -246,7 +246,7 @@ const BrickBreaker = ({ darkMode }) => {
   return (
     <>
       <div
-        className="flex flex-col items-center p-5 bg-[#032903] min-h-screen text-gray-200 justify-center w-[100vw] h-[100vh] "
+        className="flex flex-col items-center p-5 bg-[#1a1a2e]  min-h-screen text-gray-200 justify-center w-[100vw] h-[100vh] "
         onTouchMove={handleTouchMove}
       >
         <div

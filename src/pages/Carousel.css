@@ -192,7 +192,16 @@
         opacity: 1;
     }
 }
-
+.desc ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: disc;
+  }
+  
+  .desc h1 {
+    margin-bottom: 0.1rem; /* Add spacing between points */
+  }
+  
 /* Running time animation */
 .carousel .time {
     position: absolute;
