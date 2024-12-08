@@ -34,9 +34,9 @@ const GameSplash = ({ onDismiss }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="sci-fi-border text-center p-8 w-[90%] md:w-[60%] py-16 bg-[#1a1a2e] relative">
+      <div className="sci-fi-border text-center p-8 w-[90%] md:w-[60%] py-16 bg-[#1a1a2e] relative text-center">
         <h2 className="text-3xl font-bold mb-4">Welcome to Brick Breaker Game!</h2>
-        <p className="mb-4 px-8">
+        <p className="mb-4 ">
           Dive into an exciting journey through different screens, each revealing a unique part of who I am! 
           Use the <span className="text-yellow-400">⇦ Left</span> and <span className="text-yellow-400">Right ⇨</span> arrow keys on your keyboard, or swipe with your finger on mobile, to move the paddle.
           Break the special bricks, unlock surprises, and learn more about my projects, skills, and more. Get ready to have fun while discovering my world!

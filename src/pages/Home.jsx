@@ -79,7 +79,23 @@ const Home = ({ darkMode }) => {
         </motion.div>
       )}
 
-      <div className="container mx-auto py-16 min-h-screen px-4 md:px-8 lg:px-16 home-background ">
+      <div className="container mx-auto py-16 min-h-screen px-4 md:px-8 lg:px-16 home-background  ">
+        <div className="relative group cursor-pointer">
+          {/* Image with bounce animation */}
+          <img
+            src="/images/game.png"
+            alt="Game Mode"
+            className="w-[45px] md:w-[60px] h-[65px] md:h-[65px] object-contain rounded-lg z-50 absolute md:left-[-4%] animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110 top-[-6vhvh]"
+            onClick={() => {
+              window.location.href = "/game"; // Adjust the navigation route if needed
+            }}
+          />
+          {/* Tooltip with animation */}
+          <div className="absolute left-[1%]  items-center p-2 bg-gray-800 text-white text-sm rounded shadow-md transform transition-opacity duration-1000 ease-in-out opacity-0 group-hover:opacity-100">
+            <span>Tap to check game mode!</span>
+          </div>
+        </div>
+
         <Parallax speed={-12}>
           <motion.h1
             className="text-3xl md:text-4xl lg:text-4xl font-bold text-center md:mt-8 mt-20 font-['MyCustomFont']"
@@ -272,9 +288,9 @@ const Home = ({ darkMode }) => {
             />
           </motion.div>
 
-          <div className="md:text-2XL text-[1rem]    px-4 text-justify  animated-border ml-[4vw] mr-[8vw] ">
+          <div className="md:text-2XL text-[1rem] px-4     text-justify  animated-border ml-[4vw] mr-[8vw] ">
             <p
-              className={`leading-relaxed p-4 ${
+              className={`leading-relaxed px-2 md:px-4 ${
                 darkMode ? "text-white" : "text-black"
               }`}
             >
@@ -325,13 +341,15 @@ const Home = ({ darkMode }) => {
       <div className="md:pl-[8vw]">
         <Contact darkMode={darkMode} hide={true} />
       </div>
-         {/* Footer */}
-         <footer
+      {/* Footer */}
+      <footer
         className={`text-center py-4 ${
           darkMode ? "bg-[#004225] text-white" : "bg-orange-300 text-black"
         }`}
       >
-        <p>&copy; {new Date().getFullYear()} Piyush Kumar. All Rights Reserved.</p>
+        <p>
+          &copy; {new Date().getFullYear()} Piyush Kumar. All Rights Reserved.
+        </p>
       </footer>
     </ParallaxProvider>
   );
