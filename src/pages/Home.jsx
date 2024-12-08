@@ -74,7 +74,7 @@ const Home = ({ darkMode }) => {
           <img
             src={imageSrc}
             alt="Flying Image"
-            className="w-[50px] h-[75px] object-contain rounded-lg z-50 absolute"
+            className="w-[40px] md:w-[70px] h-[65px] md:h-[75px] object-contain rounded-lg z-50 absolute"
           />
         </motion.div>
       )}
@@ -112,7 +112,7 @@ const Home = ({ darkMode }) => {
                 transition={{ delay: 1, duration: 0.3, ease: "easeOut" }}
               >
                 <img
-                  src={"../../public/images/Avataar.png"}
+                  src={"../../public/images/avataar.png"}
                   alt="Profile"
                   className=" md:w-[100%] md:max-h-[50vh] w-[350px] h-[350px] rounded-full  transition-shadow duration-300 ease-in-out "
                 />
