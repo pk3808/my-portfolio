@@ -200,7 +200,7 @@ const Projects = ({ darkMode, h }) => {
                 >
                   <ul className="list-disc pl-5">
                     {slide.desc.map((point, idx) => (
-                      <h1 className="text-lg" key={idx}>{point}</h1>
+                      <h1 className="md:text-lg text-[15px]" key={idx}>{point}</h1>
                     ))}
                   </ul>
                 </div>

@@ -5,7 +5,7 @@ import {
   faInstagram,
   faGithub,
   faLinkedin,
-  faDiscord
+  faDiscord,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import "../App.css";
@@ -40,37 +40,56 @@ const SocialMediaIcons = ({ darkMode }) => {
     <>
       {/* Social Icons for Desktop */}
       {isMobile ? null : (
-        <div className={`social-icons-desktop  ${darkMode ? 'bg-[#355E3B] text-white' : 'bg-[#F3D7CA] text-gray-800'}`}>
+        <div
+          className={`social-icons-desktop  ${
+            darkMode ? "bg-[#355E3B] text-white" : "bg-[#F3D7CA] text-gray-800"
+          }`}
+        >
           <a
             href="http://discordapp.com/users/867786987146313758"
             target="_blank"
             rel="noopener noreferrer"
-          > 
-            <FontAwesomeIcon icon={faDiscord} className=" hover:bg-[white] hover:text-[#5865F2]  rounded-md" />
+          >
+            <FontAwesomeIcon
+              icon={faDiscord}
+              className=" hover:bg-[white] hover:text-[#5865F2]  rounded-md"
+            />
           </a>
           <a
             href="https://www.instagram.com/blaze_31_01/?igsh=cjJobmp6N2NkNmt6"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faInstagram} className=" hover:bg-[#E1306C] hover:text-white rounded-md" />
+            <FontAwesomeIcon
+              icon={faInstagram}
+              className=" hover:bg-[#E1306C] hover:text-white rounded-md"
+            />
           </a>
           <a
             href="https://github.com/pk3808"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faGithub} className="text-[#fff] hover:bg-[#333] hover:text-white rounded-md" />
+            <FontAwesomeIcon
+              icon={faGithub}
+              className="text-[#fff] hover:bg-[#333] hover:text-white rounded-md"
+            />
           </a>
           <a
             href="https://www.linkedin.com/in/piyush-kumar-724877217/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faLinkedin} className="bg-[#0077B5] hover:bg-white hover:text-[#0077B5] " />
+            <FontAwesomeIcon
+              icon={faLinkedin}
+              className="bg-[#0077B5] hover:bg-white hover:text-[#0077B5] "
+            />
           </a>
           <a href="mailto:piyush.kr.bpmce@gmail.com">
-            <FontAwesomeIcon icon={faEnvelope} className="hover:text-orange-500 rounded-md" />
+            <FontAwesomeIcon
+              icon={faEnvelope}
+              className="hover:text-orange-500 rounded-md"
+            />
           </a>
         </div>
       )}
@@ -86,36 +105,45 @@ const SocialMediaIcons = ({ darkMode }) => {
           </button>
 
           {isDropdownOpen && (
-            <div className={`social-dropdown ${darkMode ? 'bg-[#19616a] text-white' : 'bg-white text-gray-800'}`}>
+            <div
+              className={`social-dropdown ${
+                darkMode
+                  ? "bg-[#19616a] text-white"
+                  : "bg-orange-200 text-gray-800"
+              }`}
+            >
               <a
-                href="https://facebook.com"
+                href="http://discordapp.com/users/867786987146313758"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faFacebook} />
+                <FontAwesomeIcon
+                  icon={faDiscord}
+                  className=" hover:bg-[white] hover:text-[#5865F2] h-[24px] w-[24px] rounded-md"
+                />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/blaze_31_01/?igsh=cjJobmp6N2NkNmt6"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={faInstagram} />
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/pk3808"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={faGithub} />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/piyush-kumar-724877217/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
-              <a href="mailto:example@gmail.com">
+              <a href="mailto:piyush.kr.bpmce@gmail.com">
                 <FontAwesomeIcon icon={faEnvelope} />
               </a>
             </div>

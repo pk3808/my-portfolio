@@ -3,12 +3,11 @@ import NavBar from "../components/NavBar";
 
 const Home = () => {
   return (
-    <div className="container mx-auto py-16 min-h-screen">
-      <h1 className="text-4xl font-bold text-center">
+    <div className="container mx-auto py-16 min-h-screen items-center justify-center my-auto">
+      <h1 className="text-4xl font-bold text-center justify-center items-center md:my-[15%] my-[90%]">
         Coming Soon
       </h1>
-      <p className="text-center mt-4 text-lg">
-      </p>
+     
     </div>
   );
 };

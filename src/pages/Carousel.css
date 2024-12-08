@@ -246,15 +246,20 @@
         left: 40%;
         gap: 0px;
     }
-    thumbnail .item.active img {
-      
-        height: 160px;
-        width: 100%;
-    }
     .thumbnail .item img {
         width: 180px;
         height: 150px;
        
+    }
+    .thumbnail .item.active img {
+        width: 180px;
+        height: 220px;
+    }
+    .thumbnail .item .content .title {
+        font-size: 15px;
+    }
+    .thumbnail .item .content .topic {
+        font-size: 20px;
     }
 }
 .platform-links {

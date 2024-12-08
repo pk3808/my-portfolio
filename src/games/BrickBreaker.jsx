@@ -279,13 +279,13 @@ const BrickBreaker = ({ darkMode }) => {
         {/* Modal for special brick components */}
         {modalComponent && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-y-auto w-full">
-            <div className="bg-[#172c2c] p-6 rounded-lg w-full max-w-[90vw] relative">
-              <h2 className="text-xl font-bold text-center mb-4">{modalTitle}</h2>
+            <div className="bg-[#172c2c]  rounded-lg w-full max-w-[95vw] relative">
+              <h2 className="text-xl font-bold text-center mb-4 mt-4">{modalTitle}</h2>
 
               {/* Close Button - Positioned at the top right corner */}
               <button
                 onClick={() => setModalComponent(null)}
-                className="absolute top-2 right-2 text-gray-500 bg-transparent hover:text-white"
+                className="absolute top-4 right-2 text-gray-500 bg-transparent hover:text-white"
               >
                 ✖
               </button>

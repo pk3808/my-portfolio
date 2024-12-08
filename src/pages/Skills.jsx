@@ -40,16 +40,16 @@ const Skills = ({ darkMode, show,hide }) => {
         <img
           src="/images/yoga.png"
           alt="3D Animation"
-          className="rounded-lg h-[320px] w-[320px] floating-effect "
+          className="rounded-lg md:h-[320px] md:w-[320px] h-[280px] w-[280px] floating-effect "
         />
 
         {/* Rotating Circle with Logos */}
         {showLogos && (
-          <div className="absolute h-[500px] w-[500px] flex items-center justify-center rotate-animation">
+          <div className="absolute h-[500px]  w-[400px] flex items-center justify-center rotate-animation ">
             {techLogos.map((logo, index) => (
               <div
                 key={index}
-                className="absolute bg-white md:h-[60px] md:w-[60px] h-[40px] w-[40px] rounded-full flex items-center justify-center shadow-lg"
+                className="absolute bg-white md:h-[60px] md:w-[60px] h-[35px] w-[35px] rounded-full flex items-center justify-center shadow-lg"
                 style={{
                   transform: `rotate(${(index * 360) / techLogos.length}deg) translate(200px)`,
                 }}
