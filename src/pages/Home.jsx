@@ -112,7 +112,7 @@ const Home = ({ darkMode }) => {
                 transition={{ delay: 1, duration: 0.3, ease: "easeOut" }}
               >
                 <img
-                  src={"/public/images/avataar.png"}
+                  src={"/images/avataar.png"}
                   alt="Profile"
                   className=" md:w-[100%] md:max-h-[50vh] w-[350px] h-[350px] rounded-full  transition-shadow duration-300 ease-in-out "
                 />
