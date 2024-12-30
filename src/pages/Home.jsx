@@ -6,13 +6,22 @@ import Skills from "./Skills";
 import Projects from "./Projects";
 import Contact from "./Contact";
 import { tr } from "framer-motion/client";
+import { useNavigate, } from 'react-router-dom';
+
 const Home = ({ darkMode }) => {
   console.log("Rendering Home with darkMode:", darkMode);
   const [scrollingUp, setScrollingUp] = useState(false);
   const [showFlyingImage, setShowFlyingImage] = useState(false);
   const [imageSrc, setImageSrc] = useState("/images/flyingd.png"); // Default image
   let scrollTimeout = null;
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const textElements = document.querySelectorAll(".animated-text span");
+    textElements.forEach((el, index) => {
+      el.style.animationDelay = `${index * 0.1}s`; // delay each letter's animation
+    });
+  }, []);
   useEffect(() => {
     let lastScrollY = window.scrollY;
 
@@ -188,7 +197,7 @@ const Home = ({ darkMode }) => {
                       : "bg-[#F2D2BD] text-gray-800"
                   }`}
                 >
-                  <p className="text-gray-400">// About me</p>
+                  <p className="text-gray-400">// Hello there</p>
                   <h2 className="text-sm mb-2">
                     Hello, This is{" "}
                     <span
@@ -229,7 +238,7 @@ const Home = ({ darkMode }) => {
                   <button
                     onClick={() => {
                       window.location.href =
-                        "https://drive.google.com/uc?export=download&id=1seDQuXKwcQ_LA7Wz4aGSoyEpf8AuPFOv";
+                        "https://drive.google.com/uc?export=download&id=1C-LyMRMhLBIGMsup5N0jaE2tCcl-BsfP";
                     }}
                     className={`mt-4 ${
                       darkMode
@@ -269,48 +278,64 @@ const Home = ({ darkMode }) => {
       <div className="flex md:flex-row flex-col  md:h-screen items-center justify-center ">
         {/* Main Content Section */}
         <motion.div
-          className="flex md:flex-row flex-col flex-grow  items-center "
+          className="w-[300px] md:w-[300px] h-[300px] md:h-[350px] md:ml-[2vw] relative  image-container  md:mt-0"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
+          whileHover={{ scale: 1.1 }}
+        >
+          <img
+            src="/images/aboutme.png"
+            alt="3D Animation"
+            className="rounded-lg  w-[100%] h-[100%]   object-contain"
+          />
+        </motion.div>
+        <motion.div
+          className="flex md:flex-row md:w-[90%]  flex-col flex-grow  items-center "
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <motion.div
-            className="w-[300px] md:w-[500px] h-[300px] md:h-[300px] md:ml-[2vw] relative mb-8 image-container  md:mt-0"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
-            whileHover={{ scale: 1.1 }}
-          >
-            <img
-              src="/images/aboutme.png"
-              alt="3D Animation"
-              className="rounded-lg  w-[100%] h-[100%]   object-contain"
-            />
-          </motion.div>
+          <div className={`text-center  ${ darkMode ? "bg-[#022a02] shadow-green-900" : "bg-[#FBCEB1] shadow-orange-900"} p-10 md:text-left px-4 ml-[4vw] mr-[8vw] mt-10 shadow-lg  rounded-lg transform transition-all duration-300 hover:scale-105`}>
+            {/* Greeting Text */}
+            <h3 className="text-yellow-400 text-lg mb-2">Hello, Welcome</h3>
 
-          <div className="md:text-2XL text-[1rem] px-4     text-justify  animated-border ml-[4vw] mr-[8vw] ">
-            <p
-              className={`leading-relaxed px-2 md:px-4 ${
+            {/* Name Heading with animation and gradient */}
+            <h1
+              className={`text-3xl md:text-4xl font-bold ${
                 darkMode ? "text-white" : "text-black"
+              } animated-text`}
+              style={{
+                background: "linear-gradient(90deg,rgb(19, 172, 255),rgb(212, 231, 38),rgb(69, 218, 19))", // gradient excluding green and orange
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              {`I'm Piyush Kumar`.split("").map((char, index) => (
+                <span key={index}>{char}</span>
+              ))}
+            </h1>
+
+            {/* Short Introduction */}
+            <p
+              className={`leading-relaxed mt-4 mb-6 text-sm md:text-lg ${
+                darkMode ? "text-gray-300" : "text-gray-700"
               }`}
             >
-              {" "}
-              I'm Piyush Kumar, a passionate app developer at IB Arts in
-              Kolkata. With a solid foundation in **React**, **React Native**,
-              **JavaScript**, **Node.js**, **Express**, **MongoDB**, **Tailwind
-              CSS**, **Git** , and **Next.js**, I specialize in building
-              dynamic, user-centric web applications. I combine **aesthetic
-              design** with **functional excellence** to create seamless digital
-              experiences. My journey started with a Bachelor's degree in
-              Electrical and Electronics Engineering (8.0 CGPA), and since then,
-              I've contributed to multiple successful projects at IB Arts.
-              Proficient in HTML, CSS, Git, and Java, I bring technical
-              expertise and a commitment to continuous learning to every
-              challenge I tackle. I thrive on solving complex problems, refining
-              user experiences, and transforming ideas into reality through
-              code. My goal is to bridge creativity with technology, ensuring
-              that every project is not just functional but exceptional.
+              "I'm an app and web developer at IB Arts, skilled in React, React
+              Native, Node.js, and MongoDB. I specialize in creating
+              user-centric applications with a blend of design and
+              functionality. With an engineering background and hands-on
+              experience, I thrive on solving problems and building seamless
+              digital experiences."
             </p>
+
+            {/* Contact Button */}
+            <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium px-4 py-2 rounded-md"
+            onClick={() => navigate('/contact')}
+            >
+              Contact Me
+            </button>
           </div>
         </motion.div>
         {/* Vertical About Me Section */}
