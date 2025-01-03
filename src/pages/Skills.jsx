@@ -24,7 +24,7 @@ const Skills = ({ darkMode, show,hide }) => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-row items-center justify-center">
+    <div className="min-h-screen flex flex-row items-center justify-center ">
       {/* Animated Sphere with Click Here */}
       {!showLogos && (
         <div
@@ -36,11 +36,11 @@ const Skills = ({ darkMode, show,hide }) => {
       )}
 
       {/* Boy Floating */}
-      <div className="relative flex items-center justify-center w-[100vw] ">
+      <div className="relative flex items-center justify-center w-[90vw] ">
         <img
           src="/images/yoga.png"
           alt="3D Animation"
-          className="rounded-lg md:h-[320px] md:w-[320px] h-[280px] w-[280px] floating-effect "
+          className=" md:h-[320px] md:w-[320px] h-[260px] w-[260px] floating-effect "
         />
 
         {/* Rotating Circle with Logos */}
