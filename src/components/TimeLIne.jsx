@@ -74,7 +74,7 @@ const TimeLine = ({ darkMode, bg }) => {
             {item.technologies.map((tech, idx) => (
               <span
                 key={idx}
-                className="px-2 py-1 text-xs font-medium bg-cyan-500 text-white rounded"
+                className="px-2 py-1 text-xs font-medium bg-yellow-600 text-black rounded"
               >
                 {tech}
               </span>
@@ -91,7 +91,7 @@ const TimeLine = ({ darkMode, bg }) => {
         bg
           ? "bg-transparent"
           : darkMode
-          ? "bg-[#032903] text-white"
+          ? "bg-[red] text-white"
           : "bg-[#F5F5DC] text-black"
       }`}
     >
@@ -115,7 +115,7 @@ const TimeLine = ({ darkMode, bg }) => {
         ))}
       </div>
 
-      <div className="flex md:hidden items-center justify-center w-full mt-[10vh]">
+      <div className="flex md:hidden items-center justify-center w-full mt-[3vh]">
         {["experience", "education"].map((tab) => (
           <button
             key={tab}

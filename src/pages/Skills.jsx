@@ -36,7 +36,7 @@ const Skills = ({ darkMode, show,hide }) => {
       )}
 
       {/* Boy Floating */}
-      <div className="relative flex items-center justify-center w-[90vw] ">
+      <div className="relative flex items-center justify-center w-[90vw] md:w-[100vw] ">
         <img
           src="/images/yoga.png"
           alt="3D Animation"
