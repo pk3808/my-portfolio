@@ -91,7 +91,7 @@ const TimeLine = ({ darkMode, bg }) => {
         bg
           ? "bg-transparent"
           : darkMode
-          ? "bg-[red] text-white"
+          ? "bg-[transparent] text-white"
           : "bg-[#F5F5DC] text-black"
       }`}
     >
@@ -115,7 +115,7 @@ const TimeLine = ({ darkMode, bg }) => {
         ))}
       </div>
 
-      <div className="flex md:hidden items-center justify-center w-full mt-[3vh]">
+      <div className="flex md:hidden items-center justify-center w-full mt-[5vh]">
         {["experience", "education"].map((tab) => (
           <button
             key={tab}
@@ -135,7 +135,7 @@ const TimeLine = ({ darkMode, bg }) => {
 
       {/* Right Content */}
       <div
-        className={`md:w-[65vw] w-[95vw] mt-[3vh] md:mt-0   ${
+        className={`md:w-[65vw] w-[95vw] mt-[3vh] md:mt-0  h-[90vh] md:h-[70vh]   ${
           darkMode ? "border-green-500" : "border-orange-500"
         }`}
       >
