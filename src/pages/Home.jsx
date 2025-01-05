@@ -351,7 +351,7 @@ const Home = ({ darkMode }) => {
             style={{
               writingMode: "vertical-rl",
               textOrientation: "upright",
-              transform: "rotate(360deg)", // Flip text to make it natural
+              transform: "rotate(360deg)", 
             }}
           >
             ABOUT ME
