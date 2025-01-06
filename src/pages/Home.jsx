@@ -6,7 +6,7 @@ import Skills from "./Skills";
 import Projects from "./Projects";
 import Contact from "./Contact";
 import { tr } from "framer-motion/client";
-import { useNavigate, } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Home = ({ darkMode }) => {
   console.log("Rendering Home with darkMode:", darkMode);
@@ -234,12 +234,11 @@ const Home = ({ darkMode }) => {
                       <span className="text-blue-400">button</span>&gt;
                     </code>
                   </pre>
-
                   <button
-  onClick={() => {
-    window.location.href =
-      "https://drive.google.com/uc?export=download&id=1x1bUmyLI-50HMp_p5Flzhekqjn0Px95L";
-  }}
+                    onClick={() => {
+                      window.location.href =
+                        "https://drive.google.com/uc?export=download&id=1XM6arc8Hg6w0Kimxv2Tyctb-xmiDkABu";
+                    }}
                     className={`mt-4 ${
                       darkMode
                         ? "bg-[#ADFF2F] text-black"
@@ -296,7 +295,13 @@ const Home = ({ darkMode }) => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <div className={`text-center  ${ darkMode ? "bg-[#022a02] shadow-green-900" : "bg-[#FBCEB1] shadow-orange-900"} p-10 md:text-left px-4 ml-[4vw] mr-[8vw] mt-10 shadow-lg  rounded-lg transform transition-all duration-300 hover:scale-105`}>
+          <div
+            className={`text-center  ${
+              darkMode
+                ? "bg-[#022a02] shadow-green-900"
+                : "bg-[#FBCEB1] shadow-orange-900"
+            } p-10 md:text-left px-4 ml-[4vw] mr-[8vw] mt-10 shadow-lg  rounded-lg transform transition-all duration-300 hover:scale-105`}
+          >
             {/* Greeting Text */}
             <h3 className="text-yellow-400 text-lg mb-2">Hello, Welcome</h3>
 
@@ -306,7 +311,8 @@ const Home = ({ darkMode }) => {
                 darkMode ? "text-white" : "text-black"
               } animated-text`}
               style={{
-                background: "linear-gradient(90deg,rgb(19, 172, 255),rgb(212, 231, 38),rgb(69, 218, 19))", // gradient excluding green and orange
+                background:
+                  "linear-gradient(90deg,rgb(19, 172, 255),rgb(212, 231, 38),rgb(69, 218, 19))", // gradient excluding green and orange
                 WebkitBackgroundClip: "text",
                 color: "transparent",
               }}
@@ -331,8 +337,9 @@ const Home = ({ darkMode }) => {
             </p>
 
             {/* Contact Button */}
-            <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium px-4 py-2 rounded-md"
-            onClick={() => navigate('/contact')}
+            <button
+              className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium px-4 py-2 rounded-md"
+              onClick={() => navigate("/contact")}
             >
               Contact Me
             </button>
@@ -351,7 +358,7 @@ const Home = ({ darkMode }) => {
             style={{
               writingMode: "vertical-rl",
               textOrientation: "upright",
-              transform: "rotate(360deg)", 
+              transform: "rotate(360deg)",
             }}
           >
             ABOUT ME
