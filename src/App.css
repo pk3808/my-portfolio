@@ -3,6 +3,7 @@ body, html {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* Prevent horizontal scroll */
+  scroll-behavior: smooth;
   
 }
 ::-webkit-scrollbar {
@@ -529,3 +530,4 @@ canvas {
     transform: translateX(0);
   }
 } */
+

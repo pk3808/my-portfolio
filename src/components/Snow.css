@@ -1,0 +1,54 @@
+/* Container for the snow effect */
+.snow-container {
+    position: fixed; /* Make sure it covers the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden;
+    pointer-events: none; /* Allows interaction with underlying elements */
+    z-index: 999; /* Ensure it appears above most elements */
+    background: rgba(0, 0, 0, 0.3)
+}
+
+/* Individual snowflakes */
+.snowflake {
+    position: absolute;
+    top: -10%; /* Start above the viewport */
+    left: 50%; /* Adjust with drift animation */
+    font-size: 1.5rem; /* Size of snowflakes */
+    color: white; /* Snowflake color */
+    opacity: 0.8; /* Slight transparency for a more natural look */
+    animation: fall linear infinite, drift ease-in-out infinite;
+}
+
+/* Falling animation */
+@keyframes fall {
+    0% {
+        transform: translateY(0); /* Start at the top */
+    }
+    100% {
+        transform: translateY(110vh); /* End past the bottom of the viewport */
+    }
+}
+
+/* Horizontal drifting animation */
+@keyframes drift {
+    0%, 100% {
+        transform: translateX(0); /* No horizontal shift at the start and end */
+    }
+    50% {
+        transform: translateX(30px); /* Drift left or right */
+    }
+}
+
+/* Randomize animation speed and delay for variation */
+.snowflake:nth-child(odd) {
+    animation: fall 12s linear infinite, drift 6s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * -2s); /* Delayed start for variation */
+}
+
+.snowflake:nth-child(even) {
+    animation: fall 8s linear infinite, drift 5s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * -1.5s);
+}

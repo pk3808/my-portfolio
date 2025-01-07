@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import React, { useRef, useEffect, useState } from "react";
 import Robos from "/images/robos.gif";
+import Snow from "./Snow";
 
 const GameSplash = ({ onDismiss }) => {
   const startSound = useRef(null); // Reference to the start sound
@@ -49,6 +50,7 @@ const GameSplash = ({ onDismiss }) => {
         </button>
         <audio ref={startSound} src="/sound/start.mp3" preload="auto"></audio>
       </div>
+      
     </motion.div>
   );
 };
