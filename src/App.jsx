@@ -10,7 +10,7 @@ import Snowfall from "react-snowfall";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(true);
-  
+
   const toggleTheme = () => {
     setDarkMode((prevMode) => !prevMode);
   };
@@ -21,20 +21,19 @@ const App = () => {
 
   return (
     <div className={darkMode ? "app dark" : "app light"}>
-      <Snowfall
-  snowflakeCount={25} // Adjust the number of snowflakes
-  color={darkMode ? "#F0FFFF" : "#5F9EA0"} // Adjust color based on theme
-  // images = {"../images/snow.png"}
-  style={{
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100vw",
-    height: "100vh", // Full viewport height
-    zIndex: 9999,
-    pointerEvents: "none", // Ensure it doesn't block interactions
-  }}
-/>
+      {/* <Snowfall
+        snowflakeCount={25} 
+        color={darkMode ? "#F0FFFF" : "#5F9EA0"} 
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh", 
+          zIndex: 9999,
+          pointerEvents: "none", 
+        }}
+      /> */}
       {!isGameScreen && !isSplashScreen && (
         <>
           <SocialMediaIcons darkMode={darkMode} />
