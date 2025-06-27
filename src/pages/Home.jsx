@@ -5,8 +5,8 @@ import TimeLIne from "../components/TimeLIne";
 import Skills from "./Skills";
 import Projects from "./Projects";
 import Contact from "./Contact";
-import { tr } from "framer-motion/client";
 import { useNavigate } from "react-router-dom";
+import AboutSection from "./AboutSection";
 
 const Home = ({ darkMode }) => {
   console.log("Rendering Home with darkMode:", darkMode);
@@ -94,7 +94,7 @@ const Home = ({ darkMode }) => {
           <img
             src="/images/game.png"
             alt="Game Mode"
-            className="w-[45px] md:w-[60px] h-[65px] md:h-[65px] object-contain rounded-lg z-50 absolute md:left-[-4%] animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110 top-[-6vhvh]"
+            className="w-[45px] md:w-[50px] h-[45px] md:h-[65px] object-contain rounded-lg z-50 absolute  animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110 top-[-6vh] left-[-7.3%]"
             onClick={() => {
               window.location.href = "/game"; // Adjust the navigation route if needed
             }}
@@ -251,26 +251,7 @@ const Home = ({ darkMode }) => {
                 </div>
               </div>
             </motion.div>
-            {/* <div
-              className={` flex-col items-center justify-center h-5vh absolute right-[-4vw]   hidden md:block  ${
-                darkMode
-                  ? "text-white bg-lime-600"
-                  : "text-gray-800 bg-orange-400"
-              }`}
-            >
-              <h2
-                className={`text-sm font-bold text-center px-1 py-2 ${
-                  darkMode ? "text-white" : "text-gray-800"
-                }`}
-                style={{
-                  writingMode: "vertical-rl",
-                  textOrientation: "upright",
-                  transform: "rotate(360deg)", // Flip text to make it natural
-                }}
-              >
-                WELCOME
-              </h2>
-            </div> */}
+          
           </div>
         </Parallax>
       </div>
@@ -365,6 +346,7 @@ const Home = ({ darkMode }) => {
           </h2>
         </div>
       </div>
+      
       <TimeLIne darkMode={darkMode} />
       <Skills darkMode={darkMode} show={true} hide={true} />
       <div className="h-screen">

@@ -18,6 +18,7 @@ const App = () => {
   const location = useLocation();
   const isGameScreen = location.pathname === "/game";
   const isSplashScreen = location.pathname === "/";
+  const exploration = location.pathname.includes("/exploration");
 
   return (
     <div className={darkMode ? "app dark" : "app light"}>
@@ -34,7 +35,7 @@ const App = () => {
           pointerEvents: "none", 
         }}
       /> */}
-      {!isGameScreen && !isSplashScreen && (
+      {!isGameScreen && !isSplashScreen && !exploration && (
         <>
           <SocialMediaIcons darkMode={darkMode} />
           <ToggleButton darkMode={darkMode} toggleTheme={toggleTheme} />

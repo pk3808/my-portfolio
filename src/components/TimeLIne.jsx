@@ -38,7 +38,6 @@ const TimeLine = ({ darkMode, bg }) => {
         "Tailwind CSS",
       ],
     },
-
     {
       role: "App Developer Intern",
       company: "IB Arts Pvt Ltd.",
@@ -51,115 +50,177 @@ const TimeLine = ({ darkMode, bg }) => {
 
   const renderContent = () => {
     const data = activeTab === "experience" ? experienceData : educationData;
-    return data.map((item, index) => (
-      <div
-        key={index}
-        className={`mb-6 p-4 border-l-4 ${
-          darkMode
-            ? "border-green-500 bg-[#004225]"
-            : "border-orange-500 bg-[#FBCEB1] "
-        } backdrop-blur-md bg-opacity-100 hover:scale-105 transition-transform duration-300 rounded-md shadow-lg`}
-      >
-        <h3 className="text-lg font-bold mb-2">
-          {activeTab === "experience" ? item.role : item.degree} -{" "}
-          {item.company || item.institution}
-        </h3>
-        <p className="text-sm text-gray-500">{item.date}</p>
-        {item.marks && (
-          <p className="text-lg text-gray-500"> Score : {item.marks}</p>
-        )}
-        <p>{item.details}</p>
-        {item.technologies && (
-          <div className="flex flex-wrap gap-2 mt-4">
-            {item.technologies.map((tech, idx) => (
-              <span
-                key={idx}
-                className="px-2 py-1 text-xs font-medium bg-yellow-600 text-black rounded"
-              >
-                {tech}
-              </span>
-            ))}
+    return (
+      <div className="space-y-6">
+        {data.map((item, index) => (
+          <div
+            key={index}
+            className={`relative p-6 border-l-6 ${
+              darkMode
+                ? "border-green-500 bg-[#004225]"
+                : "border-orange-500 bg-[#FBCEB1]"
+            } rounded-r-lg transition-all duration-300 hover:translate-x-2`}
+          >
+            {/* Timeline Dot */}
+            <div
+              className={`absolute -left-3 top-6 w-6 h-6 rounded-full border-4 ${
+                darkMode
+                  ? "bg-green-500 border-green-300"
+                  : "bg-orange-500 border-orange-300"
+              }`}
+            ></div>
+            
+            {/* Header Section */}
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+              <div>
+                <h3 className={`text-xl font-bold mb-1 ${
+                  darkMode ? "text-green-100" : "text-gray-800"
+                }`}>
+                  {activeTab === "experience" ? item.role : item.degree}
+                </h3>
+                <h4 className={`text-lg font-semibold ${
+                  darkMode ? "text-green-200" : "text-orange-700"
+                }`}>
+                  {item.company || item.institution}
+                </h4>
+              </div>
+              <div className="flex flex-col items-start md:items-end mt-2 md:mt-0">
+                <span className={`text-sm font-medium px-3 py-1 rounded-full ${
+                  darkMode 
+                    ? "bg-green-600 text-green-100" 
+                    : "bg-orange-600 text-orange-100"
+                }`}>
+                  {item.date}
+                </span>
+                {item.marks && (
+                  <span className={`text-sm font-medium mt-2 px-3 py-1 rounded-full ${
+                    darkMode 
+                      ? "bg-green-700 text-green-100" 
+                      : "bg-orange-700 text-orange-100"
+                  }`}>
+                    Score: {item.marks}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Description */}
+            <p className={`text-base leading-relaxed mb-4 ${
+              darkMode ? "text-green-50" : "text-gray-700"
+            }`}>
+              {item.details}
+            </p>
+
+            {/* Technologies */}
+            {item.technologies && (
+              <div className="flex flex-wrap gap-3">
+                {item.technologies.map((tech, idx) => (
+                  <span
+                    key={idx}
+                    className="px-3 py-2 text-sm font-semibold bg-yellow-600 text-black rounded-md border-2 border-yellow-500 hover:bg-yellow-500 transition-colors duration-200"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-        )}
+        ))}
       </div>
-    ));
+    );
   };
 
   return (
     <div
-      className={`flex md:flex-row flex-col h-[100vh] items-center justify-center ${
+      className={`flex md:flex-row flex-col min-h-screen ${
         bg
           ? "bg-transparent"
           : darkMode
-          ? "bg-[transparent] text-white"
+          ? "bg-transparent text-white"
           : "bg-[#F5F5DC] text-black"
       }`}
     >
-      {/* Left Menu */}
-      <div className="flex flex-col items-center justify-center w-[35vw] hidden md:block md:flex">
-        {["experience", "education"].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`py-2 px-4 m-2 relative group font-semibold ${
-              activeTab === tab ? "text-green-500" : "text-gray-500"
-            }`}
-          >
-            <span
-              className={`absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-0 bg-green-500 group-hover:h-full transition-all duration-300 ${
-                activeTab === tab ? "h-full" : ""
+      {/* Left Menu - Desktop */}
+      <div className="hidden md:flex flex-col justify-center w-60 px-8 ml-20">
+        <div className="space-y-4">
+          {["experience", "education"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`w-full py-4 px-6 text-left relative font-bold text-lg border-l-4 transition-all duration-300 ${
+                activeTab === tab
+                  ? darkMode
+                    ? "border-green-500 bg-[#004225] text-green-100"
+                    : "border-orange-500 bg-[#FBCEB1] text-orange-800"
+                  : darkMode
+                  ? "border-gray-600 text-gray-400 hover:border-green-400 hover:text-green-200"
+                  : "border-gray-400 text-gray-600 hover:border-orange-400 hover:text-orange-600"
               }`}
-            ></span>
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-          </button>
-        ))}
+            >
+              <span className="flex items-center">
+                <span className={`w-3 h-3 rounded-full mr-3 ${
+                  activeTab === tab
+                    ? darkMode
+                      ? "bg-green-500"
+                      : "bg-orange-500"
+                    : "bg-gray-400"
+                }`}></span>
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="flex md:hidden items-center justify-center w-full mt-[5vh]">
-        {["experience", "education"].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`flex-1 py-2 px-4 mx-1 text-center relative group font-semibold rounded-full transition-all duration-300 ${
-              activeTab === tab
-                ? darkMode
-                  ? "bg-green-500 text-white" // Green for dark mode
-                  : "bg-orange-500 text-white" // Orange for light mode
-                : "bg-gray-200 text-gray-600"
-            }`}
-          >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-          </button>
-        ))}
+      {/* Mobile Menu */}
+      <div className="flex md:hidden w-full px-4 pt-8 pb-4">
+        <div className="flex w-full rounded-lg overflow-hidden border-2 border-gray-300">
+          {["experience", "education"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`flex-1 py-3 px-4 text-center font-bold transition-all duration-300 ${
+                activeTab === tab
+                  ? darkMode
+                    ? "bg-green-500 text-white"
+                    : "bg-orange-500 text-white"
+                  : darkMode
+                  ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+              }`}
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Right Content */}
-      <div
-        className={`md:w-[65vw] w-[95vw] mt-[3vh] md:mt-0  h-[90vh] md:h-[70vh]   ${
-          darkMode ? "border-green-500" : "border-orange-500"
-        }`}
-      >
-        {renderContent()}
+      {/* Content Area */}
+      <div className="flex-1 px-4 md:px-8 py-8">
+        <div className="max-w-4xl">
+          {renderContent()}
+        </div>
       </div>
 
-      {/* Vertical Timeline */}
-      <div
-        className={`flex-col items-center justify-center hidden md:block ml-[10vw] w-7 h-[170px] self-center ${
-          darkMode ? "text-white bg-lime-600" : "text-gray-800 bg-orange-400"
-        }`}
-      >
-        <h2
-          className={`text-sm font-bold text-center px-1 py-2 ${
-            darkMode ? "text-white" : "text-gray-800"
+      {/* Vertical Timeline Indicator - Desktop */}
+      <div className="hidden md:flex flex-col justify-center items-center w-16">
+        <div
+          className={`w-12 h-48 flex items-center justify-center rounded-lg ${
+            darkMode ? "bg-lime-600" : "bg-orange-400"
           }`}
-          style={{
-            writingMode: "vertical-rl",
-            textOrientation: "upright",
-            transform: "rotate(360deg)",
-          }}
         >
-          TIMELINE
-        </h2>
+          <h2
+            className={`text-sm font-bold text-center ${
+              darkMode ? "text-white" : "text-gray-800"
+            }`}
+            style={{
+              writingMode: "vertical-rl",
+              textOrientation: "mixed",
+            }}
+          >
+            TIMELINE
+          </h2>
+        </div>
       </div>
     </div>
   );

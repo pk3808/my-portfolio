@@ -7,6 +7,7 @@ import Skills from '../pages/Skills';
 import Contact from '../pages/Contact';
 import SplashScreen from '../pages/SplashScreen';
 import Game from '../games/Game';
+import ExplorationMode3D from '../pages/ExplorationMode3D';
 
 const AppRoutes = ({ darkMode }) => {
   return (
@@ -19,6 +20,7 @@ const AppRoutes = ({ darkMode }) => {
       <Route path="/contact" element={<Contact  darkMode={darkMode} />} />
       {/* <Route path="/game" element={<BrickBreaker />} /> */}
       <Route path="/game" element={<Game darkMode={darkMode}/>} />
+      <Route path="/exploration" element={<ExplorationMode3D />} />
     </Routes>
   );
 };
