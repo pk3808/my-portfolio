@@ -32,12 +32,14 @@ const ExplorationMode3D = () => {
       section: 'About Me',
       content: {
         title: 'About Me',
-        description: 'Passionate developer exploring the cosmos of technology',
+        description: "I'm Piyush Kumar, a passionate app developer at IB Arts in Kolkata. With a solid foundation in React, JavaScript, Node.js, Express, and Next.js, I specialize in building dynamic, user-centric web applications.",
         details: [
-          'Full-stack developer with 5+ years experience',
-          'Passionate about creating immersive web experiences',
-          'Always eager to learn new technologies',
-          'Love combining creativity with technical excellence'
+          'Full-stack developer with 5+ years of experience',
+          'Proficient in React, JavaScript, Node.js, Express, Next.js',
+          'Strong background in HTML, CSS, Git, and Java',
+          'Bachelor’s in Electrical and Electronics Engineering (8.0 CGPA)',
+          'Committed to continuous learning and solving complex problems',
+          'Bridges creativity with technology to deliver exceptional experiences'
         ]
       }
     },
@@ -53,8 +55,8 @@ const ExplorationMode3D = () => {
         description: 'My technological arsenal for building amazing experiences',
         details: [
           'Frontend: React, Three.js, WebGL, TypeScript',
-          'Backend: Node.js, Python, GraphQL, REST APIs',
-          'Database: MongoDB, PostgreSQL, Redis',
+          'Backend: Node.js, REST APIs',
+          'Database: MongoDB',
           '3D Graphics: Three.js, Blender, WebGL shaders',
           'Tools: Git, Docker, AWS, CI/CD pipelines'
         ]
@@ -71,11 +73,13 @@ const ExplorationMode3D = () => {
         title: 'Featured Projects',
         description: 'Innovative solutions that push the boundaries of web development',
         details: [
-          'Interactive 3D Portfolio - Immersive space exploration experience',
-          'Real-time Data Visualization - Complex datasets made beautiful',
-          'VR Web Experience - Virtual reality meets web technology',
-          'AI-Powered Chat Interface - Natural language processing integration',
-          'E-commerce Platform - Full-stack solution with payment integration'
+          'LetsKrunch - Practice SQL and Python Data Analysis platform',
+          'r-datetime - React Tailwind-themed DateTime Picker',
+          'Anime Oasis - Interactive anime wiki platform',
+          'Multipoint Inspect - Home inspection solution',
+          'Zawwar - Interactive Islamic quiz app',
+          'Star Launch - Space travel companion app',
+          'Vantrail - Van collections management app'
         ]
       }
     },
@@ -90,11 +94,8 @@ const ExplorationMode3D = () => {
         title: 'Professional Experience',
         description: 'Journey through my career in technology',
         details: [
-          'Senior Frontend Developer - TechCorp (2022-Present)',
-          'Full-stack Developer - StartupXYZ (2020-2022)',
-          'Junior Developer - WebSolutions (2019-2020)',
-          'Freelance Developer - Various clients (2018-2019)',
-          'Computer Science Graduate - Tech University (2018)'
+          'App Developer - IB Arts Pvt Ltd. (August 2024 - Present)',
+          'App Developer Intern - IB Arts Pvt Ltd. (Jan 2024 - July 2024)'
         ]
       }
     },
@@ -109,11 +110,11 @@ const ExplorationMode3D = () => {
         title: 'Get In Touch',
         description: 'Ready to collaborate on your next big project?',
         details: [
-          'Email: developer@spacecode.dev',
-          'LinkedIn: /in/space-developer',
-          'GitHub: /space-coder',
-          'Portfolio: www.spacecode.dev',
-          'Available for freelance and full-time opportunities'
+          'Email: piyush.kr.bpmce@gmail.com',
+          'LinkedIn: https://www.linkedin.com/in/piyush-kumar-724877217/',
+          'GitHub: /pk3808',
+          'Phone: +91 840 970 5445',
+
         ]
       }
     }
@@ -885,15 +886,15 @@ const ExplorationMode3D = () => {
               <div
                 key={index}
                 className={`relative p-3 rounded-lg transition-all duration-300 overflow-hidden ${nearestPlanet?.name === planet.name
-                    ? 'bg-gradient-to-r from-cyan-900/70 to-blue-900/70 border border-cyan-500 shadow-[0_0_10px_rgba(0,255,255,0.5)]'
-                    : 'bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700'
+                  ? 'bg-gradient-to-r from-cyan-900/70 to-blue-900/70 border border-cyan-500 shadow-[0_0_10px_rgba(0,255,255,0.5)]'
+                  : 'bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700'
                   }`}
               >
                 {/* Planet status indicator */}
                 <div
                   className={`absolute top-0 left-0 w-1 h-full ${nearestPlanet?.name === planet.name
-                      ? 'bg-gradient-to-b from-cyan-400 to-blue-500'
-                      : 'bg-gray-600'
+                    ? 'bg-gradient-to-b from-cyan-400 to-blue-500'
+                    : 'bg-gray-600'
                     }`}
                 ></div>
 
@@ -909,8 +910,8 @@ const ExplorationMode3D = () => {
                   </div>
                   <div className="flex-1">
                     <div className={`font-semibold ${nearestPlanet?.name === planet.name
-                        ? 'text-cyan-300'
-                        : 'text-gray-300'
+                      ? 'text-cyan-300'
+                      : 'text-gray-300'
                       }`}>
                       {planet.name}
                       <span className="text-xs ml-2 font-normal text-gray-400">
@@ -918,8 +919,8 @@ const ExplorationMode3D = () => {
                       </span>
                     </div>
                     <div className={`text-xs ${nearestPlanet?.name === planet.name
-                        ? 'text-cyan-200'
-                        : 'text-gray-400'
+                      ? 'text-cyan-200'
+                      : 'text-gray-400'
                       }`}>
                       {planet.section}
                     </div>
