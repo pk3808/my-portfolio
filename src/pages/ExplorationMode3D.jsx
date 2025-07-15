@@ -20,6 +20,11 @@ const ExplorationMode3D = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [nearestPlanet, setNearestPlanet] = useState(null);
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
+  const handleCollapseToggle = () => {
+    setIsCollapsed(prevState => !prevState);
+  };
 
   // Planet data with portfolio information
   const planetData = [
@@ -803,12 +808,21 @@ const ExplorationMode3D = () => {
     setSelectedPlanet(null);
   };
 
+  const navigateToHome = () => {
+    window.location.href = '/';
+  }; 
   return (
     <div className="relative w-full h-screen bg-black overflow-hidden">
       <div ref={mountRef} className="w-full h-full" />
 
       {/* Controls UI - Spaceship Console */}
       <div className="absolute top-4 left-4 text-[#0ff] bg-gray-900 bg-opacity-90 p-4 rounded-xl border-2 border-[#0ff] backdrop-blur-sm font-mono shadow-[0_0_15px_rgba(0,255,255,0.5)]">
+        <button onClick={ navigateToHome } className="flex items-center mb-4 p-2 bg-gray-800 hover:bg-gray-700 rounded transition-colors">
+          <div className="text-xs text-cyan-400 mb-2">
+            <span className="font-bold"> HOME</span> - Return to the main console
+            
+          </div>
+        </button>
         <h3 className="text-lg font-bold mb-2 flex items-center">
           <span className="mr-2 text-yellow-400">🚀</span>
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
@@ -876,12 +890,16 @@ const ExplorationMode3D = () => {
                 PLANETARY DATABASE
               </span>
             </h3>
-            <div className="text-xs text-cyan-400 bg-cyan-900 bg-opacity-50 px-2 py-1 rounded">
-              ACTIVE
+            <div
+              className="text-xs text-cyan-400 bg-cyan-900 bg-opacity-50 px-2 py-1 rounded cursor-pointer"
+              onClick={handleCollapseToggle}
+            >
+              {isCollapsed ? 'EXPAND' : 'ACTIVE'}
             </div>
           </div>
 
-          <div className="space-y-3">
+          {/* Conditionally render based on collapse state */}
+          <div className={isCollapsed ? 'hidden' : 'space-y-3'}>
             {planetData.map((planet, index) => (
               <div
                 key={index}
@@ -950,15 +968,15 @@ const ExplorationMode3D = () => {
       {/* Modal - Spaceship Computer Interface */}
       {showModal && selectedPlanet && (
         <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
-          <div className="relative w-full max-w-4xl bg-gradient-to-br from-gray-900 to-black border-2 border-cyan-500 rounded-xl overflow-hidden shadow-[0_0_30px_rgba(0,255,255,0.5)]">
+          <div className="relative w-full h-[90vh] mt-[5vh]  max-w-4xl bg-gradient-to-br from-gray-900 to-black border-2 border-cyan-500 rounded-xl overflow-hidden shadow-[0_0_30px_rgba(0,255,255,0.5)]">
             {/* Scan lines effect */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px] opacity-30 animate-scan"></div>
 
             {/* Glowing border effect */}
-            <div className="absolute -inset-1 bg-cyan-500 rounded-xl blur-xl opacity-20 animate-pulse"></div>
+            <div className="absolute -inset-1 bg-cyan-900 rounded-xl blur-xl opacity-20 animate-pulse"></div>
 
             {/* Modal content */}
-            <div className="relative z-10 p-8">
+            <div className="relative z-10 p-8 ">
               {/* Header */}
               <div className="flex justify-between items-start mb-6">
                 <div className="flex items-start space-x-4">
@@ -994,7 +1012,7 @@ const ExplorationMode3D = () => {
                   "{selectedPlanet.content.description}"
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4  h-[35vh] overflow-y-auto ">
                   {selectedPlanet.content.details.map((detail, index) => (
                     <div
                       key={index}
