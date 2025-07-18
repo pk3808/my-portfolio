@@ -127,7 +127,7 @@ const Home = ({ darkMode }) => {
           <div className="flex md:flex-row flex-col items-center justify-around">
             <div
               className={`fradius ${
-                darkMode ? "bg-[#043927]" : "bg-[#FBCEB1]"
+                darkMode ? "bg-[#355E3B]" : "bg-[#FBCEB1]"
               } mt-20 md:mt-5 `}
             >
               <motion.div
@@ -179,7 +179,7 @@ const Home = ({ darkMode }) => {
                 <div
                   className={`flex justify-between items-center p-2 ${
                     darkMode
-                      ? "bg-[#1B4D3E] text-white"
+                      ? "bg-[#355E3B] text-white"
                       : "bg-[#FBCEB1] text-gray-800"
                   }`}
                 >
@@ -193,7 +193,7 @@ const Home = ({ darkMode }) => {
                 <div
                   className={`p-4 font-mono text-sm ${
                     darkMode
-                      ? "bg-[#023020] text-white"
+                      ? "bg-[#28472d] text-white"
                       : "bg-[#F2D2BD] text-gray-800"
                   }`}
                 >

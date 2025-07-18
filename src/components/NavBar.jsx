@@ -100,10 +100,10 @@ const NavBar = ({ darkMode }) => {
     }`}>
       {/* Desktop NavBar */}
       {navbarVisible && (
-        <nav className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 px-20 py-[6px] shadow-2xl rounded-full backdrop-blur-lg border transition-all duration-300 hidden md:block ${
+        <nav className={`fixed bottom-2 left-1/2 transform -translate-x-1/2 z-50 px-20 py-[6px] shadow-2xl rounded-full backdrop-blur-lg border transition-all duration-300 hidden md:block ${
           darkMode 
-            ? 'bg-gray-900/80 border-gray-700/50 shadow-cyan-500/20' 
-            : 'bg-white/80 border-white/20 shadow-black/10'
+            ? 'bg-[#355E3B] border-[#080e08] shadow-cyan-500/20' 
+            : 'bg-[#F3D7CA] border-white/20 shadow-black/10'
         }`} style={{
           boxShadow: darkMode 
             ? '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)' 
