@@ -48,7 +48,7 @@ const Contact = ({ darkMode, hide }) => {
         <div
           className={`w-full lg:w-2/3 p-6 flex flex-col justify-center h-full ${
             darkMode
-              ? "text-white bg-[#014421]"
+              ? "text-white bg-[#022a02]"
               : "text-gray-800 bg-[#FAD5A5]"
           }`}
         >

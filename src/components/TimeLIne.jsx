@@ -57,7 +57,7 @@ const TimeLine = ({ darkMode, bg }) => {
             key={index}
             className={`relative p-6 border-l-6 ${
               darkMode
-                ? "border-green-500 bg-[#004225]"
+                ? "border-green-500 bg-[#022a02]"
                 : "border-orange-500 bg-[#FBCEB1]"
             } rounded-r-lg transition-all duration-300 hover:translate-x-2`}
           >

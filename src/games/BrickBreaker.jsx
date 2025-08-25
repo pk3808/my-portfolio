@@ -697,9 +697,22 @@ const BrickBreaker = ({ darkMode }) => {
         className="flex flex-col items-center p-5 bg-[#1a1a2e] min-h-screen text-gray-200 justify-center w-[100vw] h-[100vh]"
         onTouchMove={handleTouchMove}
       >
-        <div className="absolute left-10 top-10 text-lg hidden md:block">
-          <button className="text-yellow-400 text-xl" onClick={handleNavigate}>⪡</button> Check out default Mode
+         <div className="absolute top-10 left-10 group cursor-pointer">
+          {/* Image with bounce animation */}
+          <img
+            src="/images/house.png"
+            alt="Game Mode"
+            className="w-[45px] md:w-[50px] h-[45px] md:h-[65px] object-contain rounded-lg z-50 transform transition-transform duration-300 hover:scale-110"
+            onClick={() => {
+              window.location.href = "/"; // Adjust the navigation route if needed
+            }}
+          />
+          {/* Tooltip with animation */}
+          <div className="absolute left-[1%]  items-center p-2 bg-gray-800 text-white text-sm rounded shadow-md transform transition-opacity duration-1000 ease-in-out opacity-0 group-hover:opacity-100">
+            <span>Home!</span>
+          </div>
         </div>
+
         <div className="text-lg md:hidden my-2">
           <span className="text-yellow-400" onClick={handleNavigate}>⪡</span> Check out default Mode
         </div>

@@ -42,11 +42,13 @@ const SplashScreen = ({ onSelectMode }) => {
               </div>
               <button
                 onClick={() => navigate('/exploration')}
-                className="mode-button mt-2 px-6 py-2 font-['MyCustomFont'] transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+                className="mode-button mt-2 px-6 py-2 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg text-3d"
               >
                 3D Mode
               </button>
+
             </div>
+
             <div className="text-center">
               <div className="h-20 w-20 mx-auto animate-swing-bounce">
                 <img src={game} alt="Game Mode" className="w-full h-full" />

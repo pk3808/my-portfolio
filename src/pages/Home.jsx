@@ -92,16 +92,16 @@ const Home = ({ darkMode }) => {
         <div className="relative group cursor-pointer">
           {/* Image with bounce animation */}
           <img
-            src="/images/game.png"
+            src="/images/house.png"
             alt="Game Mode"
             className="w-[45px] md:w-[50px] h-[45px] md:h-[65px] object-contain rounded-lg z-50 absolute  animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110 top-[-6vh] left-[-7.3%]"
             onClick={() => {
-              window.location.href = "/game"; // Adjust the navigation route if needed
+              window.location.href = "/"; // Adjust the navigation route if needed
             }}
           />
           {/* Tooltip with animation */}
           <div className="absolute left-[1%]  items-center p-2 bg-gray-800 text-white text-sm rounded shadow-md transform transition-opacity duration-1000 ease-in-out opacity-0 group-hover:opacity-100">
-            <span>Tap to check game mode!</span>
+            <span>Home!</span>
           </div>
         </div>
 
@@ -127,7 +127,7 @@ const Home = ({ darkMode }) => {
           <div className="flex md:flex-row flex-col items-center justify-around">
             <div
               className={`fradius ${
-                darkMode ? "bg-[#355E3B]" : "bg-[#FBCEB1]"
+                darkMode ? "bg-[#022a02]" : "bg-[#FBCEB1]"
               } mt-20 md:mt-5 `}
             >
               <motion.div
@@ -179,7 +179,7 @@ const Home = ({ darkMode }) => {
                 <div
                   className={`flex justify-between items-center p-2 ${
                     darkMode
-                      ? "bg-[#355E3B] text-white"
+                      ? "bg-[#012001] text-white"
                       : "bg-[#FBCEB1] text-gray-800"
                   }`}
                 >
@@ -193,7 +193,7 @@ const Home = ({ darkMode }) => {
                 <div
                   className={`p-4 font-mono text-sm ${
                     darkMode
-                      ? "bg-[#28472d] text-white"
+                      ? "bg-[#022a02]  text-white"
                       : "bg-[#F2D2BD] text-gray-800"
                   }`}
                 >
@@ -357,8 +357,8 @@ const Home = ({ darkMode }) => {
       </div>
       {/* Footer */}
       <footer
-        className={`text-center py-4 ${
-          darkMode ? "bg-[#004225] text-white" : "bg-orange-300 text-black"
+        className={`text-center py-2 ${
+          darkMode ? "bg-[#022a02] text-white" : "bg-orange-300 text-black"
         }`}
       >
         <p>
