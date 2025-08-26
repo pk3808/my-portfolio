@@ -94,7 +94,7 @@ const Home = ({ darkMode }) => {
           <img
             src="/images/house.png"
             alt="Game Mode"
-            className="w-[45px] md:w-[50px] h-[45px] md:h-[65px] object-contain rounded-lg z-50 absolute  animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110 top-[-6vh] left-[-7.3%]"
+            className="w-[45px] md:w-[40px] h-[45px] md:h-[45px] object-contain rounded-lg z-50 absolute  animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110 top-[-6vh] left-[-7.3%]"
             onClick={() => {
               window.location.href = "/"; // Adjust the navigation route if needed
             }}

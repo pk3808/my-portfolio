@@ -702,7 +702,7 @@ const BrickBreaker = ({ darkMode }) => {
           <img
             src="/images/house.png"
             alt="Game Mode"
-            className="w-[45px] md:w-[50px] h-[45px] md:h-[65px] object-contain rounded-lg z-50 transform transition-transform duration-300 hover:scale-110"
+            className="w-[45px] md:w-[40px] h-[45px] md:h-[45px] object-contain rounded-lg z-50 transform transition-transform duration-300 hover:scale-110"
             onClick={() => {
               window.location.href = "/"; // Adjust the navigation route if needed
             }}

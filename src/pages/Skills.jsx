@@ -66,7 +66,7 @@ const Skills = ({ darkMode, show, hide }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-row items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen flex flex-row items-center justify-center relative overflow-hidden px-4">
       {/* Animated Background Dots */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(15)].map((_, i) => (
@@ -114,31 +114,36 @@ const Skills = ({ darkMode, show, hide }) => {
       )}
 
       {/* Character with Enhanced Animation */}
-      <div className="relative flex items-center justify-center w-[90vw] md:w-[100vw]">
+      <div className="relative flex items-center justify-center w-full max-w-[100vw]">
         {/* Character shadow */}
         <div className="absolute bottom-0 md:bottom-8 left-1/2 transform -translate-x-1/2 translate-y-16 w-24 h-6 bg-black opacity-10 rounded-full blur-sm animate-pulse"></div>
         
         <img
           src="/images/yoga.png"
           alt="3D Animation"
-          className={`md:h-[320px] md:w-[320px] h-[260px] w-[260px] transition-all duration-500 ${
+          className={`md:h-[320px] md:w-[320px] h-[200px] w-[200px] transition-all duration-500 ${
             showLogos ? 'animate-pulse' : 'animate-pulse'
           }`}
         />
 
-        {/* Orbit Rings */}
+        {/* Responsive Orbit Rings */}
         {orbitsVisible && (
           <>
-            <div className="absolute h-[450px] w-[450px] border border-white opacity-5 rounded-full animate-spin"></div>
-            <div className="absolute h-[500px] w-[500px] border border-white opacity-3 rounded-full" style={{animation: 'spin 20s linear infinite reverse'}}></div>
+            <div className="absolute md:h-[450px] md:w-[450px] h-[320px] w-[320px] border border-white opacity-5 rounded-full animate-spin"></div>
+            <div className="absolute md:h-[500px] md:w-[500px] h-[360px] w-[360px] border border-white opacity-3 rounded-full" style={{animation: 'spin 20s linear infinite reverse'}}></div>
           </>
         )}
 
-        {/* Enhanced Skill Logos with Staggered Animation */}
+        {/* Enhanced Skill Logos with Responsive Positioning */}
         {showLogos && (
-          <div className="absolute h-[500px] w-[400px] flex items-center justify-center" style={{animation: 'spin 25s linear infinite'}}>
+          <div 
+            className="absolute md:h-[500px] md:w-[500px] h-[360px] w-[360px] flex items-center justify-center" 
+            style={{animation: 'spin 25s linear infinite'}}
+          >
             {techLogos.map((logo, index) => {
               const isActive = autoHighlight === index || hoveredSkill === index;
+              // Responsive radius: 200px on desktop, 140px on mobile
+              const radius = window.innerWidth >= 768 ? 200 : 140;
               
               return (
                 <div
@@ -147,14 +152,14 @@ const Skills = ({ darkMode, show, hide }) => {
                     isActive ? 'scale-125 z-10' : ''
                   } ${clickedSkill === index ? 'animate-ping' : ''}`}
                   style={{
-                    transform: `rotate(${(index * 360) / techLogos.length}deg) translate(200px)`,
+                    transform: `rotate(${(index * 360) / techLogos.length}deg) translate(${radius}px)`,
                     animationDelay: `${index * 0.1}s`,
                   }}
                   onMouseEnter={() => handleSkillHover(index)}
                   onMouseLeave={handleSkillLeave}
                   onClick={() => handleSkillClick(index)}
                 >
-                  <div className={`relative bg-white md:h-[60px] md:w-[60px] h-[35px] w-[35px] rounded-full flex items-center justify-center shadow-lg transform transition-all duration-500 ${
+                  <div className={`relative bg-white md:h-[60px] md:w-[60px] h-[40px] w-[40px] rounded-full flex items-center justify-center shadow-lg transform transition-all duration-500 ${
                     isActive ? 'scale-125 shadow-2xl' : ''
                   }`}>
                     {/* Enhanced glow effect */}
@@ -168,15 +173,15 @@ const Skills = ({ darkMode, show, hide }) => {
                     <img
                       src={logo.src}
                       alt={logo.name}
-                      className="md:h-[50px] md:w-[50px] w-[30px] h-[30px] object-contain transition-transform duration-300 relative z-10"
+                      className="md:h-[50px] md:w-[50px] w-[32px] h-[32px] object-contain transition-transform duration-300 relative z-10"
                     />
                   </div>
                   
-                  {/* Enhanced tooltip - always show for active skill */}
+                  {/* Enhanced tooltip - responsive positioning */}
                   {isActive && (
-                    <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-3 rounded-lg text-xs whitespace-nowrap opacity-95 shadow-xl min-w-max animate-pulse">
-                      <div className="font-semibold text-sm">{logo.name}</div>
-                      <div className="text-gray-300 text-xs mt-1">{logo.description}</div>
+                    <div className="absolute md:-top-20 -top-16 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white md:px-4 md:py-3 px-2 py-2 rounded-lg md:text-xs text-[10px] whitespace-nowrap opacity-95 shadow-xl min-w-max animate-pulse">
+                      <div className="font-semibold md:text-sm text-xs">{logo.name}</div>
+                      <div className="text-gray-300 md:text-xs text-[8px] mt-1 hidden md:block">{logo.description}</div>
                       {/* Tooltip arrow */}
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
                     </div>
@@ -187,10 +192,10 @@ const Skills = ({ darkMode, show, hide }) => {
           </div>
         )}
 
-        {/* Skill Info Display */}
+        {/* Skill Info Display - Responsive */}
         {(autoHighlight !== null || clickedSkill !== null) && (
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 pointer-events-none z-20">
-            <div className="bg-white text-gray-800 px-6 py-3 rounded-full shadow-xl animate-bounce font-semibold border-2 border-gray-100">
+          <div className="absolute md:bottom-10 bottom-6 left-1/2 transform -translate-x-1/2 pointer-events-none z-20">
+            <div className="bg-white text-gray-800 md:px-6 md:py-3 px-4 py-2 rounded-full shadow-xl animate-bounce font-semibold border-2 border-gray-100 md:text-base text-sm">
               {clickedSkill !== null ? (
                 <span>✨ {techLogos[clickedSkill].name} Selected!</span>
               ) : (

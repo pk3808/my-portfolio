@@ -67,7 +67,7 @@ const ToggleButton = ({ darkMode, toggleTheme }) => {
                     w-16 h-8 rounded-full
                     transition-all duration-700 ease-out
                     ${darkMode 
-                        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900' 
+                        ? 'bg-gradient-to-br from-green-900 via-slate-800 to-green-900' 
                         : 'bg-gradient-to-br from-amber-300 via-orange-300 to-pink-300'
                     }
                     shadow-2xl hover:shadow-3xl
@@ -87,7 +87,7 @@ const ToggleButton = ({ darkMode, toggleTheme }) => {
                 <div className={`
                     absolute inset-0 rounded-full
                     ${darkMode 
-                        ? 'bg-gradient-to-r from-indigo-600/30 via-purple-600/30 to-blue-600/30' 
+                        ? 'bg-gradient-to-r from-green-600/30 via-purple-600/30 to-green-600/30' 
                         : 'bg-gradient-to-r from-yellow-400/40 via-orange-400/40 to-pink-400/40'
                     }
                     transition-all duration-700
@@ -149,7 +149,7 @@ const ToggleButton = ({ darkMode, toggleTheme }) => {
                 {/* Toggle Indicator */}
                 <div 
                     className={`
-                        absolute top-[2px] w-7 h-7 rounded-full
+                        absolute top-[2px] w-6 h-6 rounded-full
                         transition-all duration-700 ease-out
                         ${darkMode ? 'translate-x-8' : 'translate-x-[2px]'}
                         ${darkMode 
@@ -222,7 +222,7 @@ const ToggleButton = ({ darkMode, toggleTheme }) => {
                 <div className={`
                     absolute inset-0 rounded-full
                     ${darkMode 
-                        ? 'bg-gradient-to-r from-indigo-500/20 to-purple-500/20' 
+                        ? 'bg-gradient-to-r from-green-500/20 to-green-500/20' 
                         : 'bg-gradient-to-r from-yellow-400/30 to-orange-400/30'
                     }
                     transition-all duration-700
@@ -234,7 +234,7 @@ const ToggleButton = ({ darkMode, toggleTheme }) => {
                 <div className={`
                     absolute inset-0 rounded-full
                     ${darkMode 
-                        ? 'bg-gradient-to-r from-blue-500/10 to-purple-500/10' 
+                        ? 'bg-gradient-to-r from-green-500/10 to-green-500/10' 
                         : 'bg-gradient-to-r from-yellow-400/20 to-orange-400/20'
                     }
                     opacity-0 group-hover:opacity-100
