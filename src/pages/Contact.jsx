@@ -13,9 +13,10 @@ const Contact = ({ darkMode, hide }) => {
 
     try {
       const response = await fetch(
-        "https://messageserver-production.up.railway.app/send-message",
+        "https://my-vercel-api-olive.vercel.app/api/contact",
         {
           method: "POST",
+          
           headers: {
             "Content-Type": "application/json",
           },
