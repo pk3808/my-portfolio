@@ -102,7 +102,7 @@ const NavBar = ({ darkMode }) => {
       {navbarVisible && (
         <nav className={`fixed bottom-2 left-1/2 transform -translate-x-1/2 z-50 px-20 py-[6px] shadow-2xl rounded-full backdrop-blur-lg border transition-all duration-300 hidden md:block ${
           darkMode 
-            ? 'bg-[#355E3B] border-[#080e08] shadow-cyan-500/20' 
+            ? 'bg-[#021605] border-[#080e08] shadow-cyan-500/20' 
             : 'bg-[#F3D7CA] border-white/20 shadow-black/10'
         }`} style={{
           boxShadow: darkMode 
@@ -111,7 +111,7 @@ const NavBar = ({ darkMode }) => {
         }}>
           <div className="flex items-center space-x-8">
             {/* Collapse Button */}
-            <button
+            {/* <button
               onClick={toggleNavbar}
               className={`p-3 rounded-full transition-all duration-300 hover:scale-110 ${
                 darkMode 
@@ -120,7 +120,7 @@ const NavBar = ({ darkMode }) => {
               }`}
             >
               <FontAwesomeIcon icon={faChevronDown} className="w-4 h-4" />
-            </button>
+            </button> */}
 
             {/* Navigation Items */}
             <div className="flex items-center space-x-3 bg-black/5 dark:bg-white/5 rounded-full px-6 py-1">

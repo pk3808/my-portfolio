@@ -177,7 +177,7 @@ const FilterToggle = ({ activeFilter, onFilterChange, darkMode }) => {
   ];
 
   return (
-    <div className="filter-toggle-container fixed top-4 right-10 z-50 md:absolute md:top-3 md:right-20">
+    <div className="filter-toggle-container fixed top-4 hidden md:block right-10 z-50 md:absolute md:top-14 md:right-0">
       <div className={`filter-toggle-wrapper backdrop-blur-md rounded-xl border transition-all duration-300 transform hover:scale-[1.02] ${
         darkMode 
           ? "bg-gray-900/85 border-gray-700/50 shadow-xl shadow-emerald-500/10" 
