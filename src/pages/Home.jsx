@@ -94,7 +94,7 @@ const Home = ({ darkMode }) => {
           <img
             src="/images/house.png"
             alt="Game Mode"
-            className="w-[45px] md:w-[40px] h-[45px] md:h-[45px] object-contain rounded-lg z-50 absolute  animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110 top-[-6vh] left-[-7.3%]"
+            className="w-[35px] md:w-[40px] h-[35px] md:h-[45px] object-contain rounded-lg z-50 absolute  animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110 top-[-6vh] md:left-[-3.3%]"
             onClick={() => {
               window.location.href = "/"; // Adjust the navigation route if needed
             }}
@@ -251,7 +251,6 @@ const Home = ({ darkMode }) => {
                 </div>
               </div>
             </motion.div>
-          
           </div>
         </Parallax>
       </div>
@@ -327,26 +326,27 @@ const Home = ({ darkMode }) => {
           </div>
         </motion.div>
         {/* Vertical About Me Section */}
-        <div
-          className={` flex-col items-center justify-center    hidden md:block  ${
-            darkMode ? "text-white bg-lime-600" : "text-gray-800 bg-orange-400"
-          }`}
-        >
-          <h2
-            className={`text-sm font-bold text-center px-1 py-2 ${
-              darkMode ? "text-white" : "text-gray-800"
+        <div className="hidden md:flex flex-col justify-center items-center w-16 mr-2">
+          <div
+            className={`w-12 h-48 flex items-center justify-center rounded-lg ${
+              darkMode ? "bg-lime-600" : "bg-orange-400"
             }`}
-            style={{
-              writingMode: "vertical-rl",
-              textOrientation: "upright",
-              transform: "rotate(360deg)",
-            }}
           >
-            ABOUT ME
-          </h2>
+            <h2
+              className={`text-sm font-bold text-center ${
+                darkMode ? "text-white" : "text-gray-800"
+              }`}
+              style={{
+                writingMode: "vertical-rl",
+                textOrientation: "mixed",
+              }}
+            >
+              ABOUT ME
+            </h2>
+          </div>
         </div>
       </div>
-      
+
       <TimeLIne darkMode={darkMode} />
       <Skills darkMode={darkMode} show={true} hide={true} />
       <div className="h-screen">

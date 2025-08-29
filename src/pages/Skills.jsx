@@ -207,26 +207,25 @@ const Skills = ({ darkMode, show, hide }) => {
       </div>
 
       {/* Enhanced Side Panel */}
-      {hide && (
+      <div className="hidden md:flex flex-col ml-[4vw] justify-center items-center w-16">
         <div
-          className={`flex-col items-center justify-center hidden md:block w-7 h-[135px] self-center transform transition-all duration-500 hover:scale-110 hover:shadow-lg ${
-            darkMode ? "text-white bg-lime-600" : "text-gray-800 bg-orange-400"
+          className={`w-12 h-48 flex items-center justify-center rounded-lg ${
+            darkMode ? "bg-lime-600" : "bg-orange-400"
           }`}
         >
           <h2
-            className={`text-sm font-bold text-center px-1 py-2 ${
+            className={`text-sm font-bold text-center ${
               darkMode ? "text-white" : "text-gray-800"
             }`}
             style={{
               writingMode: "vertical-rl",
-              textOrientation: "upright",
-              transform: "rotate(360deg)",
+              textOrientation: "mixed",
             }}
           >
-            Skills
+            SKILLS
           </h2>
         </div>
-      )}
+      </div>
     </div>
   );
 };
