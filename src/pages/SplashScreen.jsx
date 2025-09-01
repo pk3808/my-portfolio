@@ -36,7 +36,7 @@ const SplashScreen = ({ onSelectMode }) => {
                 Default Mode
               </button>
             </div>
-            <div className="text-center">
+            <div className="text-center md:block hidden">
               <div className="h-20 w-20 mx-auto animate-swing-bounce">
                 <img src={cube} alt="3D Mode" className="w-full h-full" />
               </div>

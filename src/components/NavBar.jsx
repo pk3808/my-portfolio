@@ -20,11 +20,11 @@ const NavBar = ({ darkMode }) => {
   const isHome = location.pathname === "/home";
 
   const navItems = [
-    { path: '/projects', icon: faProjectDiagram, label: 'Projects', color: '#FF6B6B' },
+    { path: '/projects', icon: faProjectDiagram, label: 'Projects', color: '#4ECDC4' },
     { path: '/blogs', icon: faBlog, label: 'Blogs', color: '#4ECDC4' },
-    { path: '/home', icon: faHome, label: 'Home', color: '#45B7D1' },
-    { path: '/skills', icon: faWrench, label: 'Skills', color: '#96CEB4' },
-    { path: '/contact', icon: faEnvelope, label: 'Contact', color: '#FFEAA7' }
+    { path: '/home', icon: faHome, label: 'Home', color: '#4ECDC4' },
+    { path: '/skills', icon: faWrench, label: 'Skills', color: '#4ECDC4' },
+    { path: '/contact', icon: faEnvelope, label: 'Contact', color: '#4ECDC4' }
   ];
 
   const handleNavigation = (path) => {
