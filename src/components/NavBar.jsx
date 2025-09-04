@@ -20,11 +20,11 @@ const NavBar = ({ darkMode }) => {
   const isHome = location.pathname === "/home";
 
   const navItems = [
-    { path: '/projects', icon: faProjectDiagram, label: 'Projects', color: '#FF6B6B' },
+    { path: '/projects', icon: faProjectDiagram, label: 'Projects', color: '#4ECDC4' },
     { path: '/blogs', icon: faBlog, label: 'Blogs', color: '#4ECDC4' },
-    { path: '/home', icon: faHome, label: 'Home', color: '#45B7D1' },
-    { path: '/skills', icon: faWrench, label: 'Skills', color: '#96CEB4' },
-    { path: '/contact', icon: faEnvelope, label: 'Contact', color: '#FFEAA7' }
+    { path: '/home', icon: faHome, label: 'Home', color: '#4ECDC4' },
+    { path: '/skills', icon: faWrench, label: 'Skills', color: '#4ECDC4' },
+    { path: '/contact', icon: faEnvelope, label: 'Contact', color: '#4ECDC4' }
   ];
 
   const handleNavigation = (path) => {
@@ -204,14 +204,14 @@ const NavBar = ({ darkMode }) => {
       )}
 
       {/* Mobile NavBar */}
-      <nav className={`fixed bottom-4 left-4 right-4 z-50 py-4 rounded-2xl backdrop-blur-lg border transition-all duration-300 md:hidden ${
+      <nav className={`fixed bottom-4 left-4 right-4 z-50 py-2 rounded-2xl backdrop-blur-lg border transition-all duration-300 md:hidden ${
         darkMode 
-          ? 'bg-gray-900/90 border-gray-700/50 shadow-cyan-500/20' 
-          : 'bg-white/90 border-white/30 shadow-black/10'
+          ? 'bg-[[#021605]] border-gray-700/50 ' 
+          : 'bg-white/90 border-white/30'
       }`} style={{
         boxShadow: darkMode 
-          ? '0 20px 40px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)' 
-          : '0 20px 40px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.3)'
+          ? '' 
+          : ''
       }}>
         <div className="flex justify-evenly items-center px-2">
           {navItems.map((item, index) => (
