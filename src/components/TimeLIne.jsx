@@ -26,7 +26,7 @@ const TimeLine = ({ darkMode, bg }) => {
     {
       role: "App Developer",
       company: "IB Arts Pvt Ltd.",
-      date: "August 2024 - Present",
+      date: "Jan 2024 - Present",
       details:
         "As an App Developer at IB Arts Pvt Ltd., I design, develop, and deploy full-stack web and mobile applications. I specialize in creating interactive UIs with React.js and React Native, seamlessly integrating backend services using Node.js and MongoDB. Working with cross-functional teams, I deliver scalable solutions that meet business needs and enhance user experience. My role involves writing clean, maintainable code, optimizing performance, and implementing new features to stay current with industry trends. I also debug issues, ensure quality, and use tools like Next.js, Tailwind CSS, and Git to streamline development and maintain code consistency.",
       technologies: [
@@ -38,14 +38,14 @@ const TimeLine = ({ darkMode, bg }) => {
         "Tailwind CSS",
       ],
     },
-    {
-      role: "App Developer Intern",
-      company: "IB Arts Pvt Ltd.",
-      date: "Jan 2024 - July 2024",
-      details:
-        "Built responsive UI components using React and integrated APIs. Collaborated with the design team to create visually appealing and user-friendly interfaces.Worked on full-stack web development using React, Node.js, and MongoDB. Collaborated with cross-functional teams to deliver high-quality software solutions.",
-      technologies: ["React", "HTML", "CSS", "React Native", "JavaScript"],
-    },
+    // {
+    //   role: "App Developer Intern",
+    //   company: "IB Arts Pvt Ltd.",
+    //   date: "Jan 2024 - July 2024",
+    //   details:
+    //     "Built responsive UI components using React and integrated APIs. Collaborated with the design team to create visually appealing and user-friendly interfaces.Worked on full-stack web development using React, Node.js, and MongoDB. Collaborated with cross-functional teams to deliver high-quality software solutions.",
+    //   technologies: ["React", "HTML", "CSS", "React Native", "JavaScript"],
+    // },
   ];
 
   const renderContent = () => {
