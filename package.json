@@ -20,7 +20,7 @@
     "lucide-react": "^0.479.0",
     "react": "^18.3.1",
     "react-ai-chatbot": "^0.5.6",
-    "react-chat-ai": "^1.1.8",
+    "react-chat-ai": "^1.1.9",
     "react-dom": "^18.3.1",
     "react-intersection-observer": "^9.13.1",
     "react-router-dom": "^6.26.2",

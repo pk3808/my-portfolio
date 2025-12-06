@@ -118,33 +118,37 @@ const ProjectCard = ({ project, darkMode }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.3 }}
-      className={`group relative overflow-hidden rounded-2xl border ${darkMode
-        ? "bg-[#012001] border-[#045106] hover:border-[#ADFF2F] hover:shadow-lg hover:shadow-green-900/20"
-        : "bg-[#F7F9F2] border-[#FBCEB1] hover:border-[#F88379] hover:shadow-xl hover:shadow-orange-200"
-        } transition-all duration-300 hover:-translate-y-2`}
+      className="group relative h-[450px] overflow-hidden rounded-2xl border border-transparent hover:border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
     >
-      {/* Image Section */}
-      <div className="relative h-48 overflow-hidden">
-        <div className={`absolute inset-0 bg-gradient-to-t ${darkMode ? "from-[#012001] via-transparent" : "from-[#F7F9F2] via-transparent"} to-transparent z-10`} />
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
         <img
           src={project.image}
           alt={project.label}
-          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+          className="w-full h-full object-cover object-top transform group-hover:scale-110 transition-transform duration-700"
         />
-        <div className="absolute top-4 right-4 z-20">
-          <span className={`px-3 py-1 text-xs font-semibold rounded-full backdrop-blur-md ${darkMode ? "bg-black/60 text-[#ADFF2F] border border-[#045106]" : "bg-white/90 text-[#F88379] shadow-sm"
-            }`}>
-            {project.category === 'app' ? 'App' : 'Web'}
-          </span>
-        </div>
+        {/* Gradient Overlay - Darkened at bottom for text readability */}
+        <div className={`absolute inset-0 bg-gradient-to-t ${darkMode
+            ? "from-black via-black/80 to-black/20"
+            : "from-black via-black/60 to-transparent"
+          } opacity-90 transition-opacity duration-300`}
+        />
+      </div>
+
+      {/* Category Badge */}
+      <div className="absolute top-4 right-4 z-20">
+        <span className="px-3 py-1 text-xs font-semibold rounded-full backdrop-blur-md bg-white/20 text-white border border-white/30 shadow-sm">
+          {project.category === 'app' ? 'App' : 'Web'}
+        </span>
       </div>
 
       {/* Content Section */}
-      <div className="p-6">
-        <h3 className={`text-xl font-bold mb-2 ${darkMode ? "text-white group-hover:text-[#ADFF2F]" : "text-gray-900 group-hover:text-[#F88379]"} transition-colors`}>
+      <div className="relative z-10 h-full flex flex-col justify-end p-6">
+        <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-[#ADFF2F] transition-colors drop-shadow-lg">
           {project.label}
         </h3>
-        <p className={`text-sm mb-4 line-clamp-2 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+
+        <p className="text-sm mb-4 line-clamp-2 text-gray-200 drop-shadow-md">
           {project.description}
         </p>
 
@@ -153,10 +157,7 @@ const ProjectCard = ({ project, darkMode }) => {
           {project.techStack.map((tech, i) => (
             <span
               key={i}
-              className={`text-xs px-2 py-1 rounded-md ${darkMode
-                ? "bg-[#022a02] text-gray-300 border border-[#045106]"
-                : "bg-[#FBCEB1]/30 text-gray-700 border border-[#FBCEB1]"
-                }`}
+              className="text-xs px-2 py-1 rounded-md bg-white/10 text-gray-100 border border-white/10 backdrop-blur-sm"
             >
               {tech}
             </span>
@@ -164,17 +165,14 @@ const ProjectCard = ({ project, darkMode }) => {
         </div>
 
         {/* Links */}
-        <div className="flex items-center gap-3 mt-auto">
+        <div className="flex items-center gap-3">
           {project.links.map((link, i) => (
             <a
               key={i}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`p-2 rounded-lg transition-colors ${darkMode
-                ? "bg-[#022a02] text-gray-400 hover:bg-[#045106] hover:text-[#ADFF2F]"
-                : "bg-[#F2D2BD] text-gray-700 hover:bg-[#F88379] hover:text-white"
-                }`}
+              className="p-2 rounded-lg bg-white/10 text-white hover:bg-[#ADFF2F] hover:text-black transition-colors backdrop-blur-sm shadow-lg"
               title={link.type}
             >
               {link.icon}
