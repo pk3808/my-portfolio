@@ -158,7 +158,7 @@ const SocialMediaIcons = ({ darkMode = false }) => {
             transform transition-all duration-300 ease-out
             ${isDropdownOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-2'}
             ${darkMode 
-              ? 'bg-[#19616a] text-white border border-gray-600' 
+              ? 'bg-[#355E3B] text-white border border-gray-600' 
               : 'bg-white text-gray-800 border border-gray-200'
             }
           `}>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Skills = ({ darkMode, show, hide }) => {
   const [showLogos, setShowLogos] = useState(false);
@@ -7,6 +8,7 @@ const Skills = ({ darkMode, show, hide }) => {
   const [orbitsVisible, setOrbitsVisible] = useState(false);
   const [autoHighlight, setAutoHighlight] = useState(null);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const location = useLocation();
 
   // Move techLogos definition before useEffect
   const techLogos = [
@@ -88,69 +90,68 @@ const Skills = ({ darkMode, show, hide }) => {
         <div className="absolute top-4 right-4 z-20">
           <button
             onClick={toggleAutoPlay}
-            className={`px-3 py-2 rounded-full text-white text-xs font-semibold shadow-lg transition-all duration-300 ${
-              isAutoPlaying 
-                ? 'bg-gradient-to-r from-blue-500 to-green-400 hover:shadow-xl' 
-                : 'bg-gray-500 hover:bg-gray-600'
-            }`}
+            className={`px-3 py-2 rounded-full text-white text-xs font-semibold shadow-lg transition-all duration-300 ${isAutoPlaying
+              ? 'bg-gradient-to-r from-blue-500 to-green-400 hover:shadow-xl'
+              : 'bg-gray-500 hover:bg-gray-600'
+              }`}
           >
             {isAutoPlaying ? '⏸️ Pause' : '▶️ Auto'}
           </button>
         </div>
       )}
 
-      {/* Enhanced Click Button with Ripple Effect */}
-      {!showLogos && (
-        <div className="absolute top-[45%] z-10 cursor-pointer group" onClick={() => setShowLogos(true)}>
-          {/* Ripple rings */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-400 rounded-full animate-ping opacity-20 scale-150"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-400 rounded-full animate-pulse opacity-30 scale-125"></div>
-          
-          {/* Main button */}
-          <div className="relative bg-gradient-to-r from-blue-500 to-green-400 rounded-full md:h-[80px] md:w-[80px] h-[60px] w-[60px] flex items-center justify-center shadow-lg group-hover:shadow-2xl transform group-hover:scale-110 transition-all duration-300">
-            <span className="text-white font-bold md:text-sm text-xs animate-bounce">Click Here</span>
-          </div>
-        </div>
-      )}
+
 
       {/* Character with Enhanced Animation */}
       <div className="relative flex items-center justify-center w-full max-w-[100vw]">
         {/* Character shadow */}
         <div className="absolute bottom-0 md:bottom-8 left-1/2 transform -translate-x-1/2 translate-y-16 w-24 h-6 bg-black opacity-10 rounded-full blur-sm animate-pulse"></div>
-        
+
+        {/* Enhanced Click Button with Ripple Effect */}
+        {!showLogos && (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group" onClick={() => setShowLogos(true)}>
+            {/* Ripple rings */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-400 rounded-full animate-ping opacity-20 scale-150"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-400 rounded-full animate-pulse opacity-30 scale-125"></div>
+
+            {/* Main button */}
+            <div className="relative bg-gradient-to-r from-blue-500 to-green-400 rounded-full md:h-[80px] md:w-[80px] h-[60px] w-[60px] flex items-center justify-center shadow-lg group-hover:shadow-2xl transform group-hover:scale-110 transition-all duration-300">
+              <span className="text-white font-bold md:text-sm text-xs animate-bounce">View Skills</span>
+            </div>
+          </div>
+        )}
+
         <img
           src="/images/yoga.png"
           alt="3D Animation"
-          className={`md:h-[320px] md:w-[320px] h-[200px] w-[200px] transition-all duration-500 ${
-            showLogos ? 'animate-pulse' : 'animate-pulse'
-          }`}
+          className={`md:h-[320px] md:w-[320px] h-[200px] w-[200px] transition-all duration-500 ${showLogos ? 'animate-pulse' : 'animate-pulse'
+            }`}
         />
 
         {/* Responsive Orbit Rings */}
         {orbitsVisible && (
           <>
             <div className="absolute md:h-[450px] md:w-[450px] h-[320px] w-[320px] border border-white opacity-5 rounded-full animate-spin"></div>
-            <div className="absolute md:h-[500px] md:w-[500px] h-[360px] w-[360px] border border-white opacity-3 rounded-full" style={{animation: 'spin 20s linear infinite reverse'}}></div>
+            <div className="absolute md:h-[500px] md:w-[500px] h-[360px] w-[360px] border border-white opacity-3 rounded-full" style={{ animation: 'spin 20s linear infinite reverse' }}></div>
           </>
         )}
 
         {/* Enhanced Skill Logos with Responsive Positioning */}
         {showLogos && (
-          <div 
-            className="absolute md:h-[500px] md:w-[500px] h-[360px] w-[360px] flex items-center justify-center" 
-            style={{animation: 'spin 25s linear infinite'}}
+          <div
+            className="absolute md:h-[500px] md:w-[500px] h-[360px] w-[360px] flex items-center justify-center"
+            style={{ animation: 'spin 25s linear infinite' }}
           >
             {techLogos.map((logo, index) => {
               const isActive = autoHighlight === index || hoveredSkill === index;
               // Responsive radius: 200px on desktop, 140px on mobile
               const radius = window.innerWidth >= 768 ? 200 : 140;
-              
+
               return (
                 <div
                   key={index}
-                  className={`absolute transition-all duration-700 cursor-pointer ${
-                    isActive ? 'scale-125 z-10' : ''
-                  } ${clickedSkill === index ? 'animate-ping' : ''}`}
+                  className={`absolute transition-all duration-700 cursor-pointer ${isActive ? 'scale-125 z-10' : ''
+                    } ${clickedSkill === index ? 'animate-ping' : ''}`}
                   style={{
                     transform: `rotate(${(index * 360) / techLogos.length}deg) translate(${radius}px)`,
                     animationDelay: `${index * 0.1}s`,
@@ -159,9 +160,8 @@ const Skills = ({ darkMode, show, hide }) => {
                   onMouseLeave={handleSkillLeave}
                   onClick={() => handleSkillClick(index)}
                 >
-                  <div className={`relative bg-white md:h-[60px] md:w-[60px] h-[40px] w-[40px] rounded-full flex items-center justify-center shadow-lg transform transition-all duration-500 ${
-                    isActive ? 'scale-125 shadow-2xl' : ''
-                  }`}>
+                  <div className={`relative bg-white md:h-[60px] md:w-[60px] h-[40px] w-[40px] rounded-full flex items-center justify-center shadow-lg transform transition-all duration-500 ${isActive ? 'scale-125 shadow-2xl' : ''
+                    }`}>
                     {/* Enhanced glow effect */}
                     {isActive && (
                       <>
@@ -169,14 +169,14 @@ const Skills = ({ darkMode, show, hide }) => {
                         <div className="absolute -inset-2 bg-gradient-to-r from-blue-500 to-green-400 rounded-full opacity-20 animate-pulse"></div>
                       </>
                     )}
-                    
+
                     <img
                       src={logo.src}
                       alt={logo.name}
                       className="md:h-[50px] md:w-[50px] w-[32px] h-[32px] object-contain transition-transform duration-300 relative z-10"
                     />
                   </div>
-                  
+
                   {/* Enhanced tooltip - responsive positioning */}
                   {isActive && (
                     <div className="absolute md:-top-20 -top-16 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white md:px-4 md:py-3 px-2 py-2 rounded-lg md:text-xs text-[10px] whitespace-nowrap opacity-95 shadow-xl min-w-max animate-pulse">
@@ -207,25 +207,25 @@ const Skills = ({ darkMode, show, hide }) => {
       </div>
 
       {/* Enhanced Side Panel */}
-      <div className="hidden md:flex flex-col ml-[4vw] justify-center items-center w-16">
-        <div
-          className={`w-12 h-48 flex items-center justify-center rounded-lg ${
-            darkMode ? "bg-lime-600" : "bg-orange-400"
-          }`}
-        >
-          <h2
-            className={`text-sm font-bold text-center ${
-              darkMode ? "text-white" : "text-gray-800"
-            }`}
-            style={{
-              writingMode: "vertical-rl",
-              textOrientation: "mixed",
-            }}
+      {!hide && location.pathname !== "/skills" && (
+        <div className="hidden md:flex flex-col ml-[4vw] justify-center items-center w-16">
+          <div
+            className={`w-12 h-48 flex items-center justify-center rounded-lg ${darkMode ? "bg-lime-600" : "bg-orange-400"
+              }`}
           >
-            SKILLS
-          </h2>
+            <h2
+              className={`text-sm font-bold text-center ${darkMode ? "text-white" : "text-gray-800"
+                }`}
+              style={{
+                writingMode: "vertical-rl",
+                textOrientation: "mixed",
+              }}
+            >
+              SKILLS
+            </h2>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

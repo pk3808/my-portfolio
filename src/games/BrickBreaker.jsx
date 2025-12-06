@@ -9,6 +9,7 @@ import left from "../assets/left.png";
 import rotate from "../assets/rotate.png";
 import TimeLine from "../components/TimeLIne";
 import { useNavigate } from "react-router-dom";
+import { X } from 'lucide-react';
 
 const BrickBreaker = ({ darkMode }) => {
   console.log("Rendering BrickBreaker with darkMode:", darkMode);
@@ -739,9 +740,9 @@ const BrickBreaker = ({ darkMode }) => {
 
               <button
                 onClick={() => setModalComponent(null)}
-                className="absolute top-4 right-2 text-gray-500 bg-transparent hover:text-white"
+                className="absolute top-4 right-2 bg-transparent hover:text-white"
               >
-                ✖
+                < X/>
               </button>
 
               <div className="modal-content max-h-[85vh] overflow-auto">

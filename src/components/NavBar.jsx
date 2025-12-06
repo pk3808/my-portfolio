@@ -11,7 +11,7 @@ const NavBar = ({ darkMode }) => {
   const [navbarVisible, setNavbarVisible] = useState(true);
   const [hoveredItem, setHoveredItem] = useState(null);
   const lastScrollY = useRef(0); // Using ref to persist scroll position between renders
-  
+
   // Scroll direction detection threshold
   const SCROLL_THRESHOLD = 5;
   const HIDE_THRESHOLD = 100;
@@ -38,29 +38,29 @@ const NavBar = ({ darkMode }) => {
   // Improved scroll handler with direction detection
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
-    
+
     // Calculate scroll direction
-    const scrollDirection = currentScrollY > lastScrollY.current 
-      ? 'down' 
+    const scrollDirection = currentScrollY > lastScrollY.current
+      ? 'down'
       : 'up';
-    
+
     // Only trigger visibility change if we've scrolled more than the threshold
     if (Math.abs(currentScrollY - lastScrollY.current) > SCROLL_THRESHOLD) {
       // Hide when scrolling down past threshold
       if (scrollDirection === 'down' && currentScrollY > HIDE_THRESHOLD) {
         setVisible(false);
-      } 
+      }
       // Show when scrolling up
       else if (scrollDirection === 'up') {
         setVisible(true);
       }
     }
-    
+
     // Always show at the top of the page
     if (currentScrollY < HIDE_THRESHOLD) {
       setVisible(true);
     }
-    
+
     lastScrollY.current = currentScrollY;
     setScrolling(true);
   };
@@ -95,20 +95,18 @@ const NavBar = ({ darkMode }) => {
   };
 
   return (
-    <div className={`fixed bottom-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
-      visible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
-    }`}>
+    <div className={`fixed bottom-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${visible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
+      }`}>
       {/* Desktop NavBar */}
       {navbarVisible && (
-        <nav className={`fixed bottom-2 left-1/2 transform -translate-x-1/2 z-50 px-20 py-[6px] shadow-2xl rounded-full backdrop-blur-lg border transition-all duration-300 hidden md:block ${
-          darkMode 
-            ? 'bg-[#021605] border-[#080e08] shadow-cyan-500/20' 
+        <nav className={`fixed bottom-2 left-1/2 transform -translate-x-1/2 z-50 px-20 py-[6px] shadow-2xl rounded-full backdrop-blur-lg border transition-all duration-300 hidden md:block ${darkMode
+            ? 'bg-[#021605] border-[#080e08] shadow-cyan-500/20'
             : 'bg-[#F3D7CA] border-white/20 shadow-black/10'
-        }`} style={{
-          boxShadow: darkMode 
-            ? '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)' 
-            : '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6)'
-        }}>
+          }`} style={{
+            boxShadow: darkMode
+              ? '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+              : '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6)'
+          }}>
           <div className="flex items-center space-x-8">
             {/* Collapse Button */}
             {/* <button
@@ -130,29 +128,27 @@ const NavBar = ({ darkMode }) => {
                   onClick={() => handleNavigation(item.path)}
                   onMouseEnter={() => setHoveredItem(index)}
                   onMouseLeave={() => setHoveredItem(null)}
-                  className={`relative px-7 py-2 rounded-full transition-all duration-300 ease-out group ${
-                    active === item.path || (active === '/home' && isHome && item.path === '/home')
+                  className={`relative px-7 py-2 rounded-full transition-all duration-300 ease-out group ${active === item.path || (active === '/home' && isHome && item.path === '/home')
                       ? 'scale-110 shadow-lg'
                       : 'hover:scale-105'
-                  }`}
+                    }`}
                   style={{
                     background: active === item.path || (active === '/home' && isHome && item.path === '/home')
                       ? `linear-gradient(135deg, ${item.color}20, ${item.color}40)`
                       : hoveredItem === index
-                      ? `linear-gradient(135deg, ${item.color}10, ${item.color}20)`
-                      : 'transparent'
+                        ? `linear-gradient(135deg, ${item.color}10, ${item.color}20)`
+                        : 'transparent'
                   }}
                 >
                   <div className="flex items-center space-x-3">
-                    <FontAwesomeIcon 
-                      icon={item.icon} 
-                      className={`text-lg transition-all duration-300 ${
-                        active === item.path || (active === '/home' && isHome && item.path === '/home')
+                    <FontAwesomeIcon
+                      icon={item.icon}
+                      className={`text-lg transition-all duration-300 ${active === item.path || (active === '/home' && isHome && item.path === '/home')
                           ? `text-[${item.color}] drop-shadow-lg`
-                          : darkMode 
-                          ? 'text-gray-300 group-hover:text-white' 
-                          : 'text-gray-600 group-hover:text-gray-800'
-                      }`}
+                          : darkMode
+                            ? 'text-gray-300 group-hover:text-white'
+                            : 'text-gray-600 group-hover:text-gray-800'
+                        }`}
                       style={{
                         color: active === item.path || (active === '/home' && isHome && item.path === '/home')
                           ? item.color
@@ -162,20 +158,19 @@ const NavBar = ({ darkMode }) => {
                           : undefined
                       }}
                     />
-                    <span className={`font-medium transition-all duration-300 ${
-                      active === item.path || (active === '/home' && isHome && item.path === '/home')
-                        ? 'text-gray-900 dark:text-white font-semibold'
-                        : darkMode 
-                        ? 'text-gray-300 group-hover:text-white' 
-                        : 'text-gray-600 group-hover:text-gray-800'
-                    }`}>
+                    <span className={`font-medium transition-all duration-300 ${active === item.path || (active === '/home' && isHome && item.path === '/home')
+                        ? `${darkMode ? 'text-white' : 'text-gray-900'} font-semibold`
+                        : darkMode
+                          ? 'text-gray-300 group-hover:text-white'
+                          : 'text-gray-600 group-hover:text-gray-800'
+                      }`}>
                       {item.label}
                     </span>
                   </div>
-                  
+
                   {/* Active indicator */}
                   {(active === item.path || (active === '/home' && isHome && item.path === '/home')) && (
-                    <div 
+                    <div
                       className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full animate-pulse"
                       style={{ backgroundColor: item.color }}
                     />
@@ -192,11 +187,10 @@ const NavBar = ({ darkMode }) => {
         <div className="fixed left-6 bottom-6 z-50">
           <button
             onClick={toggleNavbar}
-            className={`p-4 rounded-full transition-all duration-300 hover:scale-110 shadow-xl backdrop-blur-lg border ${
-              darkMode 
-                ? 'bg-gray-900/80 border-gray-700/50 text-cyan-400 hover:shadow-cyan-500/50' 
+            className={`p-4 rounded-full transition-all duration-300 hover:scale-110 shadow-xl backdrop-blur-lg border ${darkMode
+                ? 'bg-gray-900/80 border-gray-700/50 text-cyan-400 hover:shadow-cyan-500/50'
                 : 'bg-white/80 border-white/20 text-orange-500 hover:shadow-orange-500/50'
-            }`}
+              }`}
           >
             <FontAwesomeIcon icon={faChevronUp} className="w-5 h-5" />
           </button>
@@ -204,25 +198,23 @@ const NavBar = ({ darkMode }) => {
       )}
 
       {/* Mobile NavBar */}
-      <nav className={`fixed bottom-4 left-4 right-4 z-50 py-2 rounded-2xl backdrop-blur-lg border transition-all duration-300 md:hidden ${
-        darkMode 
-          ? 'bg-[[#021605]] border-gray-700/50 ' 
+      <nav className={`fixed bottom-4 left-4 right-4 z-50 py-2 rounded-2xl backdrop-blur-lg border transition-all duration-300 md:hidden ${darkMode
+          ? 'bg-[[#021605]] border-gray-700/50 '
           : 'bg-white/90 border-white/30'
-      }`} style={{
-        boxShadow: darkMode 
-          ? '' 
-          : ''
-      }}>
+        }`} style={{
+          boxShadow: darkMode
+            ? ''
+            : ''
+        }}>
         <div className="flex justify-evenly items-center px-2">
           {navItems.map((item, index) => (
             <button
               key={item.path}
               onClick={() => handleNavigation(item.path)}
-              className={`relative p-3 rounded-xl transition-all duration-300 ${
-                active === item.path || (active === '/home' && isHome && item.path === '/home')
+              className={`relative p-3 rounded-xl transition-all duration-300 ${active === item.path || (active === '/home' && isHome && item.path === '/home')
                   ? 'scale-110 shadow-lg'
                   : 'hover:scale-105'
-              }`}
+                }`}
               style={{
                 background: active === item.path || (active === '/home' && isHome && item.path === '/home')
                   ? `linear-gradient(135deg, ${item.color}20, ${item.color}40)`
@@ -231,26 +223,25 @@ const NavBar = ({ darkMode }) => {
             >
               <FontAwesomeIcon
                 icon={item.icon}
-                className={`transition-all duration-300 ${
-                  active === item.path || (active === '/home' && isHome && item.path === '/home')
+                className={`transition-all duration-300 ${active === item.path || (active === '/home' && isHome && item.path === '/home')
                     ? 'text-2xl'
                     : 'text-xl'
-                }`}
+                  }`}
                 style={{
                   color: active === item.path || (active === '/home' && isHome && item.path === '/home')
                     ? item.color
-                    : darkMode 
-                    ? '#9CA3AF' 
-                    : '#6B7280',
+                    : darkMode
+                      ? '#9CA3AF'
+                      : '#6B7280',
                   filter: active === item.path || (active === '/home' && isHome && item.path === '/home')
                     ? `drop-shadow(0 0 8px ${item.color}50)`
                     : undefined
                 }}
               />
-              
+
               {/* Mobile active indicator */}
               {(active === item.path || (active === '/home' && isHome && item.path === '/home')) && (
-                <div 
+                <div
                   className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full animate-pulse"
                   style={{ backgroundColor: item.color }}
                 />

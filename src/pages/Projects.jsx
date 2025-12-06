@@ -1,448 +1,296 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./Carousel.css";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, Github, Smartphone, Globe } from "lucide-react";
 
+// Project Data
 const entries = [
   {
     id: 1,
     label: "LetsKrunch",
     image: "/images/letsKrunch.png",
     title: "Practice SQL and Python Data Analysis",
-    desc: [
-      "Interactive platform to practice data analysis questions.",
-      "Solve SQL challenges and Python pandas exercises.",
-      "Get immediate feedback and hints.",
-      "Technology used: React, Node.js, Python, PostgreSQL.",
+    description: "Interactive platform to practice data analysis questions. Solve SQL challenges and Python pandas exercises with immediate feedback.",
+    techStack: ["React", "Node.js", "Python", "PostgreSQL"],
+    links: [
+      { type: "web", url: "https://letskrunch.io", icon: <Globe size={18} /> },
     ],
-    platforms: [
-      {
-        type: "web",
-        url: "https://letskrunch.io",
-        icon: "/images/web.png",
-      },
-    ],
-    category: "web"
+    category: "web",
   },
   {
     id: 2,
     label: "r-datetime",
     image: "/images/rdatetime.png",
     title: "React Tailwind-themed DateTime Picker",
-    desc: [
-      "Lightweight React date-time picker with zero extra deps.",
-      "Supports date, time, or combined datetime modes.",
-      "Fully customizable via Tailwind CSS classes.",
-      "Advanced features: range selection, presets, timezone selector.",
+    description: "Lightweight React date-time picker with zero extra deps. Fully customizable via Tailwind CSS classes.",
+    techStack: ["React", "Tailwind CSS", "NPM"],
+    links: [
+      { type: "npm", url: "https://www.npmjs.com/package/r-datetime", icon: <ExternalLink size={18} /> },
     ],
-    platforms: [
-      {
-        type: "web",
-        url: "https://www.npmjs.com/package/r-datetime",
-        icon: "/images/web.png",
-      },
-    ],
-    category: "web"
+    category: "web",
   },
   {
     id: 3,
     label: "Anime Oasis",
     image: "/images/animep.png",
     title: "Coolest anime wiki out there",
-    desc: [
-      "A vibrant platform designed for anime enthusiasts.",
-      "In-depth wikis, character breakdowns, and episode guides.",
-      "Stay updated with trending news from the anime world.",
-      "Technology used: React, Tailwind CSS, Chakra UI.",
+    description: "A vibrant platform designed for anime enthusiasts. In-depth wikis, character breakdowns, and episode guides.",
+    techStack: ["React", "Tailwind CSS", "Chakra UI"],
+    links: [
+      { type: "web", url: "https://animeoasis.example.com", icon: <Globe size={18} /> },
     ],
-    platforms: [
-      {
-        type: "web",
-        url: "https://animeoasis.example.com",
-        icon: "/images/web.png",
-      },
-    ],
-    category: "web"
+    category: "web",
   },
   {
     id: 4,
     label: "Multipoint Inspect",
     image: "/images/mpip.png",
     title: "One way solution for your home inspection",
-    desc: [
-      "Conduct comprehensive home inspections effortlessly.",
-      "Ensure every corner is covered for safety and efficiency.",
-      "Achieve peace of mind with our innovative solution.",
-      "Technology used: React, Tailwind CSS, Chakra UI, MongoDB, ExpressJS.",
+    description: "Conduct comprehensive home inspections effortlessly. Ensure every corner is covered for safety and efficiency.",
+    techStack: ["React", "Tailwind", "MongoDB", "Express"],
+    links: [
+      { type: "web", url: "https://app.multipointinspect.com/dashboard/", icon: <Globe size={18} /> },
     ],
-    platforms: [
-      {
-        type: "web",
-        url: "https://app.multipointinspect.com/dashboard/",
-        icon: "/images/web.png",
-      },
-    ],
-    category: "web"
+    category: "web",
   },
   {
     id: 5,
     label: "Zawwar",
     image: "/images/zawwarp.png",
-    title: "Test your knowledge about Islam and win prizes",
-    desc: [
-      "Interactive Islamic quiz platform.",
-      "Test your knowledge about Islam.",
-      "Earn points and win exciting rewards.",
-      "Technology used: React Native, NodeJS, MongoDB.",
+    title: "Test your knowledge about Islam",
+    description: "Interactive Islamic quiz platform. Test your knowledge about Islam, earn points and win exciting rewards.",
+    techStack: ["React Native", "NodeJS", "MongoDB"],
+    links: [
+      { type: "playstore", url: "https://play.google.com/store/apps/details?id=com.zawwar", icon: <Smartphone size={18} /> },
+      { type: "appstore", url: "https://apps.apple.com/us/app/zawwar/id6677025088", icon: <Smartphone size={18} /> },
     ],
-    platforms: [
-      {
-        type: "playstore",
-        url: "https://play.google.com/store/apps/details?id=com.zawwar",
-        icon: "/images/playstore.png",
-      },
-      {
-        type: "appstore",
-        url: "https://apps.apple.com/us/app/zawwar/id6677025088",
-        icon: "/images/appstore.png",
-      },
-    ],
-    category: "app"
+    category: "app",
   },
   {
     id: 6,
     label: "Star Launch",
     image: "/images/starlaunchp.png",
     title: "Your friendly space travel companion",
-    desc: [
-      "Plan your space travel with ease and confidence.",
-      "Explore destinations and get safety tips.",
-      "Stay updated with the latest in space exploration.",
-      "Technology used: React Native, ExpressJS, Firebase.",
+    description: "Plan your space travel with ease and confidence. Explore destinations and get safety tips.",
+    techStack: ["React Native", "ExpressJS", "Firebase"],
+    links: [
+      { type: "appstore", url: "https://apps.apple.com/us/app/starlaunch/id6736873282", icon: <Smartphone size={18} /> },
     ],
-    platforms: [
-      {
-        type: "appstore",
-        url: "https://apps.apple.com/us/app/starlaunch/id6736873282",
-        icon: "/images/appstore.png",
-      },
-    ],
-    category: "app"
+    category: "app",
   },
   {
     id: 7,
     label: "Vantrail",
     image: "/images/vantrailp.png",
     title: "All your vans in one place",
-    desc: [
-      "Manage all your van collections in one place.",
-      "Discover tools to customize and explore van options.",
-      "A hub for van enthusiasts to share and grow.",
-      "Technology used: React Native, NodeJS, MongoDB, ExpressJS.",
+    description: "Manage all your van collections, discover tools to customize and explore van options.",
+    techStack: ["React Native", "NodeJS", "MongoDB"],
+    links: [
+      { type: "appstore", url: "https://apps.apple.com/us/app/vantrail/id6670694819", icon: <Smartphone size={18} /> },
     ],
-    platforms: [
-      {
-        type: "appstore",
-        url: "https://apps.apple.com/us/app/vantrail/id6670694819",
-        icon: "/images/appstore.png",
-      },
-    ],
-    category: "app"
+    category: "app",
   },
 ];
 
-const PlatformLinks = ({ platforms }) => (
-  <div className="platform-links w-[100px] h-[40px]">
-    {platforms.map((platform, index) => (
-      <a
-        key={index}
-        href={platform.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="platform-link"
-      >
-        <img
-          src={platform.icon}
-          alt={`${platform.type} icon`}
-          className="platform-icon"
-        />
-      </a>
-    ))}
-  </div>
-);
-
-const FilterToggle = ({ activeFilter, onFilterChange, darkMode }) => {
-  const filters = [
-    { key: "all", label: "All", icon: "🎯", count: entries.length },
-    { key: "web", label: "Web", icon: "🌐", count: entries.filter(e => e.category === "web").length },
-    { key: "app", label: "Apps", icon: "📱", count: entries.filter(e => e.category === "app").length }
-  ];
-
+const FilterButton = ({ filter, label, activeFilter, onClick, darkMode }) => {
+  const isActive = activeFilter === filter;
   return (
-    <div className="filter-toggle-container fixed top-4 hidden md:block right-10 z-50 md:absolute md:top-14 md:right-0">
-      <div className={`filter-toggle-wrapper backdrop-blur-md rounded-xl border transition-all duration-300 transform hover:scale-[1.02] ${
-        darkMode 
-          ? "bg-gray-900/85 border-gray-700/50 shadow-xl shadow-emerald-500/10" 
-          : "bg-white/90 border-gray-200/50 shadow-xl shadow-blue-500/10"
-      }`}>
-        <div className="p-1.5  ">
-          <div className="flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-1">
-            {filters.map((filter) => (
-              <button
-                key={filter.key}
-                onClick={() => onFilterChange(filter.key)}
-                className={`filter-toggle-btn group relative px-3 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center space-x-2 min-w-[80px] text-sm ${
-                  activeFilter === filter.key
-                    ? darkMode
-                      ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-500/20"
-                      : "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md shadow-blue-500/20"
-                    : darkMode
-                    ? "text-gray-300 hover:text-white hover:bg-gray-800/60"
-                    : "text-gray-600 hover:text-gray-800 hover:bg-gray-100/60"
-                }`}
-              >
-                <span className="text-sm">{filter.icon}</span>
-                <div className="flex items-center space-x-1">
-                  <span className="font-medium">{filter.label}</span>
-                  <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                    activeFilter === filter.key 
-                      ? "bg-white/20 text-white/90" 
-                      : darkMode 
-                      ? "bg-gray-700/50 text-gray-400" 
-                      : "bg-gray-200/50 text-gray-500"
-                  }`}>
-                    {filter.count}
-                  </span>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-        
-        {/* Subtle decorative dot */}
-        <div className={`absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full ${
-          darkMode ? "bg-emerald-500" : "bg-blue-500"
-        } opacity-40 animate-pulse`} />
-      </div>
-    </div>
+    <button
+      onClick={() => onClick(filter)}
+      className={`px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 ${isActive
+        ? darkMode
+          ? "bg-[#045106] text-white shadow-lg shadow-green-900/30"
+          : "bg-[#F88379] text-gray-900 shadow-lg shadow-orange-500/30"
+        : darkMode
+          ? "bg-[#022a02] text-gray-400 hover:bg-[#033a03] hover:text-white"
+          : "bg-[#FBCEB1] text-gray-700 hover:bg-[#F2D2BD] hover:text-gray-900"
+        }`}
+    >
+      {label}
+    </button>
   );
 };
 
-const Projects = ({ darkMode, h }) => {
-  console.log("Rendering Home with darkMode:", darkMode);
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [activeFilter, setActiveFilter] = useState("all");
-  const [filteredEntries, setFilteredEntries] = useState(entries);
-  const [slides, setSlides] = useState(entries);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const timeoutRef = useRef(null);
-
-  const timeRunning = 1000;
-  const timeAutoNext = 1000;
-
-  // Filter entries based on active filter
-  useEffect(() => {
-    const filtered = activeFilter === "all" 
-      ? entries 
-      : entries.filter(entry => entry.category === activeFilter);
-    
-    setFilteredEntries(filtered);
-    setSlides(filtered);
-    setCurrentSlide(0);
-    
-    // Clear timeout when filter changes
-    clearTimeout(timeoutRef.current);
-  }, [activeFilter]);
-
-  const handleFilterChange = (filter) => {
-    if (filter !== activeFilter) {
-      setActiveFilter(filter);
-    }
-  };
-
-  const moveSlide = (direction) => {
-    if (isAnimating || filteredEntries.length <= 1) return;
-
-    setIsAnimating(true);
-
-    if (direction === "next") {
-      setSlides((prevSlides) => {
-        const updatedSlides = [...prevSlides];
-        updatedSlides.push(updatedSlides.shift());
-        return updatedSlides;
-      });
-      setCurrentSlide((prev) => (prev + 1) % filteredEntries.length);
-    } else if (direction === "prev") {
-      setSlides((prevSlides) => {
-        const updatedSlides = [...prevSlides];
-        updatedSlides.unshift(updatedSlides.pop());
-        return updatedSlides;
-      });
-      setCurrentSlide((prev) => (prev - 1 + filteredEntries.length) % filteredEntries.length);
-    }
-
-    setTimeout(() => {
-      setIsAnimating(false);
-    }, timeRunning);
-  };
-
-  const navigateToSlide = (targetIndex) => {
-    if (isAnimating || targetIndex === currentSlide || filteredEntries.length <= 1) return;
-
-    const currentIndex = currentSlide;
-    const distance = (targetIndex - currentIndex + filteredEntries.length) % filteredEntries.length;
-    
-    // Determine the shorter path
-    const stepsForward = distance;
-    const stepsBackward = filteredEntries.length - distance;
-    
-    const direction = stepsForward <= stepsBackward ? "next" : "prev";
-    const steps = direction === "next" ? stepsForward : stepsBackward;
-
-    // Clear any existing auto-advance timeout
-    clearTimeout(timeoutRef.current);
-    
-    let currentStep = 0;
-    const navigateStep = () => {
-      if (currentStep < steps) {
-        moveSlide(direction);
-        currentStep++;
-        setTimeout(navigateStep, timeRunning);
-      } else {
-        // Resume auto-advance after navigation is complete
-        timeoutRef.current = setTimeout(() => {
-          handleNext();
-        }, timeAutoNext);
-      }
-    };
-
-    navigateStep();
-  };
-
-  const handleNext = () => moveSlide("next");
-  const handlePrev = () => moveSlide("prev");
-
-  useEffect(() => {
-    if (filteredEntries.length > 1) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(() => {
-        handleNext();
-      }, timeAutoNext);
-    }
-
-    return () => clearTimeout(timeoutRef.current);
-  }, [slides, filteredEntries.length]);
-
-  // Show message when no projects match the filter
-  if (filteredEntries.length === 0) {
-    return (
-      <div className="container mx-auto min-h-screen flex flex-col items-center justify-center relative">
-        <FilterToggle 
-          activeFilter={activeFilter} 
-          onFilterChange={handleFilterChange} 
-          darkMode={darkMode} 
+const ProjectCard = ({ project, darkMode }) => {
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.3 }}
+      className={`group relative overflow-hidden rounded-2xl border ${darkMode
+        ? "bg-[#012001] border-[#045106] hover:border-[#ADFF2F] hover:shadow-lg hover:shadow-green-900/20"
+        : "bg-[#F7F9F2] border-[#FBCEB1] hover:border-[#F88379] hover:shadow-xl hover:shadow-orange-200"
+        } transition-all duration-300 hover:-translate-y-2`}
+    >
+      {/* Image Section */}
+      <div className="relative h-48 overflow-hidden">
+        <div className={`absolute inset-0 bg-gradient-to-t ${darkMode ? "from-[#012001] via-transparent" : "from-[#F7F9F2] via-transparent"} to-transparent z-10`} />
+        <img
+          src={project.image}
+          alt={project.label}
+          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
         />
-        <div className={`text-center mt-20 ${darkMode ? "text-white" : "text-black"}`}>
-          <div className="text-6xl mb-6">🔍</div>
-          <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-            No projects found
-          </h2>
-          <p className="text-lg opacity-70">Try selecting a different filter option to explore more projects.</p>
+        <div className="absolute top-4 right-4 z-20">
+          <span className={`px-3 py-1 text-xs font-semibold rounded-full backdrop-blur-md ${darkMode ? "bg-black/60 text-[#ADFF2F] border border-[#045106]" : "bg-white/90 text-[#F88379] shadow-sm"
+            }`}>
+            {project.category === 'app' ? 'App' : 'Web'}
+          </span>
         </div>
       </div>
-    );
-  }
 
-  return (
-    <div className="container mx-auto min-h-screen relative">
-      <FilterToggle 
-        activeFilter={activeFilter} 
-        onFilterChange={handleFilterChange} 
-        darkMode={darkMode} 
-      />
-      
-      <div className="carousel">
-        <div className={`list mt-[10vh] md:mt-[14vh]`}>
-          {slides.map((slide, index) => (
-            <div
-              key={slide.id}
-              className={`item ${index === 0 ? "active" : ""}`}
+      {/* Content Section */}
+      <div className="p-6">
+        <h3 className={`text-xl font-bold mb-2 ${darkMode ? "text-white group-hover:text-[#ADFF2F]" : "text-gray-900 group-hover:text-[#F88379]"} transition-colors`}>
+          {project.label}
+        </h3>
+        <p className={`text-sm mb-4 line-clamp-2 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+          {project.description}
+        </p>
+
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.techStack.map((tech, i) => (
+            <span
+              key={i}
+              className={`text-xs px-2 py-1 rounded-md ${darkMode
+                ? "bg-[#022a02] text-gray-300 border border-[#045106]"
+                : "bg-[#FBCEB1]/30 text-gray-700 border border-[#FBCEB1]"
+                }`}
             >
-              <div className="content max-w-[60vw]">
-                <div
-                  className={`author ${
-                    darkMode ? "text-white" : "text-black "
-                  }`}
-                >
-                  Projects
-                </div>
-                <div className="topic">{slide.label}</div>
-                <div
-                  className={`title ${darkMode ? "text-white" : "text-black"}`}
-                >
-                  {slide.title}
-                </div>
-                <div
-                  className={`desc my-4 ${darkMode ? "text-white" : "text-black"}`}
-                >
-                  <ul className="list-disc pl-5">
-                    {slide.desc.map((point, idx) => (
-                      <h1 className="md:text-lg text-[15px]" key={idx}>{point}</h1>
-                    ))}
-                  </ul>
-                </div>
-                
-                <PlatformLinks platforms={slide.platforms} />
-              </div>
-            </div>
+              {tech}
+            </span>
           ))}
         </div>
 
-        {filteredEntries.length > 1 && (
-          <div className="thumbnail">
-            {slides.map((slide, index) => {
-              // Find the original index of this slide in the filtered entries array
-              const originalIndex = filteredEntries.findIndex(entry => entry.id === slide.id);
-              return (
-                <div
-                  key={slide.id}
-                  className={`item ${index === 0 ? "active" : ""} cursor-pointer hover:opacity-80 transition-opacity duration-200`}
-                  onClick={() => navigateToSlide(originalIndex)}
-                >
-                  <div className="content">
-                    <img
-                      src={slide.image}
-                      alt={slide.label}
-                      className="w-full h-full object-contain py-3"
-                    />
-                    <div
-                      className={`title ${
-                        darkMode ? "text-white" : "text-black"
-                      } text-center `}
-                    >
-                      {slide.label}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+        {/* Links */}
+        <div className="flex items-center gap-3 mt-auto">
+          {project.links.map((link, i) => (
+            <a
+              key={i}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-2 rounded-lg transition-colors ${darkMode
+                ? "bg-[#022a02] text-gray-400 hover:bg-[#045106] hover:text-[#ADFF2F]"
+                : "bg-[#F2D2BD] text-gray-700 hover:bg-[#F88379] hover:text-white"
+                }`}
+              title={link.type}
+            >
+              {link.icon}
+            </a>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+const Projects = ({ darkMode, isHorizontal = false }) => {
+  const [activeFilter, setActiveFilter] = useState("all");
+
+  const filteredProjects = activeFilter === "all"
+    ? entries
+    : entries.filter(project => project.category === activeFilter);
+
+  return (
+    <div className={`transition-colors duration-300 ${
+      // If horizontal (in Home), remove min-h-screen to fit better
+      isHorizontal ? "py-10" : "min-h-screen py-24"
+      } px-4 sm:px-6 lg:px-8 ${darkMode ? "bg-[#011601]" : "bg-gradient-to-b from-[#F7F9F2] to-[#FEECE2]"
+      }`}>
+      <div className={`${isHorizontal ? "w-full" : "max-w-7xl mx-auto"}`}>
+        {/* Header */}
+        <div className={`text-center ${isHorizontal ? "mb-8" : "mb-16"}`}>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r ${darkMode
+              ? "from-white via-[#ADFF2F] to-[#045106]"
+              : "from-gray-900 via-[#F88379] to-[#FBCEB1]"
+              } bg-clip-text text-transparent`}
+          >
+            Featured Projects
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className={`text-lg max-w-2xl mx-auto ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+          >
+            A collection of applications and tools I've built to solve real-world problems.
+          </motion.p>
+        </div>
+
+        {/* Filter - Hide in horizontal mode if desired, or keep it. Keeping for now but maybe less margin. */}
+        {!isHorizontal && (
+          <div className="flex justify-center mb-12 gap-4">
+            <FilterButton
+              filter="all"
+              label="All Projects"
+              activeFilter={activeFilter}
+              onClick={setActiveFilter}
+              darkMode={darkMode}
+            />
+            <FilterButton
+              filter="web"
+              label="Web Apps"
+              activeFilter={activeFilter}
+              onClick={setActiveFilter}
+              darkMode={darkMode}
+            />
+            <FilterButton
+              filter="app"
+              label="Mobile Apps"
+              activeFilter={activeFilter}
+              onClick={setActiveFilter}
+              darkMode={darkMode}
+            />
           </div>
         )}
 
-        {filteredEntries.length > 1 && (
-          <div className={` ${darkMode ? "text-white" : "text-black"}`}>
-            <button
-              className={` ${darkMode ? "bg-[#043927]" : "text-black"}`}
-              id="prev"
-              onClick={handlePrev}
-              disabled={isAnimating}
-            >
-              ⇐
-            </button>
-            <button id="next" onClick={handleNext} disabled={isAnimating}>
-              ⇒
-            </button>
+        {/* Layout Conditionally */}
+        {isHorizontal ? (
+          // Horizontal Scroll Layout
+          <div className="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory scrollbar-hide">
+            {filteredProjects.map((project) => (
+              <div key={project.id} className="min-w-[300px] md:min-w-[350px] snap-center">
+                <ProjectCard
+                  project={project}
+                  darkMode={darkMode}
+                />
+              </div>
+            ))}
           </div>
+        ) : (
+          // Standard Grid Layout
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  darkMode={darkMode}
+                />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        )}
+
+        {/* Empty State */}
+        {filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-20"
+          >
+            <p className={`text-xl ${darkMode ? "text-gray-500" : "text-gray-400"}`}>
+              No projects found in this category.
+            </p>
+          </motion.div>
         )}
       </div>
     </div>

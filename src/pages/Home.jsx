@@ -6,7 +6,7 @@ import Skills from "./Skills";
 import Projects from "./Projects";
 import Contact from "./Contact";
 import { useNavigate } from "react-router-dom";
-import AboutSection from "./AboutSection";
+// import {ChatBot} from 'react-ai-chatbot';
 
 const Home = ({ darkMode }) => {
   console.log("Rendering Home with darkMode:", darkMode);
@@ -126,9 +126,8 @@ const Home = ({ darkMode }) => {
 
           <div className="flex md:flex-row flex-col items-center justify-around">
             <div
-              className={`fradius ${
-                darkMode ? "bg-[#022a02]" : "bg-[#FBCEB1]"
-              } mt-20 md:mt-5 `}
+              className={`fradius ${darkMode ? "bg-[#022a02]" : "bg-[#FBCEB1]"
+                } mt-20 md:mt-5 `}
             >
               <motion.div
                 className="flex justify-center  items-center"
@@ -177,11 +176,10 @@ const Home = ({ darkMode }) => {
             >
               <div className="mt-4 md:max-w-[100%] md:w-[100%] max-w-[95%] text-white rounded-lg shadow-lg overflow-hidden md:h-[300px]">
                 <div
-                  className={`flex justify-between items-center p-2 ${
-                    darkMode
+                  className={`flex justify-between items-center p-2 ${darkMode
                       ? "bg-[#012001] text-white"
                       : "bg-[#FBCEB1] text-gray-800"
-                  }`}
+                    }`}
                 >
                   <div className="flex space-x-2">
                     <span className="w-3 h-3 bg-red-500 rounded-full"></span>
@@ -191,19 +189,17 @@ const Home = ({ darkMode }) => {
                   <p className="text-sm font-mono">Download</p>
                 </div>
                 <div
-                  className={`p-4 font-mono text-sm ${
-                    darkMode
+                  className={`p-4 font-mono text-sm ${darkMode
                       ? "bg-[#022a02]  text-white"
                       : "bg-[#F2D2BD] text-gray-800"
-                  }`}
+                    }`}
                 >
                   <p className="text-gray-400">// Hello there</p>
                   <h2 className="text-sm mb-2">
                     Hello, This is{" "}
                     <span
-                      className={`${
-                        darkMode ? "text-yellow-400" : "text-cyan-600"
-                      }`}
+                      className={`${darkMode ? "text-yellow-400" : "text-cyan-600"
+                        }`}
                     >
                       Piyush Kumar
                     </span>
@@ -216,16 +212,14 @@ const Home = ({ darkMode }) => {
                     // Click below to download my resume in PDF format
                   </p>
                   <pre
-                    className={`${
-                      darkMode
+                    className={`${darkMode
                         ? "bg-[#18453B] text-white"
                         : "bg-[#F89880] text-black"
-                    } p-4 rounded-md mt-2 w-full overflow-x-auto`}
+                      } p-4 rounded-md mt-2 w-full overflow-x-auto`}
                   >
                     <code
-                      className={`block whitespace-pre-wrap break-words text-sm ${
-                        darkMode ? "text-white" : "text-black"
-                      }`}
+                      className={`block whitespace-pre-wrap break-words text-sm ${darkMode ? "text-white" : "text-black"
+                        }`}
                     >
                       &lt;<span className="text-blue-400">button</span>
                       <span className="text-yellow-400 px-2">class</span>= "
@@ -239,11 +233,10 @@ const Home = ({ darkMode }) => {
                       window.location.href =
                         "https://drive.google.com/uc?export=download&id=1XM6arc8Hg6w0Kimxv2Tyctb-xmiDkABu";
                     }}
-                    className={`mt-4 ${
-                      darkMode
+                    className={`mt-4 ${darkMode
                         ? "bg-[#ADFF2F] text-black"
                         : "bg-[#F88379] text-gray-800"
-                    } text-black px-4 py-2 rounded hover:bg-cyan-400 transition`}
+                      } text-black px-4 py-2 rounded hover:bg-cyan-400 transition`}
                     aria-label="Download Resume"
                   >
                     DOWNLOAD
@@ -276,20 +269,18 @@ const Home = ({ darkMode }) => {
           transition={{ duration: 1 }}
         >
           <div
-            className={`text-center  ${
-              darkMode
+            className={`text-center  ${darkMode
                 ? "bg-[#022a02] shadow-green-900"
                 : "bg-[#FBCEB1] shadow-orange-900"
-            } p-10 md:text-left px-4 ml-[4vw] mr-[8vw] mt-10 shadow-lg  rounded-lg transform transition-all duration-300 hover:scale-105`}
+              } p-10 md:text-left px-4 ml-[4vw] mr-[8vw] mt-10 shadow-lg  rounded-lg transform transition-all duration-300 hover:scale-105`}
           >
             {/* Greeting Text */}
             <h3 className="text-yellow-400 text-lg mb-2">Hello, Welcome</h3>
 
             {/* Name Heading with animation and gradient */}
             <h1
-              className={`text-3xl md:text-4xl font-bold ${
-                darkMode ? "text-white" : "text-black"
-              } animated-text`}
+              className={`text-3xl md:text-4xl font-bold ${darkMode ? "text-white" : "text-black"
+                } animated-text`}
               style={{
                 background:
                   "linear-gradient(90deg,rgb(19, 172, 255),rgb(212, 231, 38),rgb(69, 218, 19))", // gradient excluding green and orange
@@ -304,9 +295,8 @@ const Home = ({ darkMode }) => {
 
             {/* Short Introduction */}
             <p
-              className={`leading-relaxed mt-4 mb-6 text-sm md:text-lg ${
-                darkMode ? "text-gray-300" : "text-gray-700"
-              }`}
+              className={`leading-relaxed mt-4 mb-6 text-sm md:text-lg ${darkMode ? "text-gray-300" : "text-gray-700"
+                }`}
             >
               "I'm an app and web developer at IB Arts, skilled in React, React
               Native, Node.js, and MongoDB. I specialize in creating
@@ -328,14 +318,12 @@ const Home = ({ darkMode }) => {
         {/* Vertical About Me Section */}
         <div className="hidden md:flex flex-col justify-center items-center w-16 mr-2">
           <div
-            className={`w-12 h-48 flex items-center justify-center rounded-lg ${
-              darkMode ? "bg-lime-600" : "bg-orange-400"
-            }`}
+            className={`w-12 h-48 flex items-center justify-center rounded-lg ${darkMode ? "bg-lime-600" : "bg-orange-400"
+              }`}
           >
             <h2
-              className={`text-sm font-bold text-center ${
-                darkMode ? "text-white" : "text-gray-800"
-              }`}
+              className={`text-sm font-bold text-center ${darkMode ? "text-white" : "text-gray-800"
+                }`}
               style={{
                 writingMode: "vertical-rl",
                 textOrientation: "mixed",
@@ -349,17 +337,16 @@ const Home = ({ darkMode }) => {
 
       <TimeLIne darkMode={darkMode} />
       <Skills darkMode={darkMode} show={true} hide={true} />
-      <div className="h-screen">
-        <Projects darkMode={darkMode} />{" "}
+      <div className="h-screen/2 py-10">
+        <Projects darkMode={darkMode} isHorizontal={true} />{" "}
       </div>
       <div className="md:pl-[8vw]">
         <Contact darkMode={darkMode} hide={true} />
       </div>
       {/* Footer */}
       <footer
-        className={`text-center py-2 ${
-          darkMode ? "bg-[#022a02] text-white" : "bg-orange-300 text-black"
-        }`}
+        className={`text-center py-2 ${darkMode ? "bg-[#022a02] text-white" : "bg-orange-300 text-black"
+          }`}
       >
         <p>
           &copy; {new Date().getFullYear()} Piyush Kumar. All Rights Reserved.
