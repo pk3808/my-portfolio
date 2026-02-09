@@ -37,7 +37,6 @@ const FloatingElements = ({ darkMode, status }) => {
 
   useEffect(() => {
     if (status === "loading") {
-      // Initialize floating planes
       const initialPlanes = Array.from({ length: 3 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
@@ -46,7 +45,6 @@ const FloatingElements = ({ darkMode, status }) => {
         size: Math.random() * 0.5 + 0.8,
       }));
 
-      // Initialize floating boats
       const initialBoats = Array.from({ length: 2 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
@@ -64,12 +62,11 @@ const FloatingElements = ({ darkMode, status }) => {
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Paper Planes */}
       {planes.map((plane) => (
         <PaperPlaneIcon
           key={`plane-${plane.id}`}
           className={`absolute w-6 h-6 ${
-            darkMode ? "text-[#DFFF00]/40" : "text-[#E3735E]/40"
+            darkMode ? "text-emerald-400/40" : "text-emerald-600/40"
           }`}
           style={{
             left: `${plane.x}%`,
@@ -80,12 +77,11 @@ const FloatingElements = ({ darkMode, status }) => {
         />
       ))}
 
-      {/* Paper Boats */}
       {boats.map((boat) => (
         <PaperBoatIcon
           key={`boat-${boat.id}`}
           className={`absolute w-5 h-5 ${
-            darkMode ? "text-[#FFD580]/30" : "text-[#D65A47]/30"
+            darkMode ? "text-slate-400/30" : "text-slate-600/30"
           }`}
           style={{
             left: `${boat.x}%`,
@@ -107,43 +103,37 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
       case "loading":
         return (
           <div className="text-center relative">
-            {/* Main Animation Container */}
             <div className="relative mb-8">
               <div className="relative w-40 h-40 mx-auto">
-                {/* Outer Pulse Ring */}
                 <div
                   className={`absolute inset-0 rounded-full ${
-                    darkMode ? "bg-[#DFFF00]/10" : "bg-[#E3735E]/10"
+                    darkMode ? "bg-emerald-500/10" : "bg-emerald-500/10"
                   }`}
                   style={{
                     animation: "pulseRing 2s ease-out infinite",
                   }}
                 ></div>
 
-                {/* Middle Pulse Ring */}
                 <div
                   className={`absolute inset-6 rounded-full ${
-                    darkMode ? "bg-[#DFFF00]/20" : "bg-[#E3735E]/20"
+                    darkMode ? "bg-emerald-500/20" : "bg-emerald-500/20"
                   }`}
                   style={{
                     animation: "pulseRing 2s ease-out infinite 0.7s",
                   }}
                 ></div>
 
-                {/* Central Paper Plane */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div
                     className={`w-16 h-16 rounded-full ${
-                      darkMode ? "bg-[#DFFF00]" : "bg-[#E3735E]"
+                      darkMode ? "bg-emerald-500" : "bg-emerald-600"
                     } flex items-center justify-center shadow-lg`}
                     style={{
                       animation: "bounce 1.5s ease-in-out infinite",
                     }}
                   >
                     <PaperPlaneIcon
-                      className={`w-8 h-8 ${
-                        darkMode ? "text-[#1a5c35]" : "text-white"
-                      }`}
+                      className="w-8 h-8 text-white"
                       style={{
                         transform: "rotate(45deg)",
                         animation: "wiggle 0.8s ease-in-out infinite",
@@ -151,39 +141,12 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
                     />
                   </div>
                 </div>
-
-                {/* Orbiting Elements */}
-                <div className="absolute inset-0">
-                  <PaperBoatIcon
-                    className={`absolute w-6 h-6 ${
-                      darkMode ? "text-[#FFD580]" : "text-[#D65A47]"
-                    }`}
-                    style={{
-                      top: "10%",
-                      left: "50%",
-                      transformOrigin: "50% 250%",
-                      animation: "orbit 3s linear infinite",
-                    }}
-                  />
-                  <PaperPlaneIcon
-                    className={`absolute w-5 h-5 ${
-                      darkMode ? "text-[#DFFF00]/70" : "text-[#E3735E]/70"
-                    }`}
-                    style={{
-                      bottom: "10%",
-                      right: "50%",
-                      transformOrigin: "50% -150%",
-                      transform: "rotate(180deg)",
-                      animation: "orbit 3s linear infinite 1.5s",
-                    }}
-                  />
-                </div>
               </div>
             </div>
 
             <h3
               className={`text-2xl font-bold mb-3 ${
-                darkMode ? "text-white" : "text-gray-800"
+                darkMode ? "text-white" : "text-slate-800"
               }`}
               style={{ animation: "fadeInUp 0.6s ease-out 0.3s both" }}
             >
@@ -192,36 +155,12 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
 
             <p
               className={`text-base ${
-                darkMode ? "text-[#FFD580]" : "text-gray-600"
+                darkMode ? "text-slate-400" : "text-slate-600"
               } mb-4`}
               style={{ animation: "fadeInUp 0.6s ease-out 0.5s both" }}
             >
               Your message is sailing through cyberspace!
             </p>
-
-            <div
-              className="flex items-center justify-center space-x-2"
-              style={{ animation: "fadeInUp 0.6s ease-out 0.7s both" }}
-            >
-              <span
-                className="text-2xl animate-bounce"
-                style={{ animationDelay: "0s" }}
-              >
-                ✈️
-              </span>
-              <span
-                className="text-xl animate-bounce"
-                style={{ animationDelay: "0.2s" }}
-              >
-                ⛵
-              </span>
-              <span
-                className="text-2xl animate-bounce"
-                style={{ animationDelay: "0.4s" }}
-              >
-                📧
-              </span>
-            </div>
           </div>
         );
 
@@ -230,23 +169,20 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
           <div className="text-center">
             <div className="mb-8">
               <div className="relative w-32 h-32 mx-auto">
-                {/* Success Ring Animation */}
                 <div
                   className={`absolute inset-0 rounded-full ${
-                    darkMode ? "bg-[#DFFF00]" : "bg-[#E3735E]"
+                    darkMode ? "bg-emerald-500" : "bg-emerald-600"
                   }`}
                   style={{ animation: "successPulse 0.8s ease-out" }}
                 ></div>
 
                 <div
                   className={`absolute inset-4 rounded-full ${
-                    darkMode ? "bg-[#DFFF00]" : "bg-[#E3735E]"
+                    darkMode ? "bg-emerald-500" : "bg-emerald-600"
                   } flex items-center justify-center`}
                 >
                   <svg
-                    className={`w-16 h-16 ${
-                      darkMode ? "text-[#1a5c35]" : "text-white"
-                    }`}
+                    className="w-16 h-16 text-white"
                     style={{ animation: "checkDraw 0.8s ease-out 0.3s both" }}
                     fill="none"
                     stroke="currentColor"
@@ -260,30 +196,12 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
                     />
                   </svg>
                 </div>
-
-                {/* Celebration Elements */}
-                <div className="absolute inset-0 pointer-events-none">
-                  {[...Array(6)].map((_, i) => (
-                    <div
-                      key={i}
-                      className={`absolute w-3 h-3 rounded-full ${
-                        darkMode ? "bg-[#FFD580]" : "bg-[#D65A47]"
-                      }`}
-                      style={{
-                        top: "50%",
-                        left: "50%",
-                        transform: `rotate(${i * 60}deg) translateY(-60px)`,
-                        animation: `celebrate 1s ease-out ${i * 0.1}s both`,
-                      }}
-                    ></div>
-                  ))}
-                </div>
               </div>
             </div>
 
             <h3
               className={`text-2xl font-bold mb-3 ${
-                darkMode ? "text-white" : "text-gray-800"
+                darkMode ? "text-white" : "text-slate-800"
               }`}
               style={{ animation: "fadeInUp 0.6s ease-out 0.5s both" }}
             >
@@ -292,7 +210,7 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
 
             <p
               className={`text-base ${
-                darkMode ? "text-[#FFD580]" : "text-gray-600"
+                darkMode ? "text-slate-400" : "text-slate-600"
               }`}
               style={{ animation: "fadeInUp 0.6s ease-out 0.7s both" }}
             >
@@ -324,21 +242,12 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
                     />
                   </svg>
                 </div>
-
-                {/* Broken plane animation */}
-                <PaperPlaneIcon
-                  className="absolute w-6 h-6 text-red-300 top-2 right-2"
-                  style={{
-                    transform: "rotate(45deg)",
-                    animation: "fallDown 1s ease-in 0.5s both",
-                  }}
-                />
               </div>
             </div>
 
             <h3
               className={`text-2xl font-bold mb-3 ${
-                darkMode ? "text-white" : "text-gray-800"
+                darkMode ? "text-white" : "text-slate-800"
               }`}
             >
               Oops! Message Lost in Transit 😔
@@ -346,7 +255,7 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
 
             <p
               className={`text-base ${
-                darkMode ? "text-[#FFD580]" : "text-gray-600"
+                darkMode ? "text-slate-400" : "text-slate-600"
               }`}
             >
               Your message couldn't be sent. Please try again.
@@ -363,154 +272,42 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
     <>
       <style jsx>{`
         @keyframes pulseRing {
-          0% {
-            transform: scale(0.8);
-            opacity: 1;
-          }
-          100% {
-            transform: scale(1.4);
-            opacity: 0;
-          }
+          0% { transform: scale(0.8); opacity: 1; }
+          100% { transform: scale(1.4); opacity: 0; }
         }
-
         @keyframes floatPlane {
-          0%,
-          100% {
-            transform: translateX(0) translateY(0) rotate(45deg);
-          }
-          25% {
-            transform: translateX(10px) translateY(-5px) rotate(50deg);
-          }
-          50% {
-            transform: translateX(20px) translateY(-10px) rotate(40deg);
-          }
-          75% {
-            transform: translateX(15px) translateY(-5px) rotate(45deg);
-          }
+          0%, 100% { transform: translateX(0) translateY(0) rotate(45deg); }
+          50% { transform: translateX(20px) translateY(-10px) rotate(40deg); }
         }
-
         @keyframes floatBoat {
-          0%,
-          100% {
-            transform: translateX(0) translateY(0) rotate(0deg);
-          }
-          25% {
-            transform: translateX(-8px) translateY(-3px) rotate(-5deg);
-          }
-          50% {
-            transform: translateX(-15px) translateY(-8px) rotate(-8deg);
-          }
-          75% {
-            transform: translateX(-10px) translateY(-4px) rotate(-3deg);
-          }
+          0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+          50% { transform: translateX(-15px) translateY(-8px) rotate(-8deg); }
         }
-
         @keyframes wiggle {
-          0%,
-          100% {
-            transform: rotate(45deg);
-          }
-          25% {
-            transform: rotate(50deg);
-          }
-          75% {
-            transform: rotate(40deg);
-          }
+          0%, 100% { transform: rotate(45deg); }
+          50% { transform: rotate(50deg); }
         }
-
-        @keyframes orbit {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
         @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes successPulse {
-          0% {
-            transform: scale(0);
-            opacity: 0;
-          }
-          50% {
-            transform: scale(1.1);
-            opacity: 0.8;
-          }
-          100% {
-            transform: scale(1);
-            opacity: 1;
-          }
+          0% { transform: scale(0); opacity: 0; }
+          50% { transform: scale(1.1); opacity: 0.8; }
+          100% { transform: scale(1); opacity: 1; }
         }
-
         @keyframes checkDraw {
-          0% {
-            stroke-dasharray: 0 50;
-            stroke-dashoffset: 0;
-          }
-          100% {
-            stroke-dasharray: 50 50;
-            stroke-dashoffset: 0;
-          }
+          0% { stroke-dasharray: 0 50; stroke-dashoffset: 0; }
+          100% { stroke-dasharray: 50 50; stroke-dashoffset: 0; }
         }
-
-        @keyframes celebrate {
-          0% {
-            transform: rotate(var(--rotation)) translateY(0) scale(0);
-            opacity: 1;
-          }
-          50% {
-            opacity: 1;
-          }
-          100% {
-            transform: rotate(var(--rotation)) translateY(-100px) scale(1);
-            opacity: 0;
-          }
-        }
-
         @keyframes errorShake {
-          0%,
-          100% {
-            transform: translateX(0);
-          }
-          25% {
-            transform: translateX(-5px);
-          }
-          75% {
-            transform: translateX(5px);
-          }
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-5px); }
+          75% { transform: translateX(5px); }
         }
-
-        @keyframes fallDown {
-          0% {
-            transform: rotate(45deg) translateY(0);
-            opacity: 1;
-          }
-          100% {
-            transform: rotate(45deg) translateY(20px);
-            opacity: 0;
-          }
-        }
-
         @keyframes modalSlideIn {
-          from {
-            opacity: 0;
-            transform: scale(0.8) translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
+          from { opacity: 0; transform: scale(0.8) translateY(20px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
         }
       `}</style>
 
@@ -523,46 +320,28 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
         <div
           className={`relative w-full max-w-lg mx-auto rounded-3xl p-10 shadow-2xl transition-all duration-500 ${
             darkMode
-              ? "bg-gradient-to-br from-[#022a02] via-[#1a4a1a] to-[#355E3B] border-2 border-[#DFFF00]/40"
-              : "bg-gradient-to-br from-[#FAD5A5] via-[#FAC898] to-[#F4A460] border-2 border-[#E97451]/40"
+              ? "bg-slate-800 border border-slate-700"
+              : "bg-white border border-slate-200"
           }`}
-          style={{
-            animation: "modalSlideIn 0.5s ease-out",
-            backgroundImage: darkMode
-              ? "radial-gradient(circle at 20% 30%, rgba(223, 255, 0, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(255, 213, 128, 0.1) 0%, transparent 50%)"
-              : "radial-gradient(circle at 20% 30%, rgba(227, 115, 94, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(212, 90, 71, 0.1) 0%, transparent 50%)",
-          }}
+          style={{ animation: "modalSlideIn 0.5s ease-out" }}
         >
-          {/* Floating Background Elements */}
           <FloatingElements darkMode={darkMode} status={status} />
 
-          {/* Close Button */}
           {status !== "loading" && (
             <button
               onClick={onClose}
               className={`absolute top-4 right-4 p-2 rounded-full transition-all duration-300 hover:scale-110 ${
                 darkMode
-                  ? "hover:bg-[#355E3B] text-[#FFD580] hover:text-white"
-                  : "hover:bg-[#FAC898] text-[#E97451] hover:text-gray-700"
+                  ? "hover:bg-slate-700 text-slate-400 hover:text-white"
+                  : "hover:bg-slate-100 text-slate-400 hover:text-slate-900"
               }`}
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           )}
 
-          {/* Main Content */}
           <div className="relative z-10">{renderContent()}</div>
         </div>
       </div>
@@ -571,26 +350,14 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
 };
 
 const Contact = ({ darkMode }) => {
-  const [modalState, setModalState] = useState({
-    isOpen: false,
-    status: null,
-    errorMessage: "",
-  });
+  const [modalState, setModalState] = useState({ isOpen: false, status: null, errorMessage: "" });
   const [contactType, setContactType] = useState(contactOptions[0]);
-  const [formData, setFormData] = useState({
-    email: "",
-    name: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ email: "", name: "", message: "" });
 
-  const isFormValid =
-    formData.email.trim() && formData.name.trim() && formData.message.trim();
+  const isFormValid = formData.email.trim() && formData.name.trim() && formData.message.trim();
 
   const handleInputChange = (field, value) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async () => {
@@ -608,14 +375,12 @@ const Contact = ({ darkMode }) => {
         "https://my-vercel-api-olive.vercel.app/api/contact",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         }
       );
 
-      await new Promise((resolve) => setTimeout(resolve, 2500)); // Increased delay to show animations
+      await new Promise((resolve) => setTimeout(resolve, 2500));
 
       if (response.ok) {
         setModalState({ isOpen: true, status: "success", errorMessage: "" });
@@ -634,8 +399,7 @@ const Contact = ({ darkMode }) => {
       setModalState({
         isOpen: true,
         status: "error",
-        errorMessage:
-          "Network error occurred. Please check your connection and try again.",
+        errorMessage: "Network error occurred.",
       });
     }
   };
@@ -646,133 +410,80 @@ const Contact = ({ darkMode }) => {
 
   return (
     <>
-      <style jsx>{`
-        @keyframes fly {
-          0% {
-            transform: translateX(-10px);
-            opacity: 0.3;
-          }
-          50% {
-            transform: translateX(20px);
-            opacity: 0.7;
-          }
-          100% {
-            transform: translateX(-10px);
-            opacity: 0.3;
-          }
-        }
-      `}</style>
-      <div className="h-[100vh] flex items-center justify-center py-10 bg-transparent">
+      <div className={`h-[100vh] flex items-center justify-center py-10 transition-colors duration-300 ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
         <div
-          className={`relative flex mx-[2vw] flex-wrap items-center justify-center border-2 rounded-2xl overflow-hidden max-w-5xl w-full md:mx-auto h-[70vh] transition-all duration-300 hover:shadow-xl ${
+          className={`relative flex mx-[2vw] flex-wrap items-center justify-center border rounded-2xl overflow-hidden max-w-5xl w-full md:mx-auto h-[70vh] transition-all duration-300 hover:shadow-2xl ${
             darkMode
-              ? "bg-gradient-to-br from-green-900 to-emerald-800 border-lime-600/40 shadow-2xl"
-              : "bg-gradient-to-br from-orange-200 to-amber-100 border-orange-400/40 shadow-2xl"
+              ? "bg-slate-800 border-slate-700 shadow-xl"
+              : "bg-white border-slate-200 shadow-xl"
           }`}
         >
           {/* Left Side: Contact Form */}
           <div
-            className={`w-full lg:w-2/3 p-6 flex flex-col justify-center h-full ${
-              darkMode
-                ? "text-white bg-[#022a02]"
-                : "text-gray-800 bg-[#FAD5A5]"
+            className={`w-full lg:w-2/3 p-8 flex flex-col justify-center h-full transition-colors duration-300 ${
+              darkMode ? "bg-slate-800 text-white" : "bg-white text-slate-800"
             }`}
           >
             <div>
-              <h2
-                className={`text-2xl font-bold mb-3 ${
-                  darkMode ? "text-white" : "text-gray-800"
-                }`}
-              >
-                Let's{" "}
-                <span
-                  className={`${
-                    darkMode ? "text-[#FFD580]" : "text-[#E97451]"
-                  }`}
-                >
-                  Talk
-                </span>
+              <h2 className={`text-2xl font-bold mb-1 ${darkMode ? "text-white" : "text-slate-900"}`}>
+                Let's Talk
               </h2>
-              <div className="space-y-3 flex-1">
-                {/* Email and Name */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <p className={`text-sm mb-6 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                I'd love to hear from you. Send me a message!
+              </p>
+
+              <div className="space-y-4 flex-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label
-                      htmlFor="email"
-                      className={`block text-xs font-medium mb-1 ${
-                        darkMode ? "text-lime-200" : "text-gray-700"
-                      }`}
-                    >
-                      Email
-                    </label>
+                    <label htmlFor="email" className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>Email</label>
                     <input
                       id="email"
                       name="email"
                       type="email"
                       required
                       value={formData.email}
-                      onChange={(e) =>
-                        handleInputChange("email", e.target.value)
-                      }
+                      onChange={(e) => handleInputChange("email", e.target.value)}
                       placeholder="Enter your email"
-                      className={`w-full px-3 py-2 text-sm rounded-lg border shadow-md focus:outline-none focus:ring-2 transition-all duration-200 ${
+                      className={`w-full px-4 py-2.5 text-sm rounded-lg border focus:outline-none focus:ring-2 transition-all duration-200 ${
                         darkMode
-                          ? "bg-[#355E3B] text-white border-lime-600/50 focus:ring-lime-500"
-                          : "bg-[#FAC898] text-black border-orange-400/50 focus:ring-orange-500"
+                          ? "bg-slate-700 border-slate-600 text-white focus:ring-emerald-500 focus:border-transparent"
+                          : "bg-slate-50 border-slate-200 text-slate-900 focus:ring-emerald-500 focus:border-transparent"
                       }`}
                     />
                   </div>
                   <div>
-                    <label
-                      htmlFor="name"
-                      className={`block text-xs font-medium mb-1 ${
-                        darkMode ? "text-lime-200" : "text-gray-700"
-                      }`}
-                    >
-                      Name
-                    </label>
+                    <label htmlFor="name" className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>Name</label>
                     <input
                       id="name"
                       name="name"
                       type="text"
                       required
                       value={formData.name}
-                      onChange={(e) =>
-                        handleInputChange("name", e.target.value)
-                      }
+                      onChange={(e) => handleInputChange("name", e.target.value)}
                       placeholder="Enter your name"
-                      className={`w-full px-3 py-2 text-sm rounded-lg border shadow-md focus:outline-none focus:ring-2 transition-all duration-200 ${
+                      className={`w-full px-4 py-2.5 text-sm rounded-lg border focus:outline-none focus:ring-2 transition-all duration-200 ${
                         darkMode
-                          ? "bg-[#355E3B] text-white border-lime-600/50 focus:ring-lime-500"
-                          : "bg-[#FAC898] text-black border-orange-400/50 focus:ring-orange-500"
+                          ? "bg-slate-700 border-slate-600 text-white focus:ring-emerald-500 focus:border-transparent"
+                          : "bg-slate-50 border-slate-200 text-slate-900 focus:ring-emerald-500 focus:border-transparent"
                       }`}
                     />
                   </div>
                 </div>
 
-                {/* Contact Type (HeadlessUI Dropdown) */}
                 <div>
-                  <label
-                    className={`block text-xs font-medium mb-1 ${
-                      darkMode ? "text-lime-200" : "text-gray-700"
-                    }`}
-                  >
-                    Who is contacting?
-                  </label>
+                  <label className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>Who is contacting?</label>
                   <Listbox value={contactType} onChange={setContactType}>
                     <div className="relative mt-1">
                       <Listbox.Button
-                        className={`relative w-full cursor-pointer rounded-lg border py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus:ring-2 ${
+                        className={`relative w-full cursor-pointer rounded-lg border py-2.5 pl-4 pr-10 text-left focus:outline-none focus:ring-2 transition-all ${
                           darkMode
-                            ? "bg-[#355E3B] text-white border-lime-600/50 focus:ring-lime-500"
-                            : "bg-[#FAC898] text-black border-orange-400/50 focus:ring-orange-500"
+                            ? "bg-slate-700 border-slate-600 text-white focus:ring-emerald-500"
+                            : "bg-slate-50 border-slate-200 text-slate-900 focus:ring-emerald-500"
                         }`}
                       >
-                        <span className="block truncate">
-                          {contactType.label}
-                        </span>
+                        <span className="block truncate">{contactType.label}</span>
                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                          <ChevronDown className="h-5 w-5 text-gray-400" />
+                          <ChevronDown className="h-5 w-5 text-slate-400" />
                         </span>
                       </Listbox.Button>
                       <Transition
@@ -782,8 +493,8 @@ const Contact = ({ darkMode }) => {
                         leaveTo="opacity-0"
                       >
                         <Listbox.Options
-                          className={`absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg shadow-lg ring-1 ring-black/10 focus:outline-none ${
-                            darkMode ? "bg-[#355E3B]" : "bg-white"
+                          className={`absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg shadow-lg ring-1 ring-black/5 focus:outline-none ${
+                            darkMode ? "bg-slate-700 text-white" : "bg-white text-slate-900"
                           }`}
                         >
                           {contactOptions.map((option) => (
@@ -793,24 +504,18 @@ const Contact = ({ darkMode }) => {
                               className={({ active }) =>
                                 `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
                                   active
-                                    ? darkMode
-                                      ? "bg-lime-600 text-white"
-                                      : "bg-orange-400 text-white"
+                                    ? darkMode ? "bg-emerald-600 text-white" : "bg-emerald-50 text-emerald-900"
                                     : ""
                                 }`
                               }
                             >
                               {({ selected }) => (
                                 <>
-                                  <span
-                                    className={`block truncate ${
-                                      selected ? "font-medium" : "font-normal"
-                                    }`}
-                                  >
+                                  <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
                                     {option.label}
                                   </span>
                                   {selected ? (
-                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-green-400">
+                                    <span className={`absolute inset-y-0 left-0 flex items-center pl-3 ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>
                                       <Check className="h-5 w-5" />
                                     </span>
                                   ) : null}
@@ -824,50 +529,35 @@ const Contact = ({ darkMode }) => {
                   </Listbox>
                 </div>
 
-                {/* Message */}
                 <div className="flex-1">
-                  <label
-                    htmlFor="message"
-                    className={`block text-xs font-medium mb-1 ${
-                      darkMode ? "text-lime-200" : "text-gray-700"
-                    }`}
-                  >
-                    Message
-                  </label>
+                  <label htmlFor="message" className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>Message</label>
                   <textarea
                     id="message"
                     name="message"
                     required
                     value={formData.message}
-                    onChange={(e) =>
-                      handleInputChange("message", e.target.value)
-                    }
+                    onChange={(e) => handleInputChange("message", e.target.value)}
                     rows="4"
                     placeholder="Write your message here..."
-                    className={`w-full px-3 py-2 text-sm rounded-lg border resize-none shadow-md focus:outline-none focus:ring-2 transition-all duration-200 ${
+                    className={`w-full px-4 py-2.5 text-sm rounded-lg border resize-none focus:outline-none focus:ring-2 transition-all duration-200 ${
                       darkMode
-                        ? "bg-[#355E3B] text-white border-lime-600/50 focus:ring-lime-500"
-                        : "bg-[#FAC898] text-black border-orange-400/50 focus:ring-orange-500"
+                        ? "bg-slate-700 border-slate-600 text-white focus:ring-emerald-500 focus:border-transparent"
+                        : "bg-slate-50 border-slate-200 text-slate-900 focus:ring-emerald-500 focus:border-transparent"
                     }`}
                   ></textarea>
                 </div>
 
-                {/* Submit */}
                 <div className="pt-2">
                   <button
                     onClick={handleSubmit}
                     disabled={!isFormValid || modalState.status === "loading"}
-                    className={`md:w-[40%] w-full flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
+                    className={`w-full md:w-auto flex items-center justify-center font-bold text-sm px-8 py-3 rounded-lg shadow-lg transition-all duration-200 transform hover:translate-y-[-2px] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
                       darkMode
-                        ? "bg-[#DFFF00] hover:bg-[#CFFF00] text-[#1a5c35] border-2 border-lime-300"
-                        : "bg-[#E3735E] hover:bg-[#D65A47] text-white border-2 border-orange-300"
+                        ? "bg-emerald-500 hover:bg-emerald-600 text-white shadow-emerald-900/20"
+                        : "bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-500/20"
                     }`}
                   >
-                    <span className="flex items-center">
-                      {modalState.status === "loading"
-                        ? "Sending..."
-                        : "Send Message"}
-                    </span>
+                    {modalState.status === "loading" ? "Sending..." : "Send Message"}
                   </button>
                 </div>
               </div>
@@ -881,28 +571,18 @@ const Contact = ({ darkMode }) => {
                 width="100%"
                 height="100%"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=88.24356079101564%2C22.476395980457973%2C88.56491088867189%2C22.690369008583705&amp;layer=mapnik&amp;marker=22.58342403920957%2C88.40423583984375"
-                style={{ border: "none" }}
-                className="transition-transform duration-300 hover:scale-105"
+                style={{ border: "none", filter: darkMode ? "grayscale(100%) invert(90%)" : "grayscale(20%)" }}
+                className="transition-transform duration-300 hover:scale-105 opacity-80 hover:opacity-100"
               ></iframe>
               <div
-                className={`absolute bottom-4 left-4 right-4 ${
-                  darkMode ? "bg-black/60" : "bg-white/80"
-                } rounded-lg p-3 border-2 ${
-                  darkMode ? "border-lime-600/60" : "border-orange-400/60"
-                } shadow-lg`}
+                className={`absolute bottom-4 left-4 right-4 rounded-lg p-3 border shadow-lg backdrop-blur-md ${
+                  darkMode ? "bg-slate-900/80 border-slate-700" : "bg-white/90 border-slate-200"
+                }`}
               >
-                <div
-                  className={`text-xs font-medium ${
-                    darkMode ? "text-lime-100" : "text-gray-800"
-                  }`}
-                >
+                <div className={`text-xs font-bold ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>
                   📍 Kolkata, West Bengal
                 </div>
-                <div
-                  className={`text-xs ${
-                    darkMode ? "text-lime-200" : "text-gray-600"
-                  }`}
-                >
+                <div className={`text-xs ${darkMode ? "text-slate-300" : "text-slate-500"}`}>
                   Ready to connect!
                 </div>
               </div>

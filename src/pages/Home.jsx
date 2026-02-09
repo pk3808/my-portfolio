@@ -6,22 +6,22 @@ import Skills from "./Skills";
 import Projects from "./Projects";
 import Contact from "./Contact";
 import { useNavigate } from "react-router-dom";
-// import {ChatBot} from 'react-ai-chatbot';
+import { Download, User, ArrowRight } from "lucide-react";
 
 const Home = ({ darkMode }) => {
-  console.log("Rendering Home with darkMode:", darkMode);
   const [scrollingUp, setScrollingUp] = useState(false);
   const [showFlyingImage, setShowFlyingImage] = useState(false);
-  const [imageSrc, setImageSrc] = useState("/images/flyingd.png"); // Default image
+  const [imageSrc, setImageSrc] = useState("/images/flyingd.png");
   let scrollTimeout = null;
   const navigate = useNavigate();
 
   useEffect(() => {
     const textElements = document.querySelectorAll(".animated-text span");
     textElements.forEach((el, index) => {
-      el.style.animationDelay = `${index * 0.1}s`; // delay each letter's animation
+      el.style.animationDelay = `${index * 0.1}s`;
     });
   }, []);
+
   useEffect(() => {
     let lastScrollY = window.scrollY;
 
@@ -29,27 +29,23 @@ const Home = ({ darkMode }) => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY) {
-        // Scrolling down
         setScrollingUp(false);
-        setImageSrc("/images/flyingd.png"); // Normal image when scrolling down
+        setImageSrc("/images/flyingd.png");
       } else {
-        // Scrolling up
         setScrollingUp(true);
-        setImageSrc("/images/flyingu.png"); // Different image or rotate the existing one
+        setImageSrc("/images/flyingu.png");
       }
 
-      setShowFlyingImage(true); // Show the flying image
-
+      setShowFlyingImage(true);
       lastScrollY = currentScrollY;
 
       if (scrollTimeout) {
         clearTimeout(scrollTimeout);
       }
 
-      // Hide the flying image after scrolling stops
       scrollTimeout = setTimeout(() => {
         setShowFlyingImage(false);
-      }, 200); // Adjust the delay if needed
+      }, 200);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -57,27 +53,25 @@ const Home = ({ darkMode }) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       if (scrollTimeout) {
-        clearTimeout(scrollTimeout); // Clean up timeout on unmount
+        clearTimeout(scrollTimeout);
       }
     };
   }, []);
+
   return (
     <ParallaxProvider>
       {showFlyingImage && (
         <motion.div
-          className="fixed top-[20vh] right-0 transform-gpu md:w-[70px] md:h-[75px] w-[50px] h-[200px] z-50"
+          className="fixed top-[20vh] right-0 transform-gpu md:w-[70px] md:h-[75px] w-[50px] h-[200px] z-50 pointer-events-none"
           initial={{ x: 0 }}
           animate={{
             x: scrollingUp ? [0, 5, -5, 0] : [0, -5, 5, 0],
-            y: window.scrollY > 100 ? [0, 0] : [window.scrollY, window.scrollY], // Adjust vertical movement
+            y: window.scrollY > 100 ? [0, 0] : [window.scrollY, window.scrollY],
           }}
           transition={{ duration: 1, ease: "easeInOut", repeat: Infinity }}
           style={{
             transformOrigin: "center",
-            position: "fixed", // Fix position relative to viewport
-            top: "20vh", // You can adjust this for where you want the image to appear
-            right: "0",
-            transform: scrollingUp ? "rotateY(180deg)" : "rotateY(0deg)", // Rotate when scrolling up
+            transform: scrollingUp ? "rotateY(180deg)" : "rotateY(0deg)",
           }}
         >
           <img
@@ -88,158 +82,121 @@ const Home = ({ darkMode }) => {
         </motion.div>
       )}
 
-      <div className="container mx-auto py-16 min-h-screen px-4 md:px-8 lg:px-16 home-background  ">
-        <div className="relative group cursor-pointer">
-          {/* Image with bounce animation */}
+      <div className={`container mx-auto py-16 min-h-screen px-4 md:px-8 lg:px-16 transition-colors duration-300 ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
+        <div className="relative group cursor-pointer inline-block">
           <img
             src="/images/house.png"
             alt="Game Mode"
-            className="w-[35px] md:w-[40px] h-[35px] md:h-[45px] object-contain rounded-lg z-50 absolute  animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110 top-[-5.5vh] md:left-[-3.3%]"
+            className="w-[35px] md:w-[40px] h-[35px] md:h-[45px] object-contain rounded-lg z-50 absolute animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110 top-[-20px] md:left-0"
             onClick={() => {
-              window.location.href = "/"; // Adjust the navigation route if needed
+              window.location.href = "/";
             }}
           />
-          {/* Tooltip with animation */}
-          <div className="absolute left-[1%]  items-center p-2 bg-gray-800 text-white text-sm rounded shadow-md transform transition-opacity duration-1000 ease-in-out opacity-0 group-hover:opacity-100">
-            <span>Home!</span>
+          <div className="absolute left-12 top-[-15px] items-center p-2 bg-slate-800 text-white text-xs rounded shadow-md transform transition-opacity duration-300 opacity-0 group-hover:opacity-100 whitespace-nowrap z-50">
+            <span>Switch to Game Mode</span>
           </div>
         </div>
 
-        <Parallax speed={-12}>
-          <motion.h1
-            className="text-3xl md:text-4xl lg:text-4xl font-bold text-center md:mt-8 mt-20 font-['MyCustomFont']"
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            Welcome to My Portfolio
-          </motion.h1>
+        <Parallax speed={-5}>
+          <div className="flex flex-col items-center justify-center mt-12 md:mt-20">
+             <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className={`inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6 ${
+                  darkMode ? "bg-slate-800 text-emerald-400 border border-slate-700" : "bg-white text-emerald-600 border border-slate-200 shadow-sm"
+                }`}
+             >
+                ✨ Welcome to my portfolio
+             </motion.div>
 
-          <motion.p
-            className="text-center mt-4 text-base md:text-lg lg:text-lg font-['MyCustomFont']"
-            initial={{ y: -30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
-          >
-            Explore my work and get to know me!
-          </motion.p>
-
-          <div className="flex md:flex-row flex-col items-center justify-around">
-            <div
-              className={`fradius ${darkMode ? "bg-[#022a02]" : "bg-[#FBCEB1]"
-                } mt-20 md:mt-5 `}
+            <motion.h1
+              className={`text-4xl md:text-6xl lg:text-7xl font-bold text-center tracking-tight ${darkMode ? "text-white" : "text-slate-900"}`}
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             >
-              <motion.div
-                className="flex justify-center  items-center"
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1, duration: 0.3, ease: "easeOut" }}
-              >
+              Building Digital <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">
+                Experiences
+              </span>
+            </motion.h1>
+
+            <motion.p
+              className={`text-center mt-6 text-lg md:text-xl max-w-2xl font-light ${darkMode ? "text-slate-400" : "text-slate-600"}`}
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
+            >
+              I craft responsive websites and mobile apps that solve real problems.
+            </motion.p>
+          </div>
+
+          <div className="flex md:flex-row flex-col items-center justify-center gap-10 mt-16 md:mt-24">
+            {/* Profile Image */}
+            <motion.div
+              className="relative"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+            >
+              <div className={`absolute inset-0 rounded-full blur-2xl opacity-20 ${darkMode ? "bg-emerald-500" : "bg-emerald-400"}`}></div>
+              <div className={`relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 ${darkMode ? "border-slate-800" : "border-white"} shadow-2xl`}>
                 <img
                   src={"/images/avataar.png"}
                   alt="Profile"
-                  className=" md:w-[100%] md:max-h-[50vh] w-[350px] h-[350px] rounded-full  transition-shadow duration-300 ease-in-out "
+                  className="w-full h-full object-cover"
                 />
-                {/* Scrolling icon animation */}
-              </motion.div>
-            </div>
-            <motion.div
-              className="md:hidden mt-[8vh] flex justify-center border border-gray-400  rounded-full p-2 pt-4"
-              initial={{ y: 0 }}
-              animate={{ y: [0, 10, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 1.5,
-                ease: "easeInOut",
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-400 animate-bounce"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
+              </div>
             </motion.div>
+
+            {/* Resume / Intro Card */}
             <motion.div
-              className="flex justify-center mt-[10vh] md:mt-4 items-center w-[105%] md:w-[40%] "
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
+              className="w-full max-w-md"
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
             >
-              <div className="mt-4 md:max-w-[100%] md:w-[100%] max-w-[95%] text-white rounded-lg shadow-lg overflow-hidden md:h-[300px]">
-                <div
-                  className={`flex justify-between items-center p-2 ${darkMode
-                      ? "bg-[#012001] text-white"
-                      : "bg-[#FBCEB1] text-gray-800"
-                    }`}
-                >
-                  <div className="flex space-x-2">
-                    <span className="w-3 h-3 bg-red-500 rounded-full"></span>
-                    <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
-                    <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+              <div className={`rounded-2xl p-6 md:p-8 backdrop-blur-md shadow-xl transition-all hover:shadow-2xl ${
+                darkMode
+                  ? "bg-slate-800/80 border border-slate-700 text-white"
+                  : "bg-white/90 border border-slate-100 text-slate-800"
+              }`}>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`p-2 rounded-lg ${darkMode ? "bg-emerald-500/10 text-emerald-400" : "bg-emerald-100 text-emerald-600"}`}>
+                    <User size={24} />
                   </div>
-                  <p className="text-sm font-mono">Download</p>
+                  <div>
+                    <h3 className="font-bold text-lg">Piyush Kumar</h3>
+                    <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-500"}`}>Professional Developer</p>
+                  </div>
                 </div>
-                <div
-                  className={`p-4 font-mono text-sm ${darkMode
-                      ? "bg-[#022a02]  text-white"
-                      : "bg-[#F2D2BD] text-gray-800"
-                    }`}
-                >
-                  <p className="text-gray-400">// Hello there</p>
-                  <h2 className="text-sm mb-2">
-                    Hello, This is{" "}
-                    <span
-                      className={`${darkMode ? "text-yellow-400" : "text-cyan-600"
-                        }`}
-                    >
-                      Piyush Kumar
-                    </span>
-                    , I'm a Professional Software Developer.
-                  </h2>
-                  <h2 className="text-xl text-cyan-400 mb-2">
-                    Download My Resume
-                  </h2>
-                  <p className="text-gray-400">
-                    // Click below to download my resume in PDF format
-                  </p>
-                  <pre
-                    className={`${darkMode
-                        ? "bg-[#18453B] text-white"
-                        : "bg-[#F89880] text-black"
-                      } p-4 rounded-md mt-2 w-full overflow-x-auto`}
-                  >
-                    <code
-                      className={`block whitespace-pre-wrap break-words text-sm ${darkMode ? "text-white" : "text-black"
-                        }`}
-                    >
-                      &lt;<span className="text-blue-400">button</span>
-                      <span className="text-yellow-400 px-2">class</span>= "
-                      <span className="text-green-400">download-btn</span>
-                      "&gt;Download&lt;/
-                      <span className="text-blue-400">button</span>&gt;
-                    </code>
-                  </pre>
+
+                <p className={`mb-6 text-sm leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+                  Specialized in building exceptional digital experiences. Currently focused on React, React Native, and full-stack development.
+                </p>
+
+                <div className="flex gap-4">
                   <button
-                    onClick={() => {
-                      window.location.href =
-                        "https://drive.google.com/uc?export=download&id=1XM6arc8Hg6w0Kimxv2Tyctb-xmiDkABu";
-                    }}
-                    className={`mt-4 ${darkMode
-                        ? "bg-[#ADFF2F] text-black"
-                        : "bg-[#F88379] text-gray-800"
-                      } text-black px-4 py-2 rounded hover:bg-cyan-400 transition`}
-                    aria-label="Download Resume"
+                    onClick={() => window.location.href = "https://drive.google.com/uc?export=download&id=1XM6arc8Hg6w0Kimxv2Tyctb-xmiDkABu"}
+                    className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all ${
+                      darkMode
+                        ? "bg-emerald-500 hover:bg-emerald-600 text-white"
+                        : "bg-emerald-600 hover:bg-emerald-700 text-white"
+                    }`}
                   >
-                    DOWNLOAD
+                    <Download size={18} />
+                    <span>Resume</span>
+                  </button>
+                  <button
+                    onClick={() => navigate("/contact")}
+                    className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all border ${
+                      darkMode
+                        ? "border-slate-600 hover:bg-slate-700 text-slate-300"
+                        : "border-slate-200 hover:bg-slate-50 text-slate-700"
+                    }`}
+                  >
+                    <span>Contact</span>
                   </button>
                 </div>
               </div>
@@ -247,108 +204,80 @@ const Home = ({ darkMode }) => {
           </div>
         </Parallax>
       </div>
-      <div className="flex md:flex-row flex-col  md:h-screen items-center justify-center ">
-        {/* Main Content Section */}
-        <motion.div
-          className="w-[300px] md:w-[300px] h-[300px] md:h-[350px] md:ml-[2vw] relative  image-container  md:mt-0"
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
-          whileHover={{ scale: 1.1 }}
-        >
-          <img
-            src="/images/aboutme.png"
-            alt="3D Animation"
-            className="rounded-lg  w-[100%] h-[100%]   object-contain"
-          />
-        </motion.div>
-        <motion.div
-          className="flex md:flex-row md:w-[90%]  flex-col flex-grow  items-center "
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <div
-            className={`text-center  ${darkMode
-                ? "bg-[#022a02] shadow-green-900"
-                : "bg-[#FBCEB1] shadow-orange-900"
-              } p-10 md:text-left px-4 ml-[4vw] mr-[8vw] mt-10 shadow-lg  rounded-lg transform transition-all duration-300 hover:scale-105`}
-          >
-            {/* Greeting Text */}
-            <h3 className="text-yellow-400 text-lg mb-2">Hello, Welcome</h3>
 
-            {/* Name Heading with animation and gradient */}
-            <h1
-              className={`text-3xl md:text-4xl font-bold ${darkMode ? "text-white" : "text-black"
-                } animated-text`}
-              style={{
-                background:
-                  "linear-gradient(90deg,rgb(19, 172, 255),rgb(212, 231, 38),rgb(69, 218, 19))", // gradient excluding green and orange
-                WebkitBackgroundClip: "text",
-                color: "transparent",
-              }}
+      {/* About Section */}
+      <div className={`py-20 md:py-32 ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
+        <div className="container mx-auto px-4 md:px-8 lg:px-16">
+          <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+            {/* 3D Image */}
+            <motion.div
+              className="w-full md:w-1/2 flex justify-center"
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
             >
-              {`I'm Piyush Kumar`.split("").map((char, index) => (
-                <span key={index}>{char}</span>
-              ))}
-            </h1>
+              <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px]">
+                <div className={`absolute inset-0 rounded-full blur-3xl opacity-20 animate-pulse ${darkMode ? "bg-cyan-500" : "bg-cyan-400"}`}></div>
+                <img
+                  src="/images/aboutme.png"
+                  alt="About Me"
+                  className="relative z-10 w-full h-full object-contain drop-shadow-2xl"
+                />
+              </div>
+            </motion.div>
 
-            {/* Short Introduction */}
-            <p
-              className={`leading-relaxed mt-4 mb-6 text-sm md:text-lg ${darkMode ? "text-gray-300" : "text-gray-700"
-                }`}
+            {/* About Text */}
+            <motion.div
+              className="w-full md:w-1/2"
+              initial={{ x: 50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
             >
-              "I'm an app and web developer at IB Arts, skilled in React, React
-              Native, Node.js, and MongoDB. I specialize in creating
-              user-centric applications with a blend of design and
-              functionality. With an engineering background and hands-on
-              experience, I thrive on solving problems and building seamless
-              digital experiences."
-            </p>
+              <div className={`relative p-8 md:p-10 rounded-2xl shadow-xl ${
+                darkMode
+                  ? "bg-slate-800 text-white shadow-black/20"
+                  : "bg-white text-slate-800 shadow-slate-200/50"
+              }`}>
+                {/* Vertical Label - repositioned for better layout */}
+                <div className="absolute -left-3 top-10 w-1 h-16 bg-gradient-to-b from-emerald-400 to-cyan-500 rounded-full"></div>
 
-            {/* Contact Button */}
-            <button
-              className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium px-4 py-2 rounded-md"
-              onClick={() => navigate("/contact")}
-            >
-              Contact Me
-            </button>
-          </div>
-        </motion.div>
-        {/* Vertical About Me Section */}
-        <div className="hidden md:flex flex-col justify-center items-center w-16 mr-2">
-          <div
-            className={`w-12 h-48 flex items-center justify-center rounded-lg ${darkMode ? "bg-lime-600" : "bg-orange-400"
-              }`}
-          >
-            <h2
-              className={`text-sm font-bold text-center ${darkMode ? "text-white" : "text-gray-800"
-                }`}
-              style={{
-                writingMode: "vertical-rl",
-                textOrientation: "mixed",
-              }}
-            >
-              ABOUT ME
-            </h2>
+                <h3 className="text-emerald-500 font-semibold tracking-wide uppercase text-sm mb-3">Hello, Welcome</h3>
+
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">Piyush Kumar</span>
+                </h2>
+
+                <p className={`text-base md:text-lg leading-relaxed mb-8 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+                  I'm an app and web developer at IB Arts, skilled in React, React Native, Node.js, and MongoDB. I specialize in creating user-centric applications with a blend of design and functionality. With an engineering background and hands-on experience, I thrive on solving problems and building seamless digital experiences.
+                </p>
+
+                <button
+                  onClick={() => navigate("/contact")}
+                  className={`group flex items-center gap-2 font-medium transition-colors ${
+                    darkMode ? "text-emerald-400 hover:text-emerald-300" : "text-emerald-600 hover:text-emerald-700"
+                  }`}
+                >
+                  Let's work together <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
 
       <TimeLIne darkMode={darkMode} />
       <Skills darkMode={darkMode} show={true} hide={true} />
-      <div className="h-screen/2 py-10">
-        <Projects darkMode={darkMode} isHorizontal={true} />{" "}
+      <div className={`${darkMode ? "bg-slate-900" : "bg-slate-50"} py-10`}>
+        <Projects darkMode={darkMode} isHorizontal={true} />
       </div>
       <div className="md:pl-[8vw]">
         <Contact darkMode={darkMode} hide={true} />
       </div>
-      {/* Footer */}
-      <footer
-        className={`text-center py-2 ${darkMode ? "bg-[#022a02] text-white" : "bg-orange-300 text-black"
-          }`}
-      >
-        <p>
+
+      <footer className={`text-center py-8 border-t ${darkMode ? "bg-slate-900 border-slate-800 text-slate-500" : "bg-slate-50 border-slate-200 text-slate-400"}`}>
+        <p className="text-sm">
           &copy; {new Date().getFullYear()} Piyush Kumar. All Rights Reserved.
         </p>
       </footer>

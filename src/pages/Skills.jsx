@@ -10,7 +10,6 @@ const Skills = ({ darkMode, show, hide }) => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const location = useLocation();
 
-  // Move techLogos definition before useEffect
   const techLogos = [
     { name: "JavaScript", src: "/images/js.png", description: "Dynamic programming language" },
     { name: "React", src: "/images/reactjs.png", description: "UI library for building interfaces" },
@@ -31,7 +30,6 @@ const Skills = ({ darkMode, show, hide }) => {
     }
   }, [show]);
 
-  // Auto-cycle through skills
   useEffect(() => {
     if (showLogos && isAutoPlaying) {
       const interval = setInterval(() => {
@@ -39,7 +37,7 @@ const Skills = ({ darkMode, show, hide }) => {
           const next = prev === null ? 0 : (prev + 1) % techLogos.length;
           return next;
         });
-      }, 2000); // Change every 2 seconds
+      }, 2000);
 
       return () => clearInterval(interval);
     }
@@ -48,18 +46,17 @@ const Skills = ({ darkMode, show, hide }) => {
   const handleSkillClick = (index) => {
     setClickedSkill(index);
     setAutoHighlight(index);
-    setIsAutoPlaying(false); // Pause auto-play when user interacts
+    setIsAutoPlaying(false);
     setTimeout(() => setClickedSkill(null), 2000);
   };
 
   const handleSkillHover = (index) => {
     setHoveredSkill(index);
-    setIsAutoPlaying(false); // Pause auto-play on hover
+    setIsAutoPlaying(false);
   };
 
   const handleSkillLeave = () => {
     setHoveredSkill(null);
-    // Resume auto-play after a delay
     setTimeout(() => setIsAutoPlaying(true), 3000);
   };
 
@@ -68,13 +65,13 @@ const Skills = ({ darkMode, show, hide }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-row items-center justify-center relative overflow-hidden px-4">
+    <div className={`min-h-screen flex flex-row items-center justify-center relative overflow-hidden px-4 transition-colors duration-300 ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
       {/* Animated Background Dots */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-white rounded-full opacity-10 animate-pulse"
+            className={`absolute w-2 h-2 rounded-full opacity-10 animate-pulse ${darkMode ? "bg-white" : "bg-slate-800"}`}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -91,16 +88,14 @@ const Skills = ({ darkMode, show, hide }) => {
           <button
             onClick={toggleAutoPlay}
             className={`px-3 py-2 rounded-full text-white text-xs font-semibold shadow-lg transition-all duration-300 ${isAutoPlaying
-              ? 'bg-gradient-to-r from-blue-500 to-green-400 hover:shadow-xl'
-              : 'bg-gray-500 hover:bg-gray-600'
+              ? 'bg-emerald-500 hover:shadow-xl'
+              : 'bg-slate-500 hover:bg-slate-600'
               }`}
           >
             {isAutoPlaying ? '⏸️ Pause' : '▶️ Auto'}
           </button>
         </div>
       )}
-
-
 
       {/* Character with Enhanced Animation */}
       <div className="relative flex items-center justify-center w-full max-w-[100vw]">
@@ -111,11 +106,11 @@ const Skills = ({ darkMode, show, hide }) => {
         {!showLogos && (
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group" onClick={() => setShowLogos(true)}>
             {/* Ripple rings */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-400 rounded-full animate-ping opacity-20 scale-150"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-400 rounded-full animate-pulse opacity-30 scale-125"></div>
+            <div className="absolute inset-0 bg-emerald-500 rounded-full animate-ping opacity-20 scale-150"></div>
+            <div className="absolute inset-0 bg-emerald-500 rounded-full animate-pulse opacity-30 scale-125"></div>
 
             {/* Main button */}
-            <div className="relative bg-gradient-to-r from-blue-500 to-green-400 rounded-full md:h-[80px] md:w-[80px] h-[60px] w-[60px] flex items-center justify-center shadow-lg group-hover:shadow-2xl transform group-hover:scale-110 transition-all duration-300">
+            <div className="relative bg-emerald-500 rounded-full md:h-[80px] md:w-[80px] h-[60px] w-[60px] flex items-center justify-center shadow-lg group-hover:shadow-2xl transform group-hover:scale-110 transition-all duration-300">
               <span className="text-white font-bold md:text-sm text-xs animate-bounce">View Skills</span>
             </div>
           </div>
@@ -131,8 +126,8 @@ const Skills = ({ darkMode, show, hide }) => {
         {/* Responsive Orbit Rings */}
         {orbitsVisible && (
           <>
-            <div className="absolute md:h-[450px] md:w-[450px] h-[320px] w-[320px] border border-white opacity-5 rounded-full animate-spin"></div>
-            <div className="absolute md:h-[500px] md:w-[500px] h-[360px] w-[360px] border border-white opacity-3 rounded-full" style={{ animation: 'spin 20s linear infinite reverse' }}></div>
+            <div className={`absolute md:h-[450px] md:w-[450px] h-[320px] w-[320px] border opacity-10 rounded-full animate-spin ${darkMode ? "border-white" : "border-slate-800"}`}></div>
+            <div className={`absolute md:h-[500px] md:w-[500px] h-[360px] w-[360px] border opacity-5 rounded-full ${darkMode ? "border-white" : "border-slate-800"}`} style={{ animation: 'spin 20s linear infinite reverse' }}></div>
           </>
         )}
 
@@ -144,7 +139,6 @@ const Skills = ({ darkMode, show, hide }) => {
           >
             {techLogos.map((logo, index) => {
               const isActive = autoHighlight === index || hoveredSkill === index;
-              // Responsive radius: 200px on desktop, 140px on mobile
               const radius = window.innerWidth >= 768 ? 200 : 140;
 
               return (
@@ -166,7 +160,7 @@ const Skills = ({ darkMode, show, hide }) => {
                     {isActive && (
                       <>
                         <div className="absolute inset-0 bg-white rounded-full opacity-40 animate-ping"></div>
-                        <div className="absolute -inset-2 bg-gradient-to-r from-blue-500 to-green-400 rounded-full opacity-20 animate-pulse"></div>
+                        <div className="absolute -inset-2 bg-emerald-400 rounded-full opacity-20 animate-pulse"></div>
                       </>
                     )}
 
@@ -177,13 +171,12 @@ const Skills = ({ darkMode, show, hide }) => {
                     />
                   </div>
 
-                  {/* Enhanced tooltip - responsive positioning */}
+                  {/* Enhanced tooltip */}
                   {isActive && (
-                    <div className="absolute md:-top-20 -top-16 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white md:px-4 md:py-3 px-2 py-2 rounded-lg md:text-xs text-[10px] whitespace-nowrap opacity-95 shadow-xl min-w-max animate-pulse">
+                    <div className="absolute md:-top-20 -top-16 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white md:px-4 md:py-3 px-2 py-2 rounded-lg md:text-xs text-[10px] whitespace-nowrap opacity-95 shadow-xl min-w-max animate-pulse">
                       <div className="font-semibold md:text-sm text-xs">{logo.name}</div>
-                      <div className="text-gray-300 md:text-xs text-[8px] mt-1 hidden md:block">{logo.description}</div>
-                      {/* Tooltip arrow */}
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
+                      <div className="text-slate-300 md:text-xs text-[8px] mt-1 hidden md:block">{logo.description}</div>
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-800"></div>
                     </div>
                   )}
                 </div>
@@ -195,7 +188,7 @@ const Skills = ({ darkMode, show, hide }) => {
         {/* Skill Info Display - Responsive */}
         {(autoHighlight !== null || clickedSkill !== null) && (
           <div className="absolute md:bottom-10 bottom-6 left-1/2 transform -translate-x-1/2 pointer-events-none z-20">
-            <div className="bg-white text-gray-800 md:px-6 md:py-3 px-4 py-2 rounded-full shadow-xl animate-bounce font-semibold border-2 border-gray-100 md:text-base text-sm">
+            <div className={`text-slate-800 md:px-6 md:py-3 px-4 py-2 rounded-full shadow-xl animate-bounce font-semibold border-2 md:text-base text-sm ${darkMode ? "bg-slate-100 border-slate-200" : "bg-white border-slate-100"}`}>
               {clickedSkill !== null ? (
                 <span>✨ {techLogos[clickedSkill].name} Selected!</span>
               ) : (
@@ -210,11 +203,11 @@ const Skills = ({ darkMode, show, hide }) => {
       {!hide && location.pathname !== "/skills" && (
         <div className="hidden md:flex flex-col ml-[4vw] justify-center items-center w-16">
           <div
-            className={`w-12 h-48 flex items-center justify-center rounded-lg ${darkMode ? "bg-lime-600" : "bg-orange-400"
+            className={`w-12 h-48 flex items-center justify-center rounded-lg ${darkMode ? "bg-emerald-600" : "bg-emerald-400"
               }`}
           >
             <h2
-              className={`text-sm font-bold text-center ${darkMode ? "text-white" : "text-gray-800"
+              className={`text-sm font-bold text-center ${darkMode ? "text-white" : "text-slate-800"
                 }`}
               style={{
                 writingMode: "vertical-rl",
