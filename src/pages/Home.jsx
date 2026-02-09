@@ -82,7 +82,7 @@ const Home = ({ darkMode }) => {
         </motion.div>
       )}
 
-      <div className={`container mx-auto py-16 min-h-screen px-4 md:px-8 lg:px-16 transition-colors duration-300 ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
+      <div className={`container mx-auto py-16 min-h-screen px-4 md:px-8 lg:px-16 transition-colors duration-300 ${darkMode ? "bg-[#011601]" : "bg-slate-50"}`}>
         <div className="relative group cursor-pointer inline-block">
           <img
             src="/images/house.png"
@@ -104,7 +104,7 @@ const Home = ({ darkMode }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className={`inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6 ${
-                  darkMode ? "bg-slate-800 text-emerald-400 border border-slate-700" : "bg-white text-emerald-600 border border-slate-200 shadow-sm"
+                  darkMode ? "bg-[#045106] text-[#ADFF2F] border border-[#ADFF2F]/30" : "bg-white text-emerald-600 border border-slate-200 shadow-sm"
                 }`}
              >
                 ✨ Welcome to my portfolio
@@ -117,13 +117,13 @@ const Home = ({ darkMode }) => {
               transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             >
               Building Digital <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">
+              <span className={`text-transparent bg-clip-text ${darkMode ? "bg-gradient-to-r from-[#ADFF2F] to-emerald-400" : "bg-gradient-to-r from-emerald-400 to-cyan-500"}`}>
                 Experiences
               </span>
             </motion.h1>
 
             <motion.p
-              className={`text-center mt-6 text-lg md:text-xl max-w-2xl font-light ${darkMode ? "text-slate-400" : "text-slate-600"}`}
+              className={`text-center mt-6 text-lg md:text-xl max-w-2xl font-light ${darkMode ? "text-slate-300" : "text-slate-600"}`}
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
@@ -140,8 +140,8 @@ const Home = ({ darkMode }) => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.5 }}
             >
-              <div className={`absolute inset-0 rounded-full blur-2xl opacity-20 ${darkMode ? "bg-emerald-500" : "bg-emerald-400"}`}></div>
-              <div className={`relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 ${darkMode ? "border-slate-800" : "border-white"} shadow-2xl`}>
+              <div className={`absolute inset-0 rounded-full blur-2xl opacity-20 ${darkMode ? "bg-[#ADFF2F]" : "bg-emerald-400"}`}></div>
+              <div className={`relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 ${darkMode ? "border-[#045106]" : "border-white"} shadow-2xl`}>
                 <img
                   src={"/images/avataar.png"}
                   alt="Profile"
@@ -159,20 +159,20 @@ const Home = ({ darkMode }) => {
             >
               <div className={`rounded-2xl p-6 md:p-8 backdrop-blur-md shadow-xl transition-all hover:shadow-2xl ${
                 darkMode
-                  ? "bg-slate-800/80 border border-slate-700 text-white"
+                  ? "bg-[#022a02]/90 border border-[#ADFF2F]/20 text-white"
                   : "bg-white/90 border border-slate-100 text-slate-800"
               }`}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className={`p-2 rounded-lg ${darkMode ? "bg-emerald-500/10 text-emerald-400" : "bg-emerald-100 text-emerald-600"}`}>
+                  <div className={`p-2 rounded-lg ${darkMode ? "bg-[#ADFF2F]/10 text-[#ADFF2F]" : "bg-emerald-100 text-emerald-600"}`}>
                     <User size={24} />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg">Piyush Kumar</h3>
-                    <p className={`text-sm ${darkMode ? "text-slate-400" : "text-slate-500"}`}>Professional Developer</p>
+                    <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-500"}`}>Professional Developer</p>
                   </div>
                 </div>
 
-                <p className={`mb-6 text-sm leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+                <p className={`mb-6 text-sm leading-relaxed ${darkMode ? "text-slate-200" : "text-slate-600"}`}>
                   Specialized in building exceptional digital experiences. Currently focused on React, React Native, and full-stack development.
                 </p>
 
@@ -181,7 +181,7 @@ const Home = ({ darkMode }) => {
                     onClick={() => window.location.href = "https://drive.google.com/uc?export=download&id=1XM6arc8Hg6w0Kimxv2Tyctb-xmiDkABu"}
                     className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all ${
                       darkMode
-                        ? "bg-emerald-500 hover:bg-emerald-600 text-white"
+                        ? "bg-[#ADFF2F] hover:bg-[#bfff4d] text-black"
                         : "bg-emerald-600 hover:bg-emerald-700 text-white"
                     }`}
                   >
@@ -192,7 +192,7 @@ const Home = ({ darkMode }) => {
                     onClick={() => navigate("/contact")}
                     className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all border ${
                       darkMode
-                        ? "border-slate-600 hover:bg-slate-700 text-slate-300"
+                        ? "border-[#ADFF2F]/50 hover:bg-[#ADFF2F]/10 text-[#ADFF2F]"
                         : "border-slate-200 hover:bg-slate-50 text-slate-700"
                     }`}
                   >
@@ -206,7 +206,7 @@ const Home = ({ darkMode }) => {
       </div>
 
       {/* About Section */}
-      <div className={`py-20 md:py-32 ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
+      <div className={`py-20 md:py-32 ${darkMode ? "bg-[#011601]" : "bg-slate-50"}`}>
         <div className="container mx-auto px-4 md:px-8 lg:px-16">
           <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
             {/* 3D Image */}
@@ -218,7 +218,7 @@ const Home = ({ darkMode }) => {
               transition={{ duration: 0.8 }}
             >
               <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px]">
-                <div className={`absolute inset-0 rounded-full blur-3xl opacity-20 animate-pulse ${darkMode ? "bg-cyan-500" : "bg-cyan-400"}`}></div>
+                <div className={`absolute inset-0 rounded-full blur-3xl opacity-20 animate-pulse ${darkMode ? "bg-[#ADFF2F]" : "bg-cyan-400"}`}></div>
                 <img
                   src="/images/aboutme.png"
                   alt="About Me"
@@ -237,26 +237,26 @@ const Home = ({ darkMode }) => {
             >
               <div className={`relative p-8 md:p-10 rounded-2xl shadow-xl ${
                 darkMode
-                  ? "bg-slate-800 text-white shadow-black/20"
+                  ? "bg-[#022a02] text-white shadow-black/40 border border-[#ADFF2F]/10"
                   : "bg-white text-slate-800 shadow-slate-200/50"
               }`}>
                 {/* Vertical Label - repositioned for better layout */}
-                <div className="absolute -left-3 top-10 w-1 h-16 bg-gradient-to-b from-emerald-400 to-cyan-500 rounded-full"></div>
+                <div className={`absolute -left-3 top-10 w-1 h-16 rounded-full ${darkMode ? "bg-gradient-to-b from-[#ADFF2F] to-emerald-500" : "bg-gradient-to-b from-emerald-400 to-cyan-500"}`}></div>
 
-                <h3 className="text-emerald-500 font-semibold tracking-wide uppercase text-sm mb-3">Hello, Welcome</h3>
+                <h3 className={`font-semibold tracking-wide uppercase text-sm mb-3 ${darkMode ? "text-[#ADFF2F]" : "text-emerald-500"}`}>Hello, Welcome</h3>
 
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">Piyush Kumar</span>
+                  I'm <span className={`text-transparent bg-clip-text ${darkMode ? "bg-gradient-to-r from-[#ADFF2F] to-emerald-400" : "bg-gradient-to-r from-emerald-400 to-cyan-500"}`}>Piyush Kumar</span>
                 </h2>
 
-                <p className={`text-base md:text-lg leading-relaxed mb-8 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+                <p className={`text-base md:text-lg leading-relaxed mb-8 ${darkMode ? "text-slate-200" : "text-slate-600"}`}>
                   I'm an app and web developer at IB Arts, skilled in React, React Native, Node.js, and MongoDB. I specialize in creating user-centric applications with a blend of design and functionality. With an engineering background and hands-on experience, I thrive on solving problems and building seamless digital experiences.
                 </p>
 
                 <button
                   onClick={() => navigate("/contact")}
                   className={`group flex items-center gap-2 font-medium transition-colors ${
-                    darkMode ? "text-emerald-400 hover:text-emerald-300" : "text-emerald-600 hover:text-emerald-700"
+                    darkMode ? "text-[#ADFF2F] hover:text-[#bfff4d]" : "text-emerald-600 hover:text-emerald-700"
                   }`}
                 >
                   Let's work together <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -269,14 +269,14 @@ const Home = ({ darkMode }) => {
 
       <TimeLIne darkMode={darkMode} />
       <Skills darkMode={darkMode} show={true} hide={true} />
-      <div className={`${darkMode ? "bg-slate-900" : "bg-slate-50"} py-10`}>
+      <div className={`${darkMode ? "bg-[#011601]" : "bg-slate-50"} py-10`}>
         <Projects darkMode={darkMode} isHorizontal={true} />
       </div>
       <div className="md:pl-[8vw]">
         <Contact darkMode={darkMode} hide={true} />
       </div>
 
-      <footer className={`text-center py-8 border-t ${darkMode ? "bg-slate-900 border-slate-800 text-slate-500" : "bg-slate-50 border-slate-200 text-slate-400"}`}>
+      <footer className={`text-center py-8 border-t ${darkMode ? "bg-[#011601] border-[#022a02] text-slate-400" : "bg-slate-50 border-slate-200 text-slate-400"}`}>
         <p className="text-sm">
           &copy; {new Date().getFullYear()} Piyush Kumar. All Rights Reserved.
         </p>
