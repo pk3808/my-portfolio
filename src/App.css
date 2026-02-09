@@ -32,7 +32,7 @@ html {
 }
 
 .dark {
-  background-color: #0F172A;
+  background-color: #011601; /* Legacy Green Dark BG */
   color: #F8FAFC;
 }
 
@@ -75,7 +75,7 @@ html {
 }
 
 .dark .theme-toggle-button {
-  background-color: #1e293b; /* Slate 800 */
+  background-color: #045106; /* Legacy Dark Green */
   color: #F59E0B; /* Amber */
 }
 
@@ -86,7 +86,7 @@ html {
 
 .dark .toggle-indicator {
   transform: translateX(30px);
-  background-color: #0F172A;
+  background-color: #011601; /* Legacy Dark BG */
 }
 
 .toggle-indicator svg {
@@ -110,8 +110,8 @@ html {
 }
 
 .dark .social-icons-desktop {
-  background-color: rgba(15, 23, 42, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(1, 22, 1, 0.8); /* Legacy Dark BG with opacity */
+  border: 1px solid rgba(173, 255, 47, 0.2); /* Accent Bright border */
   border-left: none;
   border-top: none;
 }
@@ -124,12 +124,12 @@ html {
 
 .social-icons-desktop a:hover {
   opacity: 1;
-  color: #10B981; /* Premium accent */
+  color: #ADFF2F; /* Legacy Bright Accent */
   transform: translateY(-2px);
 }
 
 .social-toggle-btn {
-  background-color: #10B981;
+  background-color: #045106; /* Legacy Dark Green */
   color: white;
   border: none;
   border-radius: 50%;
@@ -140,7 +140,7 @@ html {
   justify-content: center;
   position: fixed;
   left: 20px;
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 15px rgba(4, 81, 6, 0.4);
   transition: transform 0.2s;
   z-index: 100;
   top: 10px
@@ -148,7 +148,8 @@ html {
 
 .social-toggle-btn:hover {
   transform: scale(1.05);
-  background-color: #059669;
+  background-color: #066c23;
+  color: #ADFF2F;
 }
 
 .social-dropdown {
@@ -165,8 +166,8 @@ html {
 }
 
 .dark .social-dropdown {
-  background-color: #1e293b;
-  border: 1px solid rgba(255,255,255,0.1);
+  background-color: #022a02; /* Legacy Card Dark */
+  border: 1px solid rgba(173, 255, 47, 0.2);
 }
 
 /* Loader */
@@ -191,7 +192,7 @@ html {
 .dot {
   width: 12px;
   height: 12px;
-  background-color: #10B981;
+  background-color: #ADFF2F;
   border-radius: 50%;
   animation: bounce 0.6s infinite alternate;
 }

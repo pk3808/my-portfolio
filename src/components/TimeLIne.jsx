@@ -54,27 +54,14 @@ const TimeLine = ({ darkMode, bg }) => {
           >
             {/* Timeline Dot */}
             <div
-              className={`absolute left-0 top-8 w-3 h-3 rounded-full border-2 z-10 ${darkMode
-                ? "bg-slate-900 border-emerald-500 group-hover:bg-emerald-500"
-                : "bg-white border-emerald-500 group-hover:bg-emerald-500"
-                } transition-colors duration-300 transform -translate-x-[5px]`}
-              style={{ marginLeft: '11px' }} // Center on the line (11px + 6px radius center = 17px? No.)
-            ></div>
-            {/*
-                Line is at left-[13px]. Center is ~14px.
-                Dot needs to be centered at 14px.
-                Dot width 12px. Center is 6px.
-                So Dot left should be 14 - 6 = 8px.
-             */}
-             <div
               className={`absolute left-[8px] top-8 w-3 h-3 rounded-full border-2 z-10 ${darkMode
-                ? "bg-slate-900 border-emerald-500 group-hover:bg-emerald-500"
+                ? "bg-[#011601] border-[#ADFF2F] group-hover:bg-[#ADFF2F]"
                 : "bg-white border-emerald-500 group-hover:bg-emerald-500"
                 } transition-colors duration-300`}
             ></div>
 
             <div className={`p-6 rounded-2xl border ${darkMode
-              ? "bg-slate-800 border-slate-700 hover:border-slate-600"
+              ? "bg-[#022a02] border-slate-700 hover:border-[#ADFF2F]/50"
               : "bg-white border-slate-200 hover:border-emerald-200 shadow-sm hover:shadow-md"
               } transition-all duration-300`}>
 
@@ -85,21 +72,21 @@ const TimeLine = ({ darkMode, bg }) => {
                       }`}>
                       {activeTab === "experience" ? item.role : item.degree}
                     </h3>
-                    <h4 className={`text-lg font-medium ${darkMode ? "text-emerald-400" : "text-emerald-600"
+                    <h4 className={`text-lg font-medium ${darkMode ? "text-[#ADFF2F]" : "text-emerald-600"
                       }`}>
                       {item.company || item.institution}
                     </h4>
                   </div>
                   <div className="flex flex-col items-start md:items-end">
                     <span className={`text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider ${darkMode
-                      ? "bg-slate-700 text-slate-300"
+                      ? "bg-[#045106] text-slate-300"
                       : "bg-slate-100 text-slate-600"
                       }`}>
                       {item.date}
                     </span>
                     {item.marks && (
                       <span className={`text-xs font-semibold mt-2 px-3 py-1 rounded-full ${darkMode
-                        ? "bg-slate-700 text-emerald-400"
+                        ? "bg-[#045106] text-[#ADFF2F]"
                         : "bg-slate-100 text-emerald-600"
                         }`}>
                         Score: {item.marks}
@@ -121,7 +108,7 @@ const TimeLine = ({ darkMode, bg }) => {
                       <span
                         key={idx}
                         className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-colors duration-200 ${darkMode
-                          ? "bg-slate-700/50 text-emerald-300 border-slate-600"
+                          ? "bg-[#045106]/50 text-[#ADFF2F] border-[#ADFF2F]/20"
                           : "bg-slate-50 text-slate-600 border-slate-200"
                           }`}
                       >
@@ -142,7 +129,7 @@ const TimeLine = ({ darkMode, bg }) => {
       className={`flex md:flex-row flex-col min-h-screen ${bg
         ? "bg-transparent"
         : darkMode
-          ? "bg-slate-900 text-white"
+          ? "bg-[#011601] text-white"
           : "bg-slate-50 text-slate-900"
         }`}
     >
@@ -155,10 +142,10 @@ const TimeLine = ({ darkMode, bg }) => {
               onClick={() => setActiveTab(tab)}
               className={`w-full py-3 px-4 text-left font-medium text-lg rounded-lg transition-all duration-300 ${activeTab === tab
                 ? darkMode
-                  ? "bg-slate-800 text-white shadow-lg shadow-black/20"
+                  ? "bg-[#022a02] text-[#ADFF2F] shadow-lg shadow-black/40 border border-[#ADFF2F]/20"
                   : "bg-white text-emerald-600 shadow-md shadow-emerald-100/50"
                 : darkMode
-                  ? "text-slate-500 hover:text-slate-300 hover:bg-slate-800/50"
+                  ? "text-slate-500 hover:text-white hover:bg-[#022a02]/50"
                   : "text-slate-500 hover:text-slate-800 hover:bg-slate-100"
                 }`}
             >
@@ -166,9 +153,9 @@ const TimeLine = ({ darkMode, bg }) => {
                  {/* Bullet Point */}
                 <span className={`w-2 h-2 rounded-full mr-3 transition-colors ${activeTab === tab
                   ? darkMode
-                    ? "bg-emerald-400"
+                    ? "bg-[#ADFF2F]"
                     : "bg-emerald-500"
-                  : "bg-slate-300"
+                  : "bg-slate-400"
                   }`}></span>
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
               </span>
@@ -179,14 +166,14 @@ const TimeLine = ({ darkMode, bg }) => {
 
       {/* Mobile Menu */}
       <div className="flex md:hidden w-full px-4 pt-8 pb-4">
-        <div className={`flex w-full rounded-xl overflow-hidden border p-1 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+        <div className={`flex w-full rounded-xl overflow-hidden border p-1 ${darkMode ? "bg-[#022a02] border-slate-700" : "bg-white border-slate-200"}`}>
           {["experience", "education"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`flex-1 py-2 px-4 text-center font-medium text-sm rounded-lg transition-all duration-300 ${activeTab === tab
                 ? darkMode
-                  ? "bg-slate-700 text-white shadow-sm"
+                  ? "bg-[#045106] text-white shadow-sm"
                   : "bg-emerald-50 text-emerald-700 shadow-sm"
                 : darkMode
                   ? "text-slate-400 hover:text-white"

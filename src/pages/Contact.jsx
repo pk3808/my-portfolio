@@ -66,7 +66,7 @@ const FloatingElements = ({ darkMode, status }) => {
         <PaperPlaneIcon
           key={`plane-${plane.id}`}
           className={`absolute w-6 h-6 ${
-            darkMode ? "text-emerald-400/40" : "text-emerald-600/40"
+            darkMode ? "text-[#ADFF2F]/40" : "text-emerald-600/40"
           }`}
           style={{
             left: `${plane.x}%`,
@@ -81,7 +81,7 @@ const FloatingElements = ({ darkMode, status }) => {
         <PaperBoatIcon
           key={`boat-${boat.id}`}
           className={`absolute w-5 h-5 ${
-            darkMode ? "text-slate-400/30" : "text-slate-600/30"
+            darkMode ? "text-white/30" : "text-slate-600/30"
           }`}
           style={{
             left: `${boat.x}%`,
@@ -107,7 +107,7 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
               <div className="relative w-40 h-40 mx-auto">
                 <div
                   className={`absolute inset-0 rounded-full ${
-                    darkMode ? "bg-emerald-500/10" : "bg-emerald-500/10"
+                    darkMode ? "bg-[#ADFF2F]/10" : "bg-emerald-500/10"
                   }`}
                   style={{
                     animation: "pulseRing 2s ease-out infinite",
@@ -116,7 +116,7 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
 
                 <div
                   className={`absolute inset-6 rounded-full ${
-                    darkMode ? "bg-emerald-500/20" : "bg-emerald-500/20"
+                    darkMode ? "bg-[#ADFF2F]/20" : "bg-emerald-500/20"
                   }`}
                   style={{
                     animation: "pulseRing 2s ease-out infinite 0.7s",
@@ -126,14 +126,14 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div
                     className={`w-16 h-16 rounded-full ${
-                      darkMode ? "bg-emerald-500" : "bg-emerald-600"
+                      darkMode ? "bg-[#ADFF2F]" : "bg-emerald-600"
                     } flex items-center justify-center shadow-lg`}
                     style={{
                       animation: "bounce 1.5s ease-in-out infinite",
                     }}
                   >
                     <PaperPlaneIcon
-                      className="w-8 h-8 text-white"
+                      className={`w-8 h-8 ${darkMode ? "text-black" : "text-white"}`}
                       style={{
                         transform: "rotate(45deg)",
                         animation: "wiggle 0.8s ease-in-out infinite",
@@ -155,7 +155,7 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
 
             <p
               className={`text-base ${
-                darkMode ? "text-slate-400" : "text-slate-600"
+                darkMode ? "text-slate-300" : "text-slate-600"
               } mb-4`}
               style={{ animation: "fadeInUp 0.6s ease-out 0.5s both" }}
             >
@@ -171,18 +171,18 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
               <div className="relative w-32 h-32 mx-auto">
                 <div
                   className={`absolute inset-0 rounded-full ${
-                    darkMode ? "bg-emerald-500" : "bg-emerald-600"
+                    darkMode ? "bg-[#ADFF2F]" : "bg-emerald-600"
                   }`}
                   style={{ animation: "successPulse 0.8s ease-out" }}
                 ></div>
 
                 <div
                   className={`absolute inset-4 rounded-full ${
-                    darkMode ? "bg-emerald-500" : "bg-emerald-600"
+                    darkMode ? "bg-[#ADFF2F]" : "bg-emerald-600"
                   } flex items-center justify-center`}
                 >
                   <svg
-                    className="w-16 h-16 text-white"
+                    className={`w-16 h-16 ${darkMode ? "text-black" : "text-white"}`}
                     style={{ animation: "checkDraw 0.8s ease-out 0.3s both" }}
                     fill="none"
                     stroke="currentColor"
@@ -210,7 +210,7 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
 
             <p
               className={`text-base ${
-                darkMode ? "text-slate-400" : "text-slate-600"
+                darkMode ? "text-slate-300" : "text-slate-600"
               }`}
               style={{ animation: "fadeInUp 0.6s ease-out 0.7s both" }}
             >
@@ -255,7 +255,7 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
 
             <p
               className={`text-base ${
-                darkMode ? "text-slate-400" : "text-slate-600"
+                darkMode ? "text-slate-300" : "text-slate-600"
               }`}
             >
               Your message couldn't be sent. Please try again.
@@ -320,7 +320,7 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
         <div
           className={`relative w-full max-w-lg mx-auto rounded-3xl p-10 shadow-2xl transition-all duration-500 ${
             darkMode
-              ? "bg-slate-800 border border-slate-700"
+              ? "bg-[#022a02] border border-[#045106]"
               : "bg-white border border-slate-200"
           }`}
           style={{ animation: "modalSlideIn 0.5s ease-out" }}
@@ -332,7 +332,7 @@ const AnimatedModal = ({ isOpen, status, onClose, darkMode }) => {
               onClick={onClose}
               className={`absolute top-4 right-4 p-2 rounded-full transition-all duration-300 hover:scale-110 ${
                 darkMode
-                  ? "hover:bg-slate-700 text-slate-400 hover:text-white"
+                  ? "hover:bg-[#045106] text-[#ADFF2F] hover:text-white"
                   : "hover:bg-slate-100 text-slate-400 hover:text-slate-900"
               }`}
             >
@@ -410,32 +410,32 @@ const Contact = ({ darkMode }) => {
 
   return (
     <>
-      <div className={`h-[100vh] flex items-center justify-center py-10 transition-colors duration-300 ${darkMode ? "bg-slate-900" : "bg-slate-50"}`}>
+      <div className={`h-[100vh] flex items-center justify-center py-10 transition-colors duration-300 ${darkMode ? "bg-[#011601]" : "bg-slate-50"}`}>
         <div
           className={`relative flex mx-[2vw] flex-wrap items-center justify-center border rounded-2xl overflow-hidden max-w-5xl w-full md:mx-auto h-[70vh] transition-all duration-300 hover:shadow-2xl ${
             darkMode
-              ? "bg-slate-800 border-slate-700 shadow-xl"
+              ? "bg-[#022a02] border-[#045106] shadow-xl"
               : "bg-white border-slate-200 shadow-xl"
           }`}
         >
           {/* Left Side: Contact Form */}
           <div
             className={`w-full lg:w-2/3 p-8 flex flex-col justify-center h-full transition-colors duration-300 ${
-              darkMode ? "bg-slate-800 text-white" : "bg-white text-slate-800"
+              darkMode ? "bg-[#022a02] text-white" : "bg-white text-slate-800"
             }`}
           >
             <div>
               <h2 className={`text-2xl font-bold mb-1 ${darkMode ? "text-white" : "text-slate-900"}`}>
                 Let's Talk
               </h2>
-              <p className={`text-sm mb-6 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+              <p className={`text-sm mb-6 ${darkMode ? "text-slate-300" : "text-slate-500"}`}>
                 I'd love to hear from you. Send me a message!
               </p>
 
               <div className="space-y-4 flex-1">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="email" className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>Email</label>
+                    <label htmlFor="email" className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>Email</label>
                     <input
                       id="email"
                       name="email"
@@ -446,13 +446,13 @@ const Contact = ({ darkMode }) => {
                       placeholder="Enter your email"
                       className={`w-full px-4 py-2.5 text-sm rounded-lg border focus:outline-none focus:ring-2 transition-all duration-200 ${
                         darkMode
-                          ? "bg-slate-700 border-slate-600 text-white focus:ring-emerald-500 focus:border-transparent"
+                          ? "bg-[#355E3B] border-[#045106] text-white focus:ring-[#ADFF2F] focus:border-transparent placeholder-white/50"
                           : "bg-slate-50 border-slate-200 text-slate-900 focus:ring-emerald-500 focus:border-transparent"
                       }`}
                     />
                   </div>
                   <div>
-                    <label htmlFor="name" className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>Name</label>
+                    <label htmlFor="name" className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>Name</label>
                     <input
                       id="name"
                       name="name"
@@ -463,7 +463,7 @@ const Contact = ({ darkMode }) => {
                       placeholder="Enter your name"
                       className={`w-full px-4 py-2.5 text-sm rounded-lg border focus:outline-none focus:ring-2 transition-all duration-200 ${
                         darkMode
-                          ? "bg-slate-700 border-slate-600 text-white focus:ring-emerald-500 focus:border-transparent"
+                          ? "bg-[#355E3B] border-[#045106] text-white focus:ring-[#ADFF2F] focus:border-transparent placeholder-white/50"
                           : "bg-slate-50 border-slate-200 text-slate-900 focus:ring-emerald-500 focus:border-transparent"
                       }`}
                     />
@@ -471,13 +471,13 @@ const Contact = ({ darkMode }) => {
                 </div>
 
                 <div>
-                  <label className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>Who is contacting?</label>
+                  <label className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>Who is contacting?</label>
                   <Listbox value={contactType} onChange={setContactType}>
                     <div className="relative mt-1">
                       <Listbox.Button
                         className={`relative w-full cursor-pointer rounded-lg border py-2.5 pl-4 pr-10 text-left focus:outline-none focus:ring-2 transition-all ${
                           darkMode
-                            ? "bg-slate-700 border-slate-600 text-white focus:ring-emerald-500"
+                            ? "bg-[#355E3B] border-[#045106] text-white focus:ring-[#ADFF2F]"
                             : "bg-slate-50 border-slate-200 text-slate-900 focus:ring-emerald-500"
                         }`}
                       >
@@ -494,7 +494,7 @@ const Contact = ({ darkMode }) => {
                       >
                         <Listbox.Options
                           className={`absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg shadow-lg ring-1 ring-black/5 focus:outline-none ${
-                            darkMode ? "bg-slate-700 text-white" : "bg-white text-slate-900"
+                            darkMode ? "bg-[#045106] text-white" : "bg-white text-slate-900"
                           }`}
                         >
                           {contactOptions.map((option) => (
@@ -504,7 +504,7 @@ const Contact = ({ darkMode }) => {
                               className={({ active }) =>
                                 `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
                                   active
-                                    ? darkMode ? "bg-emerald-600 text-white" : "bg-emerald-50 text-emerald-900"
+                                    ? darkMode ? "bg-[#ADFF2F] text-black" : "bg-emerald-600 text-white"
                                     : ""
                                 }`
                               }
@@ -515,7 +515,7 @@ const Contact = ({ darkMode }) => {
                                     {option.label}
                                   </span>
                                   {selected ? (
-                                    <span className={`absolute inset-y-0 left-0 flex items-center pl-3 ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>
+                                    <span className={`absolute inset-y-0 left-0 flex items-center pl-3 ${darkMode ? "text-white" : "text-emerald-600"}`}>
                                       <Check className="h-5 w-5" />
                                     </span>
                                   ) : null}
@@ -530,7 +530,7 @@ const Contact = ({ darkMode }) => {
                 </div>
 
                 <div className="flex-1">
-                  <label htmlFor="message" className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>Message</label>
+                  <label htmlFor="message" className={`block text-xs font-medium mb-1 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>Message</label>
                   <textarea
                     id="message"
                     name="message"
@@ -541,7 +541,7 @@ const Contact = ({ darkMode }) => {
                     placeholder="Write your message here..."
                     className={`w-full px-4 py-2.5 text-sm rounded-lg border resize-none focus:outline-none focus:ring-2 transition-all duration-200 ${
                       darkMode
-                        ? "bg-slate-700 border-slate-600 text-white focus:ring-emerald-500 focus:border-transparent"
+                        ? "bg-[#355E3B] border-[#045106] text-white focus:ring-[#ADFF2F] focus:border-transparent placeholder-white/50"
                         : "bg-slate-50 border-slate-200 text-slate-900 focus:ring-emerald-500 focus:border-transparent"
                     }`}
                   ></textarea>
@@ -553,7 +553,7 @@ const Contact = ({ darkMode }) => {
                     disabled={!isFormValid || modalState.status === "loading"}
                     className={`w-full md:w-auto flex items-center justify-center font-bold text-sm px-8 py-3 rounded-lg shadow-lg transition-all duration-200 transform hover:translate-y-[-2px] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
                       darkMode
-                        ? "bg-emerald-500 hover:bg-emerald-600 text-white shadow-emerald-900/20"
+                        ? "bg-[#ADFF2F] hover:bg-[#bfff4d] text-black shadow-emerald-900/20"
                         : "bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-500/20"
                     }`}
                   >
@@ -576,10 +576,10 @@ const Contact = ({ darkMode }) => {
               ></iframe>
               <div
                 className={`absolute bottom-4 left-4 right-4 rounded-lg p-3 border shadow-lg backdrop-blur-md ${
-                  darkMode ? "bg-slate-900/80 border-slate-700" : "bg-white/90 border-slate-200"
+                  darkMode ? "bg-[#011601]/80 border-[#045106]" : "bg-white/90 border-slate-200"
                 }`}
               >
-                <div className={`text-xs font-bold ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>
+                <div className={`text-xs font-bold ${darkMode ? "text-[#ADFF2F]" : "text-emerald-600"}`}>
                   📍 Kolkata, West Bengal
                 </div>
                 <div className={`text-xs ${darkMode ? "text-slate-300" : "text-slate-500"}`}>

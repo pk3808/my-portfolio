@@ -98,10 +98,10 @@ const FilterButton = ({ filter, label, activeFilter, onClick, darkMode }) => {
       onClick={() => onClick(filter)}
       className={`px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 ${isActive
         ? darkMode
-          ? "bg-emerald-600 text-white shadow-lg shadow-emerald-900/30"
+          ? "bg-[#045106] text-white shadow-lg shadow-[#045106]/30"
           : "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30"
         : darkMode
-          ? "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white"
+          ? "bg-[#022a02] text-slate-400 hover:bg-[#045106] hover:text-white"
           : "bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-slate-200"
         }`}
     >
@@ -119,7 +119,7 @@ const ProjectCard = ({ project, darkMode }) => {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3 }}
       className={`group relative h-[450px] overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
-        darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-lg"
+        darkMode ? "bg-[#022a02] border-[#ADFF2F]/20" : "bg-white border-slate-200 shadow-lg"
       }`}
     >
       {/* Background Image Area - Top Half */}
@@ -143,11 +143,11 @@ const ProjectCard = ({ project, darkMode }) => {
       {/* Content Section - Bottom Half */}
       <div className={`p-6 flex flex-col h-[210px] justify-between ${darkMode ? "text-slate-100" : "text-slate-800"}`}>
         <div>
-            <h3 className={`text-xl font-bold mb-2 group-hover:text-emerald-500 transition-colors ${darkMode ? "text-white" : "text-slate-900"}`}>
+            <h3 className={`text-xl font-bold mb-2 group-hover:text-[#ADFF2F] transition-colors ${darkMode ? "text-white" : "text-slate-900"}`}>
             {project.label}
             </h3>
 
-            <p className={`text-sm mb-4 line-clamp-2 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+            <p className={`text-sm mb-4 line-clamp-2 ${darkMode ? "text-slate-300" : "text-slate-500"}`}>
             {project.description}
             </p>
         </div>
@@ -160,7 +160,7 @@ const ProjectCard = ({ project, darkMode }) => {
                 key={i}
                 className={`text-xs px-2 py-1 rounded-md border ${
                     darkMode
-                    ? "bg-slate-700/50 border-slate-600 text-slate-300"
+                    ? "bg-[#045106]/50 border-[#ADFF2F]/20 text-slate-300"
                     : "bg-slate-100 border-slate-200 text-slate-600"
                 }`}
                 >
@@ -168,7 +168,7 @@ const ProjectCard = ({ project, darkMode }) => {
                 </span>
             ))}
             {project.techStack.length > 3 && (
-                 <span className={`text-xs px-2 py-1 rounded-md border ${darkMode ? "border-slate-600 text-slate-400" : "border-slate-200 text-slate-500"}`}>+{project.techStack.length - 3}</span>
+                 <span className={`text-xs px-2 py-1 rounded-md border ${darkMode ? "border-[#ADFF2F]/20 text-slate-400" : "border-slate-200 text-slate-500"}`}>+{project.techStack.length - 3}</span>
             )}
             </div>
 
@@ -182,7 +182,7 @@ const ProjectCard = ({ project, darkMode }) => {
                 rel="noopener noreferrer"
                 className={`p-2 rounded-lg transition-colors shadow-sm border ${
                     darkMode
-                    ? "bg-slate-700 hover:bg-emerald-600 hover:text-white border-slate-600 text-slate-300"
+                    ? "bg-[#045106] hover:bg-[#066c23] hover:text-[#ADFF2F] border-[#ADFF2F]/20 text-white"
                     : "bg-slate-50 hover:bg-emerald-500 hover:text-white border-slate-200 text-slate-600"
                 }`}
                 title={link.type}
@@ -207,7 +207,7 @@ const Projects = ({ darkMode, isHorizontal = false }) => {
   return (
     <div className={`transition-colors duration-300 ${
       isHorizontal ? "py-10" : "min-h-screen py-24"
-      } px-4 sm:px-6 lg:px-8 ${darkMode ? "bg-slate-900" : "bg-slate-50"
+      } px-4 sm:px-6 lg:px-8 ${darkMode ? "bg-[#011601]" : "bg-slate-50"
       }`}>
       <div className={`${isHorizontal ? "w-full" : "max-w-7xl mx-auto"}`}>
         {/* Header */}
@@ -226,7 +226,7 @@ const Projects = ({ darkMode, isHorizontal = false }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className={`text-lg max-w-2xl mx-auto ${darkMode ? "text-slate-400" : "text-slate-600"}`}
+            className={`text-lg max-w-2xl mx-auto ${darkMode ? "text-slate-300" : "text-slate-600"}`}
           >
             A collection of applications and tools I've built to solve real-world problems.
           </motion.p>
