@@ -98,11 +98,11 @@ const FilterButton = ({ filter, label, activeFilter, onClick, darkMode }) => {
       onClick={() => onClick(filter)}
       className={`px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 ${isActive
         ? darkMode
-          ? "bg-[#045106] text-white shadow-lg shadow-green-900/30"
-          : "bg-[#F88379] text-gray-900 shadow-lg shadow-orange-500/30"
+          ? "bg-emerald-600 text-white shadow-lg shadow-emerald-900/30"
+          : "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30"
         : darkMode
-          ? "bg-[#022a02] text-gray-400 hover:bg-[#033a03] hover:text-white"
-          : "bg-[#FBCEB1] text-gray-700 hover:bg-[#F2D2BD] hover:text-gray-900"
+          ? "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white"
+          : "bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-slate-200"
         }`}
     >
       {label}
@@ -114,70 +114,83 @@ const ProjectCard = ({ project, darkMode }) => {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
+      exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3 }}
-      className="group relative h-[450px] overflow-hidden rounded-2xl border border-transparent hover:border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+      className={`group relative h-[450px] overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
+        darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200 shadow-lg"
+      }`}
     >
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
+      {/* Background Image Area - Top Half */}
+      <div className="h-[240px] overflow-hidden relative">
+         <img
           src={project.image}
           alt={project.label}
-          className="w-full h-full object-cover object-top transform group-hover:scale-110 transition-transform duration-700"
+          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
         />
-        {/* Gradient Overlay - Darkened at bottom for text readability */}
-        <div className={`absolute inset-0 bg-gradient-to-t ${darkMode
-            ? "from-black via-black/80 to-black/20"
-            : "from-black via-black/60 to-transparent"
-          } opacity-90 transition-opacity duration-300`}
-        />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
 
-      {/* Category Badge */}
-      <div className="absolute top-4 right-4 z-20">
-        <span className="px-3 py-1 text-xs font-semibold rounded-full backdrop-blur-md bg-white/20 text-white border border-white/30 shadow-sm">
-          {project.category === 'app' ? 'App' : 'Web'}
-        </span>
-      </div>
-
-      {/* Content Section */}
-      <div className="relative z-10 h-full flex flex-col justify-end p-6">
-        <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-[#ADFF2F] transition-colors drop-shadow-lg">
-          {project.label}
-        </h3>
-
-        <p className="text-sm mb-4 line-clamp-2 text-gray-200 drop-shadow-md">
-          {project.description}
-        </p>
-
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.techStack.map((tech, i) => (
-            <span
-              key={i}
-              className="text-xs px-2 py-1 rounded-md bg-white/10 text-gray-100 border border-white/10 backdrop-blur-sm"
-            >
-              {tech}
+        {/* Category Badge */}
+        <div className="absolute top-4 right-4 z-20">
+            <span className="px-3 py-1 text-xs font-semibold rounded-full backdrop-blur-md bg-black/40 text-white border border-white/20 shadow-sm">
+            {project.category === 'app' ? 'App' : 'Web'}
             </span>
-          ))}
+        </div>
+      </div>
+
+
+      {/* Content Section - Bottom Half */}
+      <div className={`p-6 flex flex-col h-[210px] justify-between ${darkMode ? "text-slate-100" : "text-slate-800"}`}>
+        <div>
+            <h3 className={`text-xl font-bold mb-2 group-hover:text-emerald-500 transition-colors ${darkMode ? "text-white" : "text-slate-900"}`}>
+            {project.label}
+            </h3>
+
+            <p className={`text-sm mb-4 line-clamp-2 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+            {project.description}
+            </p>
         </div>
 
-        {/* Links */}
-        <div className="flex items-center gap-3">
-          {project.links.map((link, i) => (
-            <a
-              key={i}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-white/10 text-white hover:bg-[#ADFF2F] hover:text-black transition-colors backdrop-blur-sm shadow-lg"
-              title={link.type}
-            >
-              {link.icon}
-            </a>
-          ))}
+        <div>
+            {/* Tech Stack */}
+            <div className="flex flex-wrap gap-2 mb-4">
+            {project.techStack.slice(0, 3).map((tech, i) => (
+                <span
+                key={i}
+                className={`text-xs px-2 py-1 rounded-md border ${
+                    darkMode
+                    ? "bg-slate-700/50 border-slate-600 text-slate-300"
+                    : "bg-slate-100 border-slate-200 text-slate-600"
+                }`}
+                >
+                {tech}
+                </span>
+            ))}
+            {project.techStack.length > 3 && (
+                 <span className={`text-xs px-2 py-1 rounded-md border ${darkMode ? "border-slate-600 text-slate-400" : "border-slate-200 text-slate-500"}`}>+{project.techStack.length - 3}</span>
+            )}
+            </div>
+
+            {/* Links */}
+            <div className="flex items-center gap-3">
+            {project.links.map((link, i) => (
+                <a
+                key={i}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2 rounded-lg transition-colors shadow-sm border ${
+                    darkMode
+                    ? "bg-slate-700 hover:bg-emerald-600 hover:text-white border-slate-600 text-slate-300"
+                    : "bg-slate-50 hover:bg-emerald-500 hover:text-white border-slate-200 text-slate-600"
+                }`}
+                title={link.type}
+                >
+                {link.icon}
+                </a>
+            ))}
+            </div>
         </div>
       </div>
     </motion.div>
@@ -193,9 +206,8 @@ const Projects = ({ darkMode, isHorizontal = false }) => {
 
   return (
     <div className={`transition-colors duration-300 ${
-      // If horizontal (in Home), remove min-h-screen to fit better
       isHorizontal ? "py-10" : "min-h-screen py-24"
-      } px-4 sm:px-6 lg:px-8 ${darkMode ? "bg-[#011601]" : "bg-gradient-to-b from-[#F7F9F2] to-[#FEECE2]"
+      } px-4 sm:px-6 lg:px-8 ${darkMode ? "bg-slate-900" : "bg-slate-50"
       }`}>
       <div className={`${isHorizontal ? "w-full" : "max-w-7xl mx-auto"}`}>
         {/* Header */}
@@ -203,9 +215,9 @@ const Projects = ({ darkMode, isHorizontal = false }) => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r ${darkMode
-              ? "from-white via-[#ADFF2F] to-[#045106]"
-              : "from-gray-900 via-[#F88379] to-[#FBCEB1]"
+            className={`text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r ${darkMode
+              ? "from-white to-slate-400"
+              : "from-slate-900 to-slate-600"
               } bg-clip-text text-transparent`}
           >
             Featured Projects
@@ -214,13 +226,13 @@ const Projects = ({ darkMode, isHorizontal = false }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className={`text-lg max-w-2xl mx-auto ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+            className={`text-lg max-w-2xl mx-auto ${darkMode ? "text-slate-400" : "text-slate-600"}`}
           >
             A collection of applications and tools I've built to solve real-world problems.
           </motion.p>
         </div>
 
-        {/* Filter - Hide in horizontal mode if desired, or keep it. Keeping for now but maybe less margin. */}
+        {/* Filter */}
         {!isHorizontal && (
           <div className="flex justify-center mb-12 gap-4">
             <FilterButton
@@ -250,7 +262,7 @@ const Projects = ({ darkMode, isHorizontal = false }) => {
         {/* Layout Conditionally */}
         {isHorizontal ? (
           // Horizontal Scroll Layout
-          <div className="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory scrollbar-hide">
+          <div className="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory scrollbar-hide px-4">
             {filteredProjects.map((project) => (
               <div key={project.id} className="min-w-[300px] md:min-w-[350px] snap-center">
                 <ProjectCard
@@ -285,7 +297,7 @@ const Projects = ({ darkMode, isHorizontal = false }) => {
             animate={{ opacity: 1 }}
             className="text-center py-20"
           >
-            <p className={`text-xl ${darkMode ? "text-gray-500" : "text-gray-400"}`}>
+            <p className={`text-xl ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
               No projects found in this category.
             </p>
           </motion.div>

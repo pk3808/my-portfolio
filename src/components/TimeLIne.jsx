@@ -38,88 +38,99 @@ const TimeLine = ({ darkMode, bg }) => {
         "Tailwind CSS",
       ],
     },
-    // {
-    //   role: "App Developer Intern",
-    //   company: "IB Arts Pvt Ltd.",
-    //   date: "Jan 2024 - July 2024",
-    //   details:
-    //     "Built responsive UI components using React and integrated APIs. Collaborated with the design team to create visually appealing and user-friendly interfaces.Worked on full-stack web development using React, Node.js, and MongoDB. Collaborated with cross-functional teams to deliver high-quality software solutions.",
-    //   technologies: ["React", "HTML", "CSS", "React Native", "JavaScript"],
-    // },
   ];
 
   const renderContent = () => {
     const data = activeTab === "experience" ? experienceData : educationData;
     return (
-      <div className="space-y-6">
+      <div className="space-y-8 relative pl-2">
+        {/* Vertical Line */}
+        <div className={`absolute left-[13px] top-8 bottom-0 w-0.5 ${darkMode ? "bg-slate-700" : "bg-slate-200"}`}></div>
+
         {data.map((item, index) => (
           <div
             key={index}
-            className={`relative p-6 border-l-6 ${darkMode
-              ? "border-green-500 bg-[#022a02]"
-              : "border-orange-500 bg-[#FBCEB1]"
-              } rounded-r-lg transition-all duration-300 hover:translate-x-2`}
+            className={`relative pl-8 transition-all duration-300 group hover:translate-x-1`}
           >
             {/* Timeline Dot */}
             <div
-              className={`absolute -left-3 top-6 w-6 h-6 rounded-full border-4 ${darkMode
-                ? "bg-green-500 border-green-300"
-                : "bg-orange-500 border-orange-300"
-                }`}
+              className={`absolute left-0 top-8 w-3 h-3 rounded-full border-2 z-10 ${darkMode
+                ? "bg-slate-900 border-emerald-500 group-hover:bg-emerald-500"
+                : "bg-white border-emerald-500 group-hover:bg-emerald-500"
+                } transition-colors duration-300 transform -translate-x-[5px]`}
+              style={{ marginLeft: '11px' }} // Center on the line (11px + 6px radius center = 17px? No.)
+            ></div>
+            {/*
+                Line is at left-[13px]. Center is ~14px.
+                Dot needs to be centered at 14px.
+                Dot width 12px. Center is 6px.
+                So Dot left should be 14 - 6 = 8px.
+             */}
+             <div
+              className={`absolute left-[8px] top-8 w-3 h-3 rounded-full border-2 z-10 ${darkMode
+                ? "bg-slate-900 border-emerald-500 group-hover:bg-emerald-500"
+                : "bg-white border-emerald-500 group-hover:bg-emerald-500"
+                } transition-colors duration-300`}
             ></div>
 
-            {/* Header Section */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-              <div>
-                <h3 className={`text-xl font-bold mb-1 ${darkMode ? "text-green-100" : "text-gray-800"
+            <div className={`p-6 rounded-2xl border ${darkMode
+              ? "bg-slate-800 border-slate-700 hover:border-slate-600"
+              : "bg-white border-slate-200 hover:border-emerald-200 shadow-sm hover:shadow-md"
+              } transition-all duration-300`}>
+
+                {/* Header Section */}
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-2">
+                  <div>
+                    <h3 className={`text-xl font-bold mb-1 ${darkMode ? "text-white" : "text-slate-900"
+                      }`}>
+                      {activeTab === "experience" ? item.role : item.degree}
+                    </h3>
+                    <h4 className={`text-lg font-medium ${darkMode ? "text-emerald-400" : "text-emerald-600"
+                      }`}>
+                      {item.company || item.institution}
+                    </h4>
+                  </div>
+                  <div className="flex flex-col items-start md:items-end">
+                    <span className={`text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider ${darkMode
+                      ? "bg-slate-700 text-slate-300"
+                      : "bg-slate-100 text-slate-600"
+                      }`}>
+                      {item.date}
+                    </span>
+                    {item.marks && (
+                      <span className={`text-xs font-semibold mt-2 px-3 py-1 rounded-full ${darkMode
+                        ? "bg-slate-700 text-emerald-400"
+                        : "bg-slate-100 text-emerald-600"
+                        }`}>
+                        Score: {item.marks}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className={`text-sm leading-relaxed mb-6 ${darkMode ? "text-slate-300" : "text-slate-600"
                   }`}>
-                  {activeTab === "experience" ? item.role : item.degree}
-                </h3>
-                <h4 className={`text-lg font-semibold ${darkMode ? "text-green-200" : "text-orange-700"
-                  }`}>
-                  {item.company || item.institution}
-                </h4>
-              </div>
-              <div className="flex flex-col items-start md:items-end mt-2 md:mt-0">
-                <span className={`text-sm font-medium px-3 py-1 rounded-full ${darkMode
-                  ? "bg-green-600 text-green-100"
-                  : "bg-orange-600 text-orange-100"
-                  }`}>
-                  {item.date}
-                </span>
-                {item.marks && (
-                  <span className={`text-sm font-medium mt-2 px-3 py-1 rounded-full ${darkMode
-                    ? "bg-green-700 text-green-100"
-                    : "bg-orange-700 text-orange-100"
-                    }`}>
-                    Score: {item.marks}
-                  </span>
+                  {item.details}
+                </p>
+
+                {/* Technologies */}
+                {item.technologies && (
+                  <div className="flex flex-wrap gap-2">
+                    {item.technologies.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-colors duration-200 ${darkMode
+                          ? "bg-slate-700/50 text-emerald-300 border-slate-600"
+                          : "bg-slate-50 text-slate-600 border-slate-200"
+                          }`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 )}
-              </div>
             </div>
-
-            {/* Description */}
-            <p className={`text-base leading-relaxed mb-4 ${darkMode ? "text-green-50" : "text-gray-700"
-              }`}>
-              {item.details}
-            </p>
-
-            {/* Technologies */}
-            {item.technologies && (
-              <div className="flex flex-wrap gap-3">
-                {item.technologies.map((tech, idx) => (
-                  <span
-                    key={idx}
-                    className={`px-3 py-2 text-sm font-semibold rounded-md border-2 transition-colors duration-200 ${darkMode
-                      ? "bg-[#044c18] text-[#ADFF2F] border-[#ADFF2F] hover:bg-[#066c23]"
-                      : "bg-orange-100 text-orange-800 border-orange-300 hover:bg-orange-200"
-                      }`}
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            )}
           </div>
         ))}
       </div>
@@ -131,32 +142,33 @@ const TimeLine = ({ darkMode, bg }) => {
       className={`flex md:flex-row flex-col min-h-screen ${bg
         ? "bg-transparent"
         : darkMode
-          ? "bg-transparent text-white"
-          : "bg-[#F5F5DC] text-black"
+          ? "bg-slate-900 text-white"
+          : "bg-slate-50 text-slate-900"
         }`}
     >
       {/* Left Menu - Desktop */}
       <div className="hidden md:flex flex-col justify-start pt-32 w-60 px-8 ml-20">
-        <div className="space-y-4">
+        <div className="space-y-2 sticky top-32">
           {["experience", "education"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`w-full py-4 px-6 relative font-bold text-lg border-l-4 transition-all duration-300 ${activeTab === tab
+              className={`w-full py-3 px-4 text-left font-medium text-lg rounded-lg transition-all duration-300 ${activeTab === tab
                 ? darkMode
-                  ? "border-green-500 bg-[#004225] text-green-100"
-                  : "border-orange-500 bg-[#FBCEB1] text-orange-800"
+                  ? "bg-slate-800 text-white shadow-lg shadow-black/20"
+                  : "bg-white text-emerald-600 shadow-md shadow-emerald-100/50"
                 : darkMode
-                  ? "border-gray-600 text-gray-400 hover:border-green-400 hover:text-green-200"
-                  : "border-gray-400 text-gray-600 hover:border-orange-400 hover:text-orange-600"
+                  ? "text-slate-500 hover:text-slate-300 hover:bg-slate-800/50"
+                  : "text-slate-500 hover:text-slate-800 hover:bg-slate-100"
                 }`}
             >
-              <span className="flex items-center justify-center">
-                <span className={`w-3 h-3 rounded-full mr-3 ${activeTab === tab
+              <span className="flex items-center">
+                 {/* Bullet Point */}
+                <span className={`w-2 h-2 rounded-full mr-3 transition-colors ${activeTab === tab
                   ? darkMode
-                    ? "bg-green-500"
-                    : "bg-orange-500"
-                  : "bg-gray-400"
+                    ? "bg-emerald-400"
+                    : "bg-emerald-500"
+                  : "bg-slate-300"
                   }`}></span>
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
               </span>
@@ -167,18 +179,18 @@ const TimeLine = ({ darkMode, bg }) => {
 
       {/* Mobile Menu */}
       <div className="flex md:hidden w-full px-4 pt-8 pb-4">
-        <div className="flex w-full rounded-lg overflow-hidden border-2 border-gray-300">
+        <div className={`flex w-full rounded-xl overflow-hidden border p-1 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
           {["experience", "education"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-3 px-4 text-center font-bold transition-all duration-300 ${activeTab === tab
+              className={`flex-1 py-2 px-4 text-center font-medium text-sm rounded-lg transition-all duration-300 ${activeTab === tab
                 ? darkMode
-                  ? "bg-green-500 text-white"
-                  : "bg-orange-500 text-white"
+                  ? "bg-slate-700 text-white shadow-sm"
+                  : "bg-emerald-50 text-emerald-700 shadow-sm"
                 : darkMode
-                  ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                  : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                  ? "text-slate-400 hover:text-white"
+                  : "text-slate-500 hover:text-slate-900"
                 }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -188,29 +200,25 @@ const TimeLine = ({ darkMode, bg }) => {
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 px-4 md:px-8 py-8">
+      <div className="flex-1 px-4 md:px-8 py-8 md:pt-32">
         <div className="max-w-4xl">
           {renderContent()}
         </div>
       </div>
 
-      {/* Vertical Timeline Indicator - Desktop */}
-      <div className="hidden md:flex flex-col justify-center items-center w-16">
-        <div
-          className={`w-12 h-48 flex items-center justify-center rounded-lg ${darkMode ? "bg-lime-600" : "bg-orange-400"
-            }`}
-        >
-          <h2
-            className={`text-sm font-bold text-center ${darkMode ? "text-white" : "text-gray-800"
+       {/* Vertical Timeline Indicator - Desktop - Repurposed as stylistic element */}
+       <div className="hidden md:flex flex-col justify-center items-center w-16 mr-8">
+          <div
+            className={`w-[1px] h-48 ${darkMode ? "bg-gradient-to-b from-transparent via-slate-700 to-transparent" : "bg-gradient-to-b from-transparent via-slate-300 to-transparent"
               }`}
-            style={{
-              writingMode: "vertical-rl",
-              textOrientation: "mixed",
-            }}
-          >
-            TIMELINE
-          </h2>
-        </div>
+          ></div>
+           <div className={`writing-mode-vertical text-xs tracking-[0.2em] font-medium uppercase py-4 ${darkMode ? "text-slate-600" : "text-slate-400"}`} style={{ writingMode: 'vertical-rl' }}>
+            Timeline
+           </div>
+           <div
+            className={`w-[1px] h-48 ${darkMode ? "bg-gradient-to-b from-transparent via-slate-700 to-transparent" : "bg-gradient-to-b from-transparent via-slate-300 to-transparent"
+              }`}
+          ></div>
       </div>
     </div>
   );
