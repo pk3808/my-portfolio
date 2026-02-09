@@ -9,10 +9,42 @@ html {
   font-family: 'Inter', sans-serif;
 }
 
+/* Scrollbar Enhancement */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
+/* Light Mode Scrollbar */
+body.light::-webkit-scrollbar-track {
+  background: #F1F5F9; /* Slate 100 */
+}
+
+body.light::-webkit-scrollbar-thumb {
+  background-color: #CBD5E1; /* Slate 300 */
+  border-radius: 5px;
+  border: 2px solid #F1F5F9; /* Creates a padding effect */
+}
+
+body.light::-webkit-scrollbar-thumb:hover {
+  background-color: #94A3B8; /* Slate 400 */
+}
+
+/* Dark Mode Scrollbar */
+body.dark::-webkit-scrollbar-track {
+  background: #011601; /* Legacy Dark BG */
+}
+
+body.dark::-webkit-scrollbar-thumb {
+  background-color: #355E3B; /* Hunter Green */
+  border-radius: 5px;
+  border: 2px solid #011601; /* Creates a padding effect */
+}
+
+body.dark::-webkit-scrollbar-thumb:hover {
+  background-color: #ADFF2F; /* GreenYellow Accent */
+}
+
+/* Fallback for generic scrollbar if classes miss (though they shouldn't) */
 ::-webkit-scrollbar-track {
   background: transparent;
 }

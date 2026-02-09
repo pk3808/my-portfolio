@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AppRoutes from "./routes/AppRoutes";
@@ -14,6 +14,16 @@ const App = () => {
   const toggleTheme = () => {
     setDarkMode((prevMode) => !prevMode);
   };
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark');
+      document.body.classList.remove('light');
+    } else {
+      document.body.classList.add('light');
+      document.body.classList.remove('dark');
+    }
+  }, [darkMode]);
 
   const location = useLocation();
   const isGameScreen = location.pathname === "/game";
