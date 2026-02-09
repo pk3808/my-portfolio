@@ -82,127 +82,143 @@ const Home = ({ darkMode }) => {
         </motion.div>
       )}
 
-      <div className={`container mx-auto py-16 min-h-screen px-4 md:px-8 lg:px-16 transition-colors duration-300 ${darkMode ? "bg-[#011601]" : "bg-slate-50"}`}>
-        <div className="relative group cursor-pointer inline-block">
+      {/* Hero Section - Full Height Viewport */}
+      <div className={`relative min-h-screen flex items-center justify-center overflow-hidden transition-colors duration-300 ${darkMode ? "bg-[#011601]" : "bg-slate-50"}`}>
+
+        {/* Background Gradient Mesh - Subtle */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className={`absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full blur-[120px] opacity-20 ${darkMode ? "bg-[#ADFF2F]" : "bg-emerald-300"}`}></div>
+            <div className={`absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full blur-[120px] opacity-20 ${darkMode ? "bg-emerald-600" : "bg-cyan-300"}`}></div>
+        </div>
+
+        {/* Game Mode Switch - Absolute Position */}
+        <div className="absolute top-24 left-4 md:left-8 z-50 group cursor-pointer inline-block">
           <img
             src="/images/house.png"
             alt="Game Mode"
-            className="w-[35px] md:w-[40px] h-[35px] md:h-[45px] object-contain rounded-lg z-50 absolute animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110 top-[-20px] md:left-0"
+            className="w-[35px] md:w-[40px] h-[35px] md:h-[45px] object-contain rounded-lg animate-pulse transition-transform duration-300 ease-in-out group-hover:scale-110"
             onClick={() => {
               window.location.href = "/";
             }}
           />
-          <div className="absolute left-12 top-[-15px] items-center p-2 bg-slate-800 text-white text-xs rounded shadow-md transform transition-opacity duration-300 opacity-0 group-hover:opacity-100 whitespace-nowrap z-50">
+          <div className={`absolute left-12 top-2 items-center p-2 text-xs rounded shadow-md transform transition-opacity duration-300 opacity-0 group-hover:opacity-100 whitespace-nowrap ${darkMode ? "bg-[#022a02] text-[#ADFF2F]" : "bg-slate-800 text-white"}`}>
             <span>Switch to Game Mode</span>
           </div>
         </div>
 
-        <Parallax speed={-5}>
-          <div className="flex flex-col items-center justify-center mt-12 md:mt-20">
-             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className={`inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6 ${
-                  darkMode ? "bg-[#045106] text-[#ADFF2F] border border-[#ADFF2F]/30" : "bg-white text-emerald-600 border border-slate-200 shadow-sm"
-                }`}
-             >
-                ✨ Welcome to my portfolio
-             </motion.div>
+        <div className="container mx-auto px-4 md:px-8 lg:px-16 relative z-10">
+          <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8">
 
-            <motion.h1
-              className={`text-4xl md:text-6xl lg:text-7xl font-bold text-center tracking-tight ${darkMode ? "text-white" : "text-slate-900"}`}
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-            >
-              Building Digital <br className="hidden md:block" />
-              <span className={`text-transparent bg-clip-text ${darkMode ? "bg-gradient-to-r from-[#ADFF2F] to-emerald-400" : "bg-gradient-to-r from-emerald-400 to-cyan-500"}`}>
-                Experiences
-              </span>
-            </motion.h1>
+            {/* Left Column: Text & CTA */}
+            <div className="flex-1 text-center lg:text-left flex flex-col items-center lg:items-start">
+               <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className={`inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6 ${
+                    darkMode ? "bg-[#045106] text-[#ADFF2F] border border-[#ADFF2F]/30" : "bg-white text-emerald-600 border border-slate-200 shadow-sm"
+                  }`}
+               >
+                  ✨ Welcome to my portfolio
+               </motion.div>
 
-            <motion.p
-              className={`text-center mt-6 text-lg md:text-xl max-w-2xl font-light ${darkMode ? "text-slate-300" : "text-slate-600"}`}
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
-            >
-              I craft responsive websites and mobile apps that solve real problems.
-            </motion.p>
-          </div>
+              <motion.h1
+                className={`text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight ${darkMode ? "text-white" : "text-slate-900"}`}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+              >
+                Building Digital <br className="hidden lg:block" />
+                <span className={`text-transparent bg-clip-text ${darkMode ? "bg-gradient-to-r from-[#ADFF2F] to-emerald-400" : "bg-gradient-to-r from-emerald-500 to-cyan-500"}`}>
+                  Experiences
+                </span>
+              </motion.h1>
 
-          <div className="flex md:flex-row flex-col items-center justify-center gap-10 mt-16 md:mt-24">
-            {/* Profile Image */}
-            <motion.div
-              className="relative"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-            >
-              <div className={`absolute inset-0 rounded-full blur-2xl opacity-20 ${darkMode ? "bg-[#ADFF2F]" : "bg-emerald-400"}`}></div>
-              <div className={`relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 ${darkMode ? "border-[#045106]" : "border-white"} shadow-2xl`}>
-                <img
-                  src={"/images/avataar.png"}
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </motion.div>
+              <motion.p
+                className={`text-lg md:text-xl max-w-lg mb-8 font-light leading-relaxed ${darkMode ? "text-slate-300" : "text-slate-600"}`}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+              >
+                I craft responsive websites and mobile apps that solve real problems.
+                Specialized in React, React Native, and full-stack development.
+              </motion.p>
 
-            {/* Resume / Intro Card */}
-            <motion.div
-              className="w-full max-w-md"
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
-            >
-              <div className={`rounded-2xl p-6 md:p-8 backdrop-blur-md shadow-xl transition-all hover:shadow-2xl ${
-                darkMode
-                  ? "bg-[#022a02]/90 border border-[#ADFF2F]/20 text-white"
-                  : "bg-white/90 border border-slate-100 text-slate-800"
-              }`}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`p-2 rounded-lg ${darkMode ? "bg-[#ADFF2F]/10 text-[#ADFF2F]" : "bg-emerald-100 text-emerald-600"}`}>
-                    <User size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg">Piyush Kumar</h3>
-                    <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-500"}`}>Professional Developer</p>
-                  </div>
+              <motion.div
+                className="flex flex-wrap justify-center lg:justify-start gap-4"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+              >
+                <button
+                  onClick={() => window.location.href = "https://drive.google.com/uc?export=download&id=1XM6arc8Hg6w0Kimxv2Tyctb-xmiDkABu"}
+                  className={`flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-bold transition-all transform hover:-translate-y-1 ${
+                    darkMode
+                      ? "bg-[#ADFF2F] hover:bg-[#bfff4d] text-black shadow-lg shadow-[#ADFF2F]/20"
+                      : "bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-500/20"
+                  }`}
+                >
+                  <Download size={20} />
+                  <span>Resume</span>
+                </button>
+                <button
+                  onClick={() => navigate("/contact")}
+                  className={`flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-medium transition-all border ${
+                    darkMode
+                      ? "border-[#ADFF2F]/50 hover:bg-[#ADFF2F]/10 text-[#ADFF2F]"
+                      : "border-slate-300 hover:bg-slate-100 text-slate-700"
+                  }`}
+                >
+                  <span>Contact Me</span>
+                </button>
+              </motion.div>
+            </div>
+
+            {/* Right Column: Profile Image */}
+            <div className="flex-1 flex justify-center lg:justify-end relative">
+              <motion.div
+                className="relative"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+              >
+                {/* Glow Effect behind image */}
+                <div className={`absolute inset-0 rounded-full blur-3xl opacity-30 scale-110 ${darkMode ? "bg-[#ADFF2F]" : "bg-emerald-400"}`}></div>
+
+                {/* Main Image Container */}
+                <div className={`relative w-[280px] h-[280px] md:w-[380px] md:h-[380px] lg:w-[450px] lg:h-[450px] rounded-full overflow-hidden border-[6px] shadow-2xl ${darkMode ? "border-[#022a02] bg-[#022a02]" : "border-white bg-slate-100"}`}>
+                  <img
+                    src={"/images/avataar.png"}
+                    alt="Profile"
+                    className="w-full h-full object-cover transform scale-105 hover:scale-110 transition-transform duration-700"
+                  />
                 </div>
 
-                <p className={`mb-6 text-sm leading-relaxed ${darkMode ? "text-slate-200" : "text-slate-600"}`}>
-                  Specialized in building exceptional digital experiences. Currently focused on React, React Native, and full-stack development.
-                </p>
+                {/* Floating Badge (Glassmorphism) */}
+                <motion.div
+                  className={`absolute -bottom-6 -left-6 md:bottom-0 md:-left-10 p-4 rounded-2xl backdrop-blur-md shadow-xl border flex items-center gap-3 ${
+                    darkMode
+                      ? "bg-[#011601]/80 border-[#ADFF2F]/20 text-white"
+                      : "bg-white/80 border-white text-slate-800"
+                  }`}
+                  initial={{ x: 20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                >
+                   <div className={`p-2.5 rounded-full ${darkMode ? "bg-[#ADFF2F] text-black" : "bg-emerald-100 text-emerald-600"}`}>
+                      <User size={20} />
+                   </div>
+                   <div>
+                      <p className={`text-xs font-medium uppercase tracking-wider ${darkMode ? "text-[#ADFF2F]" : "text-emerald-600"}`}>Professional</p>
+                      <p className="font-bold text-sm md:text-base">Software Developer</p>
+                   </div>
+                </motion.div>
 
-                <div className="flex gap-4">
-                  <button
-                    onClick={() => window.location.href = "https://drive.google.com/uc?export=download&id=1XM6arc8Hg6w0Kimxv2Tyctb-xmiDkABu"}
-                    className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all ${
-                      darkMode
-                        ? "bg-[#ADFF2F] hover:bg-[#bfff4d] text-black"
-                        : "bg-emerald-600 hover:bg-emerald-700 text-white"
-                    }`}
-                  >
-                    <Download size={18} />
-                    <span>Resume</span>
-                  </button>
-                  <button
-                    onClick={() => navigate("/contact")}
-                    className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all border ${
-                      darkMode
-                        ? "border-[#ADFF2F]/50 hover:bg-[#ADFF2F]/10 text-[#ADFF2F]"
-                        : "border-slate-200 hover:bg-slate-50 text-slate-700"
-                    }`}
-                  >
-                    <span>Contact</span>
-                  </button>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
+
           </div>
-        </Parallax>
+        </div>
       </div>
 
       {/* About Section */}
